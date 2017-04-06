@@ -7,7 +7,6 @@ import org.springframework.context.ConfigurableApplicationContext;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
 
 import ca.empowered.nms.simulator.api.NodeFactory;
-import ca.empowered.nms.simulator.config.Settings;
 
 public class Main {
 
@@ -19,15 +18,25 @@ public class Main {
 		
 		ApplicationContext context = new ClassPathXmlApplicationContext("beans.xml");
 
-		log.debug("randomize: "+Settings.getRandomizeEventGeneration());
+		//log.debug("randomize: "+Settings.getRandomizeEventGeneration());
 		//Settings settings = (Settings)context.getBean("settings");
-		log.debug("hosts: "+Settings.getHostCount());
+		//log.debug("hosts: "+Settings.getHostCount());
 		//log.debug("randomize: "+Settings.getRandomizeEventGeneration());
 		
-		NodeFactory nodeFactory = (NodeFactory)context.getBean("nodeFactory");
-		nodeFactory.generateNodes();
+
+		//ValidRelationships validRelationships = (ValidRelationships)context.getBean("validRelationships");
 		
+		//NodeFactory nodeFactory = (NodeFactory)context.getBean("nodeFactory");
+		NodeFactory.generateNodes();
+		NodeFactory.relateNodes();
 		
+		// let it run forever
+		/*try {
+			while (true)
+				Thread.sleep(365 * 24 * 60 * 60 * 1000);
+		} catch (Exception e) {
+			log.error(e.getMessage(), e);
+		}*/
 		
 		((ConfigurableApplicationContext)context).close();
 		

@@ -1,22 +1,23 @@
 package ca.empowered.nms.simulator.node;
 
+import java.util.ArrayList;
+import java.util.Observable;
+
 import ca.empowered.nms.simulator.utils.Constants;
 import ca.empowered.nms.simulator.utils.Constants.STATE;
 
-public abstract class Element implements Controllable, Relatable {
+public abstract class Element extends Observable implements Controllable, Relatable {
 	
 	private String name;
-	
-	
+		
 	private Constants.STATE currentState;
 	private Boolean changeStateRandomly;
 	
+	public ArrayList<Element> connectedObjects = new ArrayList<>();
+	public ArrayList<Relationship> relationships = new ArrayList<>();
+	
 	public String getName() {
 		return name;
-	}
-
-	public RelationshipList<Constants.RELATIONSHIP> getRelationships() {
-		return relationships;
 	}
 
 	@Override
@@ -40,6 +41,8 @@ public abstract class Element implements Controllable, Relatable {
 	@Override
 	public void setCurrentState(STATE newState) {
 		this.currentState = newState;
+		this.setChanged();
+		this.notifyObservers(newState);
 	}
 
 	@Override

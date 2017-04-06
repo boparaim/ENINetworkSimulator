@@ -7,12 +7,18 @@ public final class Settings {
 
 	//private static final Logger log = LogManager.getLogger(Settings.class.getName());
 	
+	// TODO: change 5
+	
 	//@Value("${eni.nms.simulator.count.Host}")
 	private static Integer hostCount;
 	private static Integer webApplicationCount;
+	private static Integer cardCount;
 	private static Boolean evenlyDistributeRelationships;
 	private static Boolean randomizeEventGeneration;
 	private static String nodeNameSuffix;
+	private static String restServerIP;
+	private static String restServerPort;
+	private static String restServerPath;
 
 	public static Integer getHostCount() {
 		return Settings.hostCount;
@@ -52,5 +58,37 @@ public final class Settings {
 
 	public static void setNodeNameSuffix(String nodeNameSuffix) {
 		Settings.nodeNameSuffix = nodeNameSuffix;
+	}
+
+	public static Integer getCardCount() {
+		return cardCount;
+	}
+
+	public static void setCardCount(Integer cardCount) {
+		Settings.cardCount = cardCount;
+	}
+
+	public static String getRestServerIP() {
+		return restServerIP;
+	}
+
+	public static void setRestServerIP(String restServerIP) {
+		Settings.restServerIP = restServerIP;
+	}
+
+	public static String getRestServerPort() {
+		return restServerPort;
+	}
+
+	public static void setRestServerPort(String restServerPort) {
+		Settings.restServerPort = restServerPort;
+	}
+
+	public static String getRestServerPath() {
+		return restServerPath;
+	}
+
+	public static void setRestServerPath(String restServerPath) {
+		Settings.restServerPath = restServerPath;
 	}
 }

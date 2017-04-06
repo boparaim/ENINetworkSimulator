@@ -19,8 +19,13 @@
 	<bean
 		id="settings"
 		class="ca.empowered.nms.simulator.config.Settings">
+		<property name="restServerIP" value="${eni.nms.simulator.rest.server.ip}" />
+		<property name="restServerPort" value="${eni.nms.simulator.rest.server.port}" />
+		<property name="restServerPath" value="${eni.nms.simulator.rest.server.path}" />
+		<!-- TODO: change 2 -->
 		<property name="hostCount" value="${eni.nms.simulator.count.Host}" />
 		<property name="webApplicationCount" value="${eni.nms.simulator.count.WebApplication}" />
+		<property name="cardCount" value="${eni.nms.simulator.count.Card}" />
 		<property name="evenlyDistributeRelationships" value="${eni.nms.simulator.relationships.distribution.even}" />
 		<property name="randomizeEventGeneration" value="${eni.nms.simulator.events.randomize}" />
 		<property name="nodeNameSuffix" value="${eni.nms.simulator.node.name.suffix}" />
@@ -29,6 +34,22 @@
 	<bean
 		id="nodeFactory"
 		class="ca.empowered.nms.simulator.api.NodeFactory">	
+		<property name="eventObserver" ref="eventObserver" />
+	</bean>
+	
+	<bean
+		id="validRelationships"
+		class="ca.empowered.nms.simulator.utils.ValidRelationships">	
+	</bean>
+	
+	<bean
+		id="eventObserver"
+		class="ca.empowered.nms.simulator.event.EventObserver">	
+	</bean>
+	
+	<bean
+		id="restServer"
+		class="ca.empowered.nms.simulator.api.rest.RestServer">	
 	</bean>
 
 </beans>
