@@ -17,6 +17,8 @@ public class EventObserver implements Observer {
 		Element element = (Element)observable;
 		
 		log.debug("got status update for "+element.getName()+" --> "+element.getCurrentState() + " = " + object.toString());
+		
+		NotificationFactory.submitNotifcation(element);
 	}
 
 }

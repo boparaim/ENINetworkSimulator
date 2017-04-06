@@ -10,6 +10,8 @@
 					    ">
 
 	<context:property-placeholder location="classpath:application.properties"/>
+	
+ 
 
 	<!-- <bean
 		class="org.springframework.beans.factory.config.PropertyPlaceholderConfigurer">
@@ -19,9 +21,11 @@
 	<bean
 		id="settings"
 		class="ca.empowered.nms.simulator.config.Settings">
+		<property name="appName" value="${eni.nms.simulator.AppName}" />
 		<property name="restServerIP" value="${eni.nms.simulator.rest.server.ip}" />
 		<property name="restServerPort" value="${eni.nms.simulator.rest.server.port}" />
 		<property name="restServerPath" value="${eni.nms.simulator.rest.server.path}" />
+		<property name="restDestinationURL" value="${eni.nms.simulator.rest.destination.url}" />
 		<!-- TODO: change 2 -->
 		<property name="hostCount" value="${eni.nms.simulator.count.Host}" />
 		<property name="webApplicationCount" value="${eni.nms.simulator.count.WebApplication}" />

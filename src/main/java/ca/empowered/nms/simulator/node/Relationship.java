@@ -18,6 +18,15 @@ public class Relationship {
 		isConnected = true;
 	}
 	
+	public Element getOtherNode(Element thisNode) {
+		if (thisNode.equals(element1))
+			return element2;
+		else if (thisNode.equals(element2))
+			return element1;
+		
+		return null;
+	}
+	
 	public boolean propagateEvent(Element element) {
 		if ( !isConnected )
 			return false;

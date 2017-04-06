@@ -141,8 +141,8 @@ public final class NodeFactory {
 		return allRelationships;
 	}
 
-	public static void setAllRelationships(ArrayList<Relationship> allRelationships) {
+	/*public static void setAllRelationships(ArrayList<Relationship> allRelationships) {
 		NodeFactory.allRelationships = allRelationships;
-	}
+	}*/
 	
 }

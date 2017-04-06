@@ -19,6 +19,8 @@ public final class Settings {
 	private static String restServerIP;
 	private static String restServerPort;
 	private static String restServerPath;
+	private static String appName;
+	private static String restDestinationURL;
 
 	public static Integer getHostCount() {
 		return Settings.hostCount;
@@ -90,5 +92,21 @@ public final class Settings {
 
 	public static void setRestServerPath(String restServerPath) {
 		Settings.restServerPath = restServerPath;
+	}
+
+	public static String getAppName() {
+		return appName;
+	}
+
+	public static void setAppName(String appName) {
+		Settings.appName = appName;
+	}
+
+	public static String getRestDestinationURL() {
+		return restDestinationURL;
+	}
+
+	public static void setRestDestinationURL(String restDestinationURL) {
+		Settings.restDestinationURL = restDestinationURL;
 	}
 }

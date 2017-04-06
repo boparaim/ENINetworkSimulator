@@ -7,6 +7,7 @@ import org.springframework.context.ConfigurableApplicationContext;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
 
 import ca.empowered.nms.simulator.api.NodeFactory;
+import ca.empowered.nms.simulator.event.NotificationFactory;
 
 public class Main {
 
@@ -29,6 +30,10 @@ public class Main {
 		//NodeFactory nodeFactory = (NodeFactory)context.getBean("nodeFactory");
 		NodeFactory.generateNodes();
 		NodeFactory.relateNodes();
+		
+		/*for ( String notifName : NotificationFactory.getAllNotifications().keySet() ) {
+			log.debug(notifName+"\n"+NotificationFactory.getAllNotifications().get(notifName).toJSON());
+		}*/
 		
 		// let it run forever
 		/*try {
