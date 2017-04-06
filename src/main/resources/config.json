@@ -1,0 +1,56 @@
+{
+	"settings" : [
+		{
+			"plugins" : [				
+				{
+					"name" : "trap-sender",
+					"enabled" : true,
+					"interval-sec" : 30,
+					"class" : "com.en.java.moog.data.Main",
+					"method" : "sendTRAP",
+					"info" : "set interval-sec to -1 if this plugin should only be executed once"
+				},
+				{
+					"name" : "logfile-writer",
+					"enabled" : false,
+					"interval-sec" : 30,
+					"class" : "com.en.java.moog.data.Main",
+					"method" : "writeLogMsg",
+					"info" : "set interval-sec to -1 if this plugin should only be executed once"
+				},
+				{
+					"name" : "socket-writer",
+					"enabled" : false,
+					"interval-sec" : 30,
+					"class" : "com.en.java.moog.data.Main",
+					"method" : "writeSocketMsg",
+					"info" : "set interval-sec to -1 if this plugin should only be executed once"
+				},
+				{
+					"name" : "rest-writer",
+					"enabled" : false,
+					"interval-sec" : 30,
+					"class" : "com.en.java.moog.data.Main",
+					"method" : "sendJSON",
+					"info" : "set interval-sec to -1 if this plugin should only be executed once"
+				},
+				{
+					"name" : "socket-responder",
+					"enabled" : false,
+					"interval-sec" : -1,
+					"class" : "com.en.java.moog.data.Main",
+					"method" : "sendSocketResponse",
+					"info" : "set interval-sec to -1 if this plugin should only be executed once"
+				},
+				{
+					"name" : "rest-responder",
+					"enabled" : false,
+					"interval-sec" : -1,
+					"class" : "com.en.java.moog.data.Main",
+					"method" : "sendRestResponse",
+					"info" : "set interval-sec to -1 if this plugin should only be executed once"
+				}
+			]
+		}
+	]
+}
