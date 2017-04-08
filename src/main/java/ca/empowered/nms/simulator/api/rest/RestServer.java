@@ -68,6 +68,10 @@ public class RestServer {
 			return processWebRequest(request, response).body();
 		});
 		
+		get(Settings.getRestServerPath()+"/set/related-nodes-state/:name/:state", (request, response) -> {
+			return processWebRequest(request, response).body();
+		});
+		
         post(Settings.getRestServerPath(), (request, response) -> {
             return processWebRequest(request, response).body();
         });
@@ -111,7 +115,8 @@ public class RestServer {
 		        				+ "/get/node/<node-name>\t\t shows the given node\n"
 		        				+ "/get/related-nodes/<node-name>\t\t lists nodes given nodes are related to\n"
 		        				+ "/set/node-stae/<node-name>/<state>\t\t updates state for the given node\n"
-		        				+ "/get/notifications\t\t lists all notifications\n";
+		        				+ "/get/notifications\t\t lists all notifications\n"
+		        				+ "/set/related-nodes-state/<node-name>/<state>\n";
 		        		break;
 		        	case "nodes":
 		        		allNodes = NodeFactory.getAllNodes();
@@ -214,6 +219,42 @@ public class RestServer {
 		        		}
 		        		
 		        		break;
+		        		
+		        	case "related-nodes-state":
+		        		nodeName = request.params(":name");
+		        		newState = request.params(":state");
+		        		if (nodeName == null || nodeName.isEmpty() || newState == null || newState.isEmpty())
+		        			data = "{\"method\":\""+Arrays.toString(path).replaceAll(", ", ".")+"\", \"status\":\"ERROR\", \"message\":\"This method requires \"name\" of a node.\"}";
+		        		else {
+		        			allNodes = NodeFactory.getAllNodes();
+		        			
+		        			if ( !allNodes.containsKey(nodeName) )
+		        				data = "{\"method\":\""+Arrays.toString(path).replaceAll(", ", ".")+"\", \"status\":\"ERROR\", \"message\":\"No node found with given name - "+nodeName+"\"}";
+		        			else if ( !newState.matches("[Uu][Pp]|[Dd][Oo][Ww][Nn]") )
+		        				data = "{\"method\":\""+Arrays.toString(path).replaceAll(", ", ".")+"\", \"status\":\"ERROR\", \"message\":\"Invalid state. Valid values for state are UP|DOWN\"}";
+		        			else {
+		        				Element requestedNode = allNodes.get(nodeName);
+		        				data = "{\"method\":\""+Arrays.toString(path).replaceAll(", ", ".")+"\", \"status\":\"SUCCESS\", \"message\":\"States updated\", \"nodes\":[";		        				
+		        				for (Relationship relationship : requestedNode.relationships) {
+		        					Element otherNode = relationship.getOtherNode(requestedNode);
+			        				if ( newState.matches("[Uu][Pp]") )
+			        					otherNode.setCurrentState(STATE.UP);
+			        				if ( newState.matches("[Dd][Oo][Ww][Nn]") )
+			        					otherNode.setCurrentState(STATE.DOWN);
+		        					data += "{\"name\":\"" + otherNode.getName() + "\", \"state\":\""+otherNode.getCurrentState()+"\"},";
+		        				}
+
+								buffer = new StringBuffer(data);
+								data = buffer.reverse().toString().replaceFirst(",", "");
+								data = new StringBuffer(data).reverse().toString();
+								
+		        				data += "]}";
+			        			
+		        			}
+		        		}
+		        		
+		        		break;
+		        		
 	        		default:
 	        			
 	        	}
@@ -232,6 +273,13 @@ public class RestServer {
 	}
 	
 	public static void sendJSON(String jsonPayload) {
+		if (!Settings.getRestClientEnabled()) {
+			log.warn("trying to send JSON while eni.nms.simulator.rest.client.enabled is set to FALSE");
+			return;
+		}
+		
+		
+		// TODO: this will cause an issue when # of objects goes above few Ks, use executor instead
 		new Thread() {
 			@Override
 			public void run() {

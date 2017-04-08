@@ -26,10 +26,14 @@
 		<property name="restServerPort" value="${eni.nms.simulator.rest.server.port}" />
 		<property name="restServerPath" value="${eni.nms.simulator.rest.server.path}" />
 		<property name="restDestinationURL" value="${eni.nms.simulator.rest.destination.url}" />
+		<property name="restClientEnabled" value="${eni.nms.simulator.rest.client.enabled}" />
 		<!-- TODO: change 2 -->
 		<property name="hostCount" value="${eni.nms.simulator.count.Host}" />
+		<property name="hostLevel" value="${eni.nms.simulator.level.Host}" />
 		<property name="webApplicationCount" value="${eni.nms.simulator.count.WebApplication}" />
+		<property name="webApplicationLevel" value="${eni.nms.simulator.level.WebApplication}" />
 		<property name="cardCount" value="${eni.nms.simulator.count.Card}" />
+		<property name="cardLevel" value="${eni.nms.simulator.level.Card}" />
 		<property name="evenlyDistributeRelationships" value="${eni.nms.simulator.relationships.distribution.even}" />
 		<property name="randomizeEventGeneration" value="${eni.nms.simulator.events.randomize}" />
 		<property name="nodeNameSuffix" value="${eni.nms.simulator.node.name.suffix}" />

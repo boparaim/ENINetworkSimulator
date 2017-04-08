@@ -21,6 +21,10 @@ public final class Settings {
 	private static String restServerPath;
 	private static String appName;
 	private static String restDestinationURL;
+	private static Integer hostLevel;
+	private static Integer webApplicationLevel;
+	private static Integer cardLevel;
+	private static Boolean restClientEnabled;
 
 	public static Integer getHostCount() {
 		return Settings.hostCount;
@@ -108,5 +112,37 @@ public final class Settings {
 
 	public static void setRestDestinationURL(String restDestinationURL) {
 		Settings.restDestinationURL = restDestinationURL;
+	}
+
+	public static Integer getHostLevel() {
+		return hostLevel;
+	}
+
+	public static void setHostLevel(Integer hostLevel) {
+		Settings.hostLevel = hostLevel;
+	}
+
+	public static Integer getWebApplicationLevel() {
+		return webApplicationLevel;
+	}
+
+	public static void setWebApplicationLevel(Integer webApplicationLevel) {
+		Settings.webApplicationLevel = webApplicationLevel;
+	}
+
+	public static Integer getCardLevel() {
+		return cardLevel;
+	}
+
+	public static void setCardLevel(Integer cardLevel) {
+		Settings.cardLevel = cardLevel;
+	}
+
+	public static Boolean getRestClientEnabled() {
+		return restClientEnabled;
+	}
+
+	public static void setRestClientEnabled(Boolean restClientEnabled) {
+		Settings.restClientEnabled = restClientEnabled;
 	}
 }
