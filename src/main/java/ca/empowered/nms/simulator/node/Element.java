@@ -6,6 +6,7 @@ import java.util.Observable;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
+import ca.empowered.nms.simulator.ui.GraphManager;
 import ca.empowered.nms.simulator.utils.Constants;
 import ca.empowered.nms.simulator.utils.Constants.STATE;
 
@@ -60,7 +61,7 @@ public abstract class Element extends Observable implements Controllable, Relata
 			// if other element is below/behind/depends on this element
 			Element otherNode = relationship.getOtherNode(this);
 			log.debug("** level: ["+this.getClass().getSimpleName()+"]"+this.level+" other level: ["+otherNode.getClass().getSimpleName()+"]"+otherNode.level);
-			if ( otherNode.level > this.level ) {
+			if ( otherNode.level >= this.level ) {
 				continue;
 			}
 			
@@ -68,6 +69,7 @@ public abstract class Element extends Observable implements Controllable, Relata
 			otherNode.setChanged();
 			otherNode.notifyObservers(otherNode.getCurrentState());
 		
+			GraphManager.updateNodeState(otherNode, otherNode.getCurrentState());
 		}
 	}
 

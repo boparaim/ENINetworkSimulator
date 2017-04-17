@@ -22,6 +22,7 @@ import ca.empowered.nms.simulator.event.Notification;
 import ca.empowered.nms.simulator.event.NotificationFactory;
 import ca.empowered.nms.simulator.node.Element;
 import ca.empowered.nms.simulator.node.Relationship;
+import ca.empowered.nms.simulator.ui.GraphManager;
 import ca.empowered.nms.simulator.utils.Constants.STATE;
 import spark.Request;
 import spark.Response;
@@ -57,6 +58,10 @@ public class RestServer {
         });
 		
 		get(Settings.getRestServerPath()+"/get/related-nodes/:name", (request, response) -> {
+            return processWebRequest(request, response).body();
+        });
+		
+		get(Settings.getRestServerPath()+"/get/all-underlying-nodes/:name", (request, response) -> {
             return processWebRequest(request, response).body();
         });
 		
@@ -116,7 +121,8 @@ public class RestServer {
 		        				+ "/get/related-nodes/<node-name>\t\t lists nodes given nodes are related to\n"
 		        				+ "/set/node-stae/<node-name>/<state>\t\t updates state for the given node\n"
 		        				+ "/get/notifications\t\t lists all notifications\n"
-		        				+ "/set/related-nodes-state/<node-name>/<state>\n";
+		        				+ "/set/related-nodes-state/<node-name>/<state>\n"
+		        				+ "/get/all-underlying-nodes/<node-name>\t\t lists nodes given nodes are related including nodes below nodes\n";
 		        		break;
 		        	case "nodes":
 		        		allNodes = NodeFactory.getAllNodes();
@@ -173,6 +179,29 @@ public class RestServer {
 		        		}
 		        		break;
 		        		
+		        	case "all-underlying-nodes":
+		        		nodeName = request.params(":name");
+		        		if (nodeName == null || nodeName.isEmpty())
+		        			data = "{\"method\":\""+Arrays.toString(path).replaceAll(", ", ".")+"\", \"status\":\"ERROR\", \"message\":\"This method requires \"name\" of a node.\"}";
+		        		else {
+		        			allNodes = NodeFactory.getAllNodes();
+		        			
+		        			if ( !allNodes.containsKey(nodeName) )
+		        				data = "{\"method\":\""+Arrays.toString(path).replaceAll(", ", ".")+"\", \"status\":\"ERROR\", \"message\":\"No node found with given name - "+nodeName+"\"}";
+		        			else {
+		        				Element requestedNode = allNodes.get(nodeName);
+		        				data = "{\"count\":\""+requestedNode.relationships.size()+"\", \"nodes\":[";		        				
+		        				data = getAllUnderlyingNodes(requestedNode, data);
+
+								buffer = new StringBuffer(data);
+								data = buffer.reverse().toString().replaceFirst(",", "");
+								data = new StringBuffer(data).reverse().toString();
+								
+		        				data += "]}";
+		        			}
+		        		}
+		        		break;
+		        		
 		        	case "notifications":
 		        		allNotifications = NotificationFactory.getAllNotifications();
 		        		data = "[";
@@ -214,7 +243,7 @@ public class RestServer {
 		        				if ( newState.matches("[Dd][Oo][Ww][Nn]") )
 		        					requestedNode.setCurrentState(STATE.DOWN);
 		        				data = "{\"method\":\""+Arrays.toString(path).replaceAll(", ", ".")+"\", \"status\":\"SUCCESS\", \"message\":\"State for "+requestedNode.getName()+" updated to "+requestedNode.getCurrentState()+"\"}";
-			        			
+			        			GraphManager.updateNodeState(requestedNode, requestedNode.getCurrentState());
 		        			}
 		        		}
 		        		
@@ -235,14 +264,15 @@ public class RestServer {
 		        			else {
 		        				Element requestedNode = allNodes.get(nodeName);
 		        				data = "{\"method\":\""+Arrays.toString(path).replaceAll(", ", ".")+"\", \"status\":\"SUCCESS\", \"message\":\"States updated\", \"nodes\":[";		        				
-		        				for (Relationship relationship : requestedNode.relationships) {
-		        					Element otherNode = relationship.getOtherNode(requestedNode);
-			        				if ( newState.matches("[Uu][Pp]") )
-			        					otherNode.setCurrentState(STATE.UP);
-			        				if ( newState.matches("[Dd][Oo][Ww][Nn]") )
-			        					otherNode.setCurrentState(STATE.DOWN);
-		        					data += "{\"name\":\"" + otherNode.getName() + "\", \"state\":\""+otherNode.getCurrentState()+"\"},";
-		        				}
+		        				
+		        				if ( newState.matches("[Uu][Pp]") )
+		        					requestedNode.setCurrentState(STATE.UP);
+		        				if ( newState.matches("[Dd][Oo][Ww][Nn]") )
+		        					requestedNode.setCurrentState(STATE.DOWN);
+		        				data += "{\"name\":\"" + requestedNode.getName() + "\", \"state\":\""+requestedNode.getCurrentState()+"\"},";
+		        				GraphManager.updateNodeState(requestedNode, requestedNode.getCurrentState());
+		        				
+		        				data = setStateForRelatedNodes(requestedNode, newState, data);
 
 								buffer = new StringBuffer(data);
 								data = buffer.reverse().toString().replaceFirst(",", "");
@@ -270,6 +300,38 @@ public class RestServer {
         response.body( data );
 		
 		return response;
+	}
+	
+	public static String setStateForRelatedNodes(Element element, String newState, String data) {
+		for (Relationship relationship : element.relationships) {
+			Element otherNode = relationship.getOtherNode(element);
+			if ( otherNode.level < element.level ) {
+				if ( newState.matches("[Uu][Pp]") )
+					otherNode.setCurrentState(STATE.UP);
+				if ( newState.matches("[Dd][Oo][Ww][Nn]") )
+					otherNode.setCurrentState(STATE.DOWN);
+				data += "{\"name\":\"" + otherNode.getName() + "\", \"state\":\""+otherNode.getCurrentState()+"\"},";
+				GraphManager.updateNodeState(otherNode, otherNode.getCurrentState());
+			
+				log.debug("===== "+element.level+" other "+otherNode.level);
+				data = setStateForRelatedNodes(otherNode, newState, data);
+			}
+		}
+		
+		return data;
+	}
+	
+	public static String getAllUnderlyingNodes(Element element, String data) {
+		for (Relationship relationship : element.relationships) {
+			Element otherNode = relationship.getOtherNode(element);
+			if ( otherNode.level < element.level ) {
+				data += "\"" + relationship.getOtherNode(element).getName() + "\",";
+				
+				data = getAllUnderlyingNodes(relationship.getOtherNode(element), data);
+			}
+		}
+		
+		return data;
 	}
 	
 	public static void sendJSON(String jsonPayload) {

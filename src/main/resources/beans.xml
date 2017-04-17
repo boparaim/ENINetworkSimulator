@@ -34,6 +34,18 @@
 		<property name="webApplicationLevel" value="${eni.nms.simulator.level.WebApplication}" />
 		<property name="cardCount" value="${eni.nms.simulator.count.Card}" />
 		<property name="cardLevel" value="${eni.nms.simulator.level.Card}" />
+		<property name="loadBalancerCount" value="${eni.nms.simulator.count.LoadBalancer}" />
+		<property name="loadBalancerLevel" value="${eni.nms.simulator.level.LoadBalancer}" />
+		<property name="routerCount" value="${eni.nms.simulator.count.Router}" />
+		<property name="routerLevel" value="${eni.nms.simulator.level.Router}" />
+		<property name="switchCount" value="${eni.nms.simulator.count.Switch}" />
+		<property name="switchLevel" value="${eni.nms.simulator.level.Switch}" />
+		<property name="interfaceCount" value="${eni.nms.simulator.count.Interface}" />
+		<property name="interfaceLevel" value="${eni.nms.simulator.level.Interface}" />
+		<property name="bgpSessionCount" value="${eni.nms.simulator.count.BGPSession}" />
+		<property name="bgpSessionLevel" value="${eni.nms.simulator.level.BGPSession}" />
+		<property name="networkConnectionCount" value="${eni.nms.simulator.count.NetworkConnection}" />
+		<property name="networkConnectionLevel" value="${eni.nms.simulator.level.NetworkConnection}" />
 		<property name="evenlyDistributeRelationships" value="${eni.nms.simulator.relationships.distribution.even}" />
 		<property name="randomizeEventGeneration" value="${eni.nms.simulator.events.randomize}" />
 		<property name="nodeNameSuffix" value="${eni.nms.simulator.node.name.suffix}" />
@@ -58,6 +70,11 @@
 	<bean
 		id="restServer"
 		class="ca.empowered.nms.simulator.api.rest.RestServer">	
+	</bean>
+	
+	<bean
+		id="graphManager"
+		class="ca.empowered.nms.simulator.ui.GraphManager">	
 	</bean>
 
 </beans>

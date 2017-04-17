@@ -13,6 +13,12 @@ public final class Settings {
 	private static Integer hostCount;
 	private static Integer webApplicationCount;
 	private static Integer cardCount;
+	private static Integer loadBalancerCount;
+	private static Integer routerCount;
+	private static Integer switchCount;
+	private static Integer interfaceCount;
+	private static Integer bgpSessionCount;
+	private static Integer networkConnectionCount;
 	private static Boolean evenlyDistributeRelationships;
 	private static Boolean randomizeEventGeneration;
 	private static String nodeNameSuffix;
@@ -24,6 +30,13 @@ public final class Settings {
 	private static Integer hostLevel;
 	private static Integer webApplicationLevel;
 	private static Integer cardLevel;
+	private static Integer Level;
+	private static Integer loadBalancerLevel;
+	private static Integer routerLevel;
+	private static Integer switchLevel;
+	private static Integer interfaceLevel;
+	private static Integer bgpSessionLevel;
+	private static Integer networkConnectionLevel;
 	private static Boolean restClientEnabled;
 
 	public static Integer getHostCount() {
@@ -144,5 +157,101 @@ public final class Settings {
 
 	public static void setRestClientEnabled(Boolean restClientEnabled) {
 		Settings.restClientEnabled = restClientEnabled;
+	}
+
+	public static Integer getLoadBalancerCount() {
+		return loadBalancerCount;
+	}
+
+	public static void setLoadBalancerCount(Integer loadBalancerCount) {
+		Settings.loadBalancerCount = loadBalancerCount;
+	}
+
+	public static Integer getRouterCount() {
+		return routerCount;
+	}
+
+	public static void setRouterCount(Integer routerCount) {
+		Settings.routerCount = routerCount;
+	}
+
+	public static Integer getSwitchCount() {
+		return switchCount;
+	}
+
+	public static void setSwitchCount(Integer switchCount) {
+		Settings.switchCount = switchCount;
+	}
+
+	public static Integer getInterfaceCount() {
+		return interfaceCount;
+	}
+
+	public static void setInterfaceCount(Integer interfaceCount) {
+		Settings.interfaceCount = interfaceCount;
+	}
+
+	public static Integer getBgpSessionCount() {
+		return bgpSessionCount;
+	}
+
+	public static void setBgpSessionCount(Integer bgpSessionCount) {
+		Settings.bgpSessionCount = bgpSessionCount;
+	}
+
+	public static Integer getNetworkConnectionCount() {
+		return networkConnectionCount;
+	}
+
+	public static void setNetworkConnectionCount(Integer networkConnectionCount) {
+		Settings.networkConnectionCount = networkConnectionCount;
+	}
+
+	public static Integer getLoadBalancerLevel() {
+		return loadBalancerLevel;
+	}
+
+	public static void setLoadBalancerLevel(Integer loadBalancerLevel) {
+		Settings.loadBalancerLevel = loadBalancerLevel;
+	}
+
+	public static Integer getRouterLevel() {
+		return routerLevel;
+	}
+
+	public static void setRouterLevel(Integer routerLevel) {
+		Settings.routerLevel = routerLevel;
+	}
+
+	public static Integer getSwitchLevel() {
+		return switchLevel;
+	}
+
+	public static void setSwitchLevel(Integer switchLevel) {
+		Settings.switchLevel = switchLevel;
+	}
+
+	public static Integer getInterfaceLevel() {
+		return interfaceLevel;
+	}
+
+	public static void setInterfaceLevel(Integer interfaceLevel) {
+		Settings.interfaceLevel = interfaceLevel;
+	}
+
+	public static Integer getBgpSessionLevel() {
+		return bgpSessionLevel;
+	}
+
+	public static void setBgpSessionLevel(Integer bgpSessionLevel) {
+		Settings.bgpSessionLevel = bgpSessionLevel;
+	}
+
+	public static Integer getNetworkConnectionLevel() {
+		return networkConnectionLevel;
+	}
+
+	public static void setNetworkConnectionLevel(Integer networkConnectionLevel) {
+		Settings.networkConnectionLevel = networkConnectionLevel;
 	}
 }

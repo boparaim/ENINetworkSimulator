@@ -6,7 +6,7 @@ import ca.empowered.nms.simulator.utils.Constants.RELATIONSHIP;
 public class Switch extends RelayDevice {
 
 	public Switch() {
-		//Switch.level = Settings.getSwitchLevel();
+		this.level = Settings.getSwitchLevel();
 	}
 	
 	public void setValidRelationships() {

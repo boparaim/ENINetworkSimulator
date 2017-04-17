@@ -6,7 +6,7 @@ import ca.empowered.nms.simulator.utils.Constants.RELATIONSHIP;
 public class Interface extends PhysicalElement {
 
 	public Interface() {
-		//Interface.level = Settings.getInterfaceLevel();
+		this.level = Settings.getInterfaceLevel();
 	}
 	
 	public void setValidRelationships() {

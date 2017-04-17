@@ -6,7 +6,7 @@ import ca.empowered.nms.simulator.utils.Constants.RELATIONSHIP;
 public class Router extends RelayDevice {
 
 	public Router() {
-		//Router.level = Settings.getRouterLevel();
+		this.level = Settings.getRouterLevel();
 	}
 	
 	public void setValidRelationships() {

@@ -6,11 +6,13 @@ import java.util.HashMap;
 
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
+import org.graphstream.graph.Graph;
 
 import ca.empowered.nms.simulator.config.Settings;
 import ca.empowered.nms.simulator.event.EventObserver;
 import ca.empowered.nms.simulator.node.Element;
 import ca.empowered.nms.simulator.node.Relationship;
+import ca.empowered.nms.simulator.ui.GraphManager;
 import ca.empowered.nms.simulator.utils.Constants.STATE;
 import ca.empowered.nms.simulator.utils.ValidRelationships;
 
@@ -56,6 +58,7 @@ public final class NodeFactory {
 						otherNode.setCurrentState(STATE.UP);
 					
 					allRelationships.add(thisRelationship);
+					//GraphManager.addEdge(thisRelationship);
 					
 					//log.debug(thisRelationship);
 					log.debug("related to: "+thisNode.getName() + " <--> " + otherNode.getName());
@@ -83,9 +86,16 @@ public final class NodeFactory {
 	public static void generateNodes() {
 		
 		// TODO: change 3
+		// TODO: make more generic, configurable
 		generateNodes("ca.empowered.nms.simulator.node.Host", Settings.getHostCount());
 		generateNodes("ca.empowered.nms.simulator.node.WebApplication", Settings.getWebApplicationCount());
 		generateNodes("ca.empowered.nms.simulator.node.Card", Settings.getCardCount());
+		generateNodes("ca.empowered.nms.simulator.node.LoadBalancer", Settings.getLoadBalancerCount());
+		generateNodes("ca.empowered.nms.simulator.node.Router", Settings.getRouterCount());
+		generateNodes("ca.empowered.nms.simulator.node.Switch", Settings.getSwitchCount());
+		generateNodes("ca.empowered.nms.simulator.node.Interface", Settings.getInterfaceCount());
+		generateNodes("ca.empowered.nms.simulator.node.NetworkConnection", Settings.getNetworkConnectionCount());
+		generateNodes("ca.empowered.nms.simulator.node.BGPSession", Settings.getBgpSessionCount());
 		
 		log.info("generated objects: " + allNodes.size());
 		
@@ -113,6 +123,7 @@ public final class NodeFactory {
 				thisElement.changeStateRandomly(Settings.getRandomizeEventGeneration());
 				
 				//log.debug(thisObject);
+				//GraphManager.addNode(thisElement);
 				
 				allNodes.put(instanceName, thisElement);
 			} catch (Exception e) {

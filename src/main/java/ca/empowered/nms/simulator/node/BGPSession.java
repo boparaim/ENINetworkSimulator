@@ -6,7 +6,7 @@ import ca.empowered.nms.simulator.utils.Constants.RELATIONSHIP;
 public class BGPSession extends LogicalElement {
 
 	public BGPSession() {
-		//BGPSession.level = Settings.getBGPSessionLevel();
+		this.level = Settings.getBgpSessionLevel();
 	}
 	
 	public void setValidRelationships() {

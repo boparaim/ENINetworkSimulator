@@ -15,9 +15,22 @@ public class ValidRelationships {
 	
 	// TODO: read this from a conf file/json
 	public ValidRelationships() {
-		// TODO: change 4
-		map.add( new String[] { "Host", "WebApplication", "1", "3" } );	// host can host 3 webapps; webapp can only be hosted by 1 host
-		map.add( new String[] { "Host", "Card", "1", "1" } );	
+		// TODO: change 4	
+		//map.add( new String[] { "LoadBalancer", "LoadBalancer", "1", "1" } );	
+		map.add( new String[] { "LoadBalancer", "Router", "1", "2" } );	
+		map.add( new String[] { "Router", "Router", "1", "1" } );	
+		map.add( new String[] { "Router", "Switch", "1", "2" } );	
+		//map.add( new String[] { "Router", "Host", "1", "1" } );	
+		map.add( new String[] { "Switch", "Host", "1", "2" } );
+		map.add( new String[] { "Host", "Card", "1", "2" } );
+		//map.add( new String[] { "Host", "WebApplication", "1", "2" } );	// host can host 3 webapps; webapp can only be hosted by 1 host	
+		map.add( new String[] { "Card", "Interface", "1", "2" } );	
+		map.add( new String[] { "Interface", "WebApplication", "1", "2" } );	
+		map.add( new String[] { "NetworkConnection", "Interface", "1", "10" } );
+		map.add( new String[] { "NetworkConnection", "Switch", "1", "1" } );	
+		map.add( new String[] { "NetworkConnection", "Router", "1", "1" } );	
+		map.add( new String[] { "NetworkConnection", "LoadBalancer", "1", "1" } );
+		map.add( new String[] { "BGPSession", "Router", "1", "4" } );
 	}
 	
 	public static boolean isValidRelationship(Element node1, Element node2) {
