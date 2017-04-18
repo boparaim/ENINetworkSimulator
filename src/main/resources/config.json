@@ -1,54 +1,35 @@
+# 700 objects (200 + 500) (1 -> 2 relations) (100 disconnected) creation: 510ms complete: 777ms    [500k iterations in 267ms] = 1835 iterations / ms
+# 7k objects (2k + 5k) (1 -> 2 relations) (1k disconnected) creation: 533ms complete: 6.5s					+8%		800MB
+#14k 4k+10k 538ms, 37197ms
+# 70k objects (20k + 50k) (1 -> 2 relations) (10k disconnected) creation: 646ms complete: 1261s = 21mins	+180%	1.3GB
+# 700k objects (200k + 500k) (1 -> 2 relations) (100k disconnected) creation: 3s completed: 10h+					7.5GB
 {
-	"settings" : [
+	"nodes" : [
 		{
-			"plugins" : [				
+			"name" : "Host",
+			"description" : "",
+			"count" : 4000,
+			"enabled" : true,
+			"init-state" : "UP",
+			"rank" : 100,
+			"relatable-to" : [
 				{
-					"name" : "trap-sender",
-					"enabled" : true,
-					"interval-sec" : 30,
-					"class" : "com.en.java.moog.data.Main",
-					"method" : "sendTRAP",
-					"info" : "set interval-sec to -1 if this plugin should only be executed once"
-				},
+					"name" : "Card", 
+					"max" : 2
+				}
+			]
+		},
+		{
+			"name" : "Card",
+			"description" : "",
+			"count" : 10000,
+			"enabled" : true,
+			"init-state" : "UP",
+			"rank" : 200,
+			"relatable-to" : [
 				{
-					"name" : "logfile-writer",
-					"enabled" : false,
-					"interval-sec" : 30,
-					"class" : "com.en.java.moog.data.Main",
-					"method" : "writeLogMsg",
-					"info" : "set interval-sec to -1 if this plugin should only be executed once"
-				},
-				{
-					"name" : "socket-writer",
-					"enabled" : false,
-					"interval-sec" : 30,
-					"class" : "com.en.java.moog.data.Main",
-					"method" : "writeSocketMsg",
-					"info" : "set interval-sec to -1 if this plugin should only be executed once"
-				},
-				{
-					"name" : "rest-writer",
-					"enabled" : false,
-					"interval-sec" : 30,
-					"class" : "com.en.java.moog.data.Main",
-					"method" : "sendJSON",
-					"info" : "set interval-sec to -1 if this plugin should only be executed once"
-				},
-				{
-					"name" : "socket-responder",
-					"enabled" : false,
-					"interval-sec" : -1,
-					"class" : "com.en.java.moog.data.Main",
-					"method" : "sendSocketResponse",
-					"info" : "set interval-sec to -1 if this plugin should only be executed once"
-				},
-				{
-					"name" : "rest-responder",
-					"enabled" : false,
-					"interval-sec" : -1,
-					"class" : "com.en.java.moog.data.Main",
-					"method" : "sendRestResponse",
-					"info" : "set interval-sec to -1 if this plugin should only be executed once"
+					"name" : "Host", 
+					"max" : 1
 				}
 			]
 		}

@@ -52,14 +52,17 @@
 	</bean>
 	
 	<bean
-		id="nodeFactory"
-		class="ca.empowered.nms.simulator.api.NodeFactory">	
-		<property name="eventObserver" ref="eventObserver" />
+		id="jsonConfigurations"
+		class="ca.empowered.nms.simulator.config.JsonConfigurations">
+		<constructor-arg type="java.lang.String" value="config.json" />
 	</bean>
 	
 	<bean
-		id="validRelationships"
-		class="ca.empowered.nms.simulator.utils.ValidRelationships">	
+		id="nodeManager"
+		class="ca.empowered.nms.simulator.api.NodeManager"
+		init-method="init">	
+		<property name="eventObserver" ref="eventObserver" />
+		<property name="nodeTemplates" value="#{jsonConfigurations.nodeTemplates}" />
 	</bean>
 	
 	<bean

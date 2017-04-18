@@ -16,12 +16,11 @@ import java.util.HashMap;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
-import ca.empowered.nms.simulator.api.NodeFactory;
+import ca.empowered.nms.simulator.api.NodeManager;
 import ca.empowered.nms.simulator.config.Settings;
 import ca.empowered.nms.simulator.event.Notification;
 import ca.empowered.nms.simulator.event.NotificationFactory;
 import ca.empowered.nms.simulator.node.Element;
-import ca.empowered.nms.simulator.node.Relationship;
 import ca.empowered.nms.simulator.ui.GraphManager;
 import ca.empowered.nms.simulator.utils.Constants.STATE;
 import spark.Request;
@@ -125,7 +124,7 @@ public class RestServer {
 		        				+ "/get/all-underlying-nodes/<node-name>\t\t lists nodes given nodes are related including nodes below nodes\n";
 		        		break;
 		        	case "nodes":
-		        		allNodes = NodeFactory.getAllNodes();
+		        		/*allNodes = NodeManager.getAllNodes();
 		        		data = "[";
 		        		for (Element node : allNodes.values()) {
 		        			data += "{\"name\":\""+node.getName()+"\", \"state\":\""+node.getCurrentState()+"\"},";
@@ -133,7 +132,7 @@ public class RestServer {
 
 						buffer = new StringBuffer(data);
 						data = buffer.reverse().toString().replaceFirst(",", "");
-						data = new StringBuffer(data).reverse().toString();
+						data = new StringBuffer(data).reverse().toString();*/
 
 		        		data += "]";
 		        		break;
@@ -143,14 +142,14 @@ public class RestServer {
 		        		if (nodeName == null || nodeName.isEmpty())
 		        			data = "{\"method\":\""+Arrays.toString(path).replaceAll(", ", ".")+"\", \"status\":\"ERROR\", \"message\":\"This method requires \"name\" of a node.\"}";
 		        		else {
-		        			allNodes = NodeFactory.getAllNodes();
+		        			/*allNodes = NodeManager.getAllNodes();
 		        			
 		        			if ( !allNodes.containsKey(nodeName) )
 		        				data = "{\"method\":\""+Arrays.toString(path).replaceAll(", ", ".")+"\", \"status\":\"ERROR\", \"message\":\"No node found with given name - "+nodeName+"\"}";
 		        			else {
 		        				Element requestedNode = allNodes.get(nodeName);
 		        				data = "{\"name\":\""+requestedNode.getName()+"\", \"state\":\""+requestedNode.getCurrentState()+"\"}";
-		        			}
+		        			}*/
 		        		}
 		        		break;
 		        		
@@ -159,23 +158,23 @@ public class RestServer {
 		        		if (nodeName == null || nodeName.isEmpty())
 		        			data = "{\"method\":\""+Arrays.toString(path).replaceAll(", ", ".")+"\", \"status\":\"ERROR\", \"message\":\"This method requires \"name\" of a node.\"}";
 		        		else {
-		        			allNodes = NodeFactory.getAllNodes();
+		        			/*allNodes = NodeManager.getAllNodes();
 		        			
 		        			if ( !allNodes.containsKey(nodeName) )
 		        				data = "{\"method\":\""+Arrays.toString(path).replaceAll(", ", ".")+"\", \"status\":\"ERROR\", \"message\":\"No node found with given name - "+nodeName+"\"}";
 		        			else {
 		        				Element requestedNode = allNodes.get(nodeName);
-		        				data = "{\"count\":\""+requestedNode.relationships.size()+"\", \"nodes\":[";		        				
+		        				/*data = "{\"count\":\""+requestedNode.relationships.size()+"\", \"nodes\":[";		        				
 		        				for (Relationship relationship : requestedNode.relationships) {
 		        					data += "\"" + relationship.getOtherNode(requestedNode).getName() + "\",";
-		        				}
+		        				}*/
 
-								buffer = new StringBuffer(data);
+								/*buffer = new StringBuffer(data);
 								data = buffer.reverse().toString().replaceFirst(",", "");
 								data = new StringBuffer(data).reverse().toString();
 								
 		        				data += "]}";
-		        			}
+		        			}*/
 		        		}
 		        		break;
 		        		
@@ -184,21 +183,21 @@ public class RestServer {
 		        		if (nodeName == null || nodeName.isEmpty())
 		        			data = "{\"method\":\""+Arrays.toString(path).replaceAll(", ", ".")+"\", \"status\":\"ERROR\", \"message\":\"This method requires \"name\" of a node.\"}";
 		        		else {
-		        			allNodes = NodeFactory.getAllNodes();
+		        			/*allNodes = NodeManager.getAllNodes();
 		        			
 		        			if ( !allNodes.containsKey(nodeName) )
 		        				data = "{\"method\":\""+Arrays.toString(path).replaceAll(", ", ".")+"\", \"status\":\"ERROR\", \"message\":\"No node found with given name - "+nodeName+"\"}";
 		        			else {
 		        				Element requestedNode = allNodes.get(nodeName);
-		        				data = "{\"count\":\""+requestedNode.relationships.size()+"\", \"nodes\":[";		        				
-		        				data = getAllUnderlyingNodes(requestedNode, data);
+		        				/*data = "{\"count\":\""+requestedNode.relationships.size()+"\", \"nodes\":[";*/		        				
+		        				/*data = getAllUnderlyingNodes(requestedNode, data);
 
 								buffer = new StringBuffer(data);
 								data = buffer.reverse().toString().replaceFirst(",", "");
 								data = new StringBuffer(data).reverse().toString();
 								
 		        				data += "]}";
-		        			}
+		        			}*/
 		        		}
 		        		break;
 		        		
@@ -230,7 +229,7 @@ public class RestServer {
 		        		if (nodeName == null || nodeName.isEmpty() || newState == null || newState.isEmpty())
 		        			data = "{\"method\":\""+Arrays.toString(path).replaceAll(", ", ".")+"\", \"status\":\"ERROR\", \"message\":\"This method requires \"name\" of a node.\"}";
 		        		else {
-		        			allNodes = NodeFactory.getAllNodes();
+		        			/*allNodes = NodeManager.getAllNodes();
 		        			
 		        			if ( !allNodes.containsKey(nodeName) )
 		        				data = "{\"method\":\""+Arrays.toString(path).replaceAll(", ", ".")+"\", \"status\":\"ERROR\", \"message\":\"No node found with given name - "+nodeName+"\"}";
@@ -244,7 +243,7 @@ public class RestServer {
 		        					requestedNode.setCurrentState(STATE.DOWN);
 		        				data = "{\"method\":\""+Arrays.toString(path).replaceAll(", ", ".")+"\", \"status\":\"SUCCESS\", \"message\":\"State for "+requestedNode.getName()+" updated to "+requestedNode.getCurrentState()+"\"}";
 			        			GraphManager.updateNodeState(requestedNode, requestedNode.getCurrentState());
-		        			}
+		        			}*/
 		        		}
 		        		
 		        		break;
@@ -255,7 +254,7 @@ public class RestServer {
 		        		if (nodeName == null || nodeName.isEmpty() || newState == null || newState.isEmpty())
 		        			data = "{\"method\":\""+Arrays.toString(path).replaceAll(", ", ".")+"\", \"status\":\"ERROR\", \"message\":\"This method requires \"name\" of a node.\"}";
 		        		else {
-		        			allNodes = NodeFactory.getAllNodes();
+		        			/*allNodes = NodeManager.getAllNodes();
 		        			
 		        			if ( !allNodes.containsKey(nodeName) )
 		        				data = "{\"method\":\""+Arrays.toString(path).replaceAll(", ", ".")+"\", \"status\":\"ERROR\", \"message\":\"No node found with given name - "+nodeName+"\"}";
@@ -280,7 +279,7 @@ public class RestServer {
 								
 		        				data += "]}";
 			        			
-		        			}
+		        			}*/
 		        		}
 		        		
 		        		break;
@@ -303,7 +302,7 @@ public class RestServer {
 	}
 	
 	public static String setStateForRelatedNodes(Element element, String newState, String data) {
-		for (Relationship relationship : element.relationships) {
+		/*for (Relationship relationship : element.relationships) {
 			Element otherNode = relationship.getOtherNode(element);
 			if ( otherNode.level < element.level ) {
 				if ( newState.matches("[Uu][Pp]") )
@@ -316,20 +315,20 @@ public class RestServer {
 				log.debug("===== "+element.level+" other "+otherNode.level);
 				data = setStateForRelatedNodes(otherNode, newState, data);
 			}
-		}
+		}*/
 		
 		return data;
 	}
 	
 	public static String getAllUnderlyingNodes(Element element, String data) {
-		for (Relationship relationship : element.relationships) {
+		/*for (Relationship relationship : element.relationships) {
 			Element otherNode = relationship.getOtherNode(element);
 			if ( otherNode.level < element.level ) {
 				data += "\"" + relationship.getOtherNode(element).getName() + "\",";
 				
 				data = getAllUnderlyingNodes(relationship.getOtherNode(element), data);
 			}
-		}
+		}*/
 		
 		return data;
 	}

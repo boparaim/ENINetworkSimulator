@@ -10,7 +10,7 @@ import ca.empowered.nms.simulator.ui.GraphManager;
 import ca.empowered.nms.simulator.utils.Constants;
 import ca.empowered.nms.simulator.utils.Constants.STATE;
 
-public abstract class Element extends Observable implements Controllable, Relatable {
+public abstract class Element extends Observable implements Controllable {
 
 	private static final Logger log = LogManager.getLogger(Element.class.getName());
 	private String name;
@@ -22,7 +22,7 @@ public abstract class Element extends Observable implements Controllable, Relata
 	public Integer level = 0;
 	
 	public ArrayList<Element> connectedObjects = new ArrayList<>();
-	public ArrayList<Relationship> relationships = new ArrayList<>();
+	//public ArrayList<Relationship> relationships = new ArrayList<>();
 	
 	public String getName() {
 		return name;
@@ -57,7 +57,7 @@ public abstract class Element extends Observable implements Controllable, Relata
 			return;
 		
 		// now notify related nodes of this change
-		for ( Relationship relationship : this.relationships ) {
+		/*for ( Relationship relationship : this.relationships ) {
 			// if other element is below/behind/depends on this element
 			Element otherNode = relationship.getOtherNode(this);
 			log.debug("** level: ["+this.getClass().getSimpleName()+"]"+this.level+" other level: ["+otherNode.getClass().getSimpleName()+"]"+otherNode.level);
@@ -70,7 +70,7 @@ public abstract class Element extends Observable implements Controllable, Relata
 			otherNode.notifyObservers(otherNode.getCurrentState());
 		
 			GraphManager.updateNodeState(otherNode, otherNode.getCurrentState());
-		}
+		}*/
 	}
 
 	@Override
