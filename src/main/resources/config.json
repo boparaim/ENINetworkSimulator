@@ -1,17 +1,19 @@
 # 700 objects (200 + 500) (1 -> 2 relations) (100 disconnected) creation: 510ms complete: 777ms    [500k iterations in 267ms] = 1835 iterations / ms
 # 7k objects (2k + 5k) (1 -> 2 relations) (1k disconnected) creation: 533ms complete: 6.5s					+8%		800MB
-#14k 4k+10k 538ms, 37197ms
-# 70k objects (20k + 50k) (1 -> 2 relations) (10k disconnected) creation: 646ms complete: 1261s = 21mins	+180%	1.3GB
+# 14k 4k+10k 538ms, 37197ms with streams 9505ms
+# 29k 9k+20k 619ms, 40104ms (streams)
+# 40k 10k+30k 636ms, 81108ms (streams)
+# 70k objects (20k + 50k) (1 -> 2 relations) (10k disconnected) creation: 646ms complete: 1261s = 21mins	+180%	1.3GB	with stream: 265s = 4.5mins
 # 700k objects (200k + 500k) (1 -> 2 relations) (100k disconnected) creation: 3s completed: 10h+					7.5GB
 {
 	"nodes" : [
 		{
 			"name" : "Host",
 			"description" : "",
-			"count" : 4000,
+			"count" : 1500,
 			"enabled" : true,
 			"init-state" : "UP",
-			"rank" : 100,
+			"rank" : 1500,
 			"relatable-to" : [
 				{
 					"name" : "Card", 
@@ -22,10 +24,10 @@
 		{
 			"name" : "Card",
 			"description" : "",
-			"count" : 10000,
+			"count" : 3501,
 			"enabled" : true,
 			"init-state" : "UP",
-			"rank" : 200,
+			"rank" : 1100,
 			"relatable-to" : [
 				{
 					"name" : "Host", 

@@ -10,18 +10,19 @@ import java.io.InputStreamReader;
 import java.io.OutputStreamWriter;
 import java.net.HttpURLConnection;
 import java.net.URL;
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.HashMap;
 
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
+import org.graphstream.graph.Edge;
 
 import ca.empowered.nms.simulator.api.NodeManager;
 import ca.empowered.nms.simulator.config.Settings;
 import ca.empowered.nms.simulator.event.Notification;
 import ca.empowered.nms.simulator.event.NotificationFactory;
-import ca.empowered.nms.simulator.node.Element;
-import ca.empowered.nms.simulator.ui.GraphManager;
+import ca.empowered.nms.simulator.node.NodeElement;
 import ca.empowered.nms.simulator.utils.Constants.STATE;
 import spark.Request;
 import spark.Response;
@@ -35,6 +36,7 @@ public class RestServer {
 		+Settings.getRestServerPath());
 		// using apache spark
 		// by default port is 4567
+		// options can be set on command line - https://github.com/apache/spark/blob/master/conf/spark-env.sh.template
 		
 		// GET - show
 		// POST - create
@@ -103,7 +105,7 @@ public class RestServer {
         
         String data = "{}";
         
-        HashMap<String, Element> allNodes = null;
+        ArrayList<String> allNodes = null;
         HashMap<String, Notification> allNotifications = null;
 		String nodeName = null;
 		String newState = null;
@@ -118,21 +120,21 @@ public class RestServer {
 		        				+ "/get/nodes\t\t lists all nodes\n"
 		        				+ "/get/node/<node-name>\t\t shows the given node\n"
 		        				+ "/get/related-nodes/<node-name>\t\t lists nodes given nodes are related to\n"
-		        				+ "/set/node-stae/<node-name>/<state>\t\t updates state for the given node\n"
+		        				+ "/set/node-state/<node-name>/<state>\t\t updates state for the given node\n"
 		        				+ "/get/notifications\t\t lists all notifications\n"
 		        				+ "/set/related-nodes-state/<node-name>/<state>\n"
 		        				+ "/get/all-underlying-nodes/<node-name>\t\t lists nodes given nodes are related including nodes below nodes\n";
 		        		break;
 		        	case "nodes":
-		        		/*allNodes = NodeManager.getAllNodes();
+		        		allNodes = NodeManager.getAllNodes();
 		        		data = "[";
-		        		for (Element node : allNodes.values()) {
-		        			data += "{\"name\":\""+node.getName()+"\", \"state\":\""+node.getCurrentState()+"\"},";
+		        		for (String name : allNodes) {
+		        			data += "{\"name\":\""+name+"\", \"state\":\""+NodeManager.getGraph().getNode(name).getAttribute("state")+"\"},";
 		        		}
 
 						buffer = new StringBuffer(data);
 						data = buffer.reverse().toString().replaceFirst(",", "");
-						data = new StringBuffer(data).reverse().toString();*/
+						data = new StringBuffer(data).reverse().toString();
 
 		        		data += "]";
 		        		break;
@@ -142,14 +144,13 @@ public class RestServer {
 		        		if (nodeName == null || nodeName.isEmpty())
 		        			data = "{\"method\":\""+Arrays.toString(path).replaceAll(", ", ".")+"\", \"status\":\"ERROR\", \"message\":\"This method requires \"name\" of a node.\"}";
 		        		else {
-		        			/*allNodes = NodeManager.getAllNodes();
+		        			allNodes = NodeManager.getAllNodes();
 		        			
-		        			if ( !allNodes.containsKey(nodeName) )
+		        			if ( !allNodes.contains(nodeName) )
 		        				data = "{\"method\":\""+Arrays.toString(path).replaceAll(", ", ".")+"\", \"status\":\"ERROR\", \"message\":\"No node found with given name - "+nodeName+"\"}";
 		        			else {
-		        				Element requestedNode = allNodes.get(nodeName);
-		        				data = "{\"name\":\""+requestedNode.getName()+"\", \"state\":\""+requestedNode.getCurrentState()+"\"}";
-		        			}*/
+		        				data = "{\"name\":\""+nodeName+"\", \"state\":\""+NodeManager.getGraph().getNode(nodeName).getAttribute("state")+"\"}";
+		        			}
 		        		}
 		        		break;
 		        		
@@ -158,46 +159,23 @@ public class RestServer {
 		        		if (nodeName == null || nodeName.isEmpty())
 		        			data = "{\"method\":\""+Arrays.toString(path).replaceAll(", ", ".")+"\", \"status\":\"ERROR\", \"message\":\"This method requires \"name\" of a node.\"}";
 		        		else {
-		        			/*allNodes = NodeManager.getAllNodes();
+		        			allNodes = NodeManager.getAllNodes();
 		        			
-		        			if ( !allNodes.containsKey(nodeName) )
+		        			if ( !allNodes.contains(nodeName) )
 		        				data = "{\"method\":\""+Arrays.toString(path).replaceAll(", ", ".")+"\", \"status\":\"ERROR\", \"message\":\"No node found with given name - "+nodeName+"\"}";
 		        			else {
-		        				Element requestedNode = allNodes.get(nodeName);
-		        				/*data = "{\"count\":\""+requestedNode.relationships.size()+"\", \"nodes\":[";		        				
-		        				for (Relationship relationship : requestedNode.relationships) {
-		        					data += "\"" + relationship.getOtherNode(requestedNode).getName() + "\",";
-		        				}*/
-
-								/*buffer = new StringBuffer(data);
-								data = buffer.reverse().toString().replaceFirst(",", "");
-								data = new StringBuffer(data).reverse().toString();
-								
-		        				data += "]}";
-		        			}*/
-		        		}
-		        		break;
-		        		
-		        	case "all-underlying-nodes":
-		        		nodeName = request.params(":name");
-		        		if (nodeName == null || nodeName.isEmpty())
-		        			data = "{\"method\":\""+Arrays.toString(path).replaceAll(", ", ".")+"\", \"status\":\"ERROR\", \"message\":\"This method requires \"name\" of a node.\"}";
-		        		else {
-		        			/*allNodes = NodeManager.getAllNodes();
-		        			
-		        			if ( !allNodes.containsKey(nodeName) )
-		        				data = "{\"method\":\""+Arrays.toString(path).replaceAll(", ", ".")+"\", \"status\":\"ERROR\", \"message\":\"No node found with given name - "+nodeName+"\"}";
-		        			else {
-		        				Element requestedNode = allNodes.get(nodeName);
-		        				/*data = "{\"count\":\""+requestedNode.relationships.size()+"\", \"nodes\":[";*/		        				
-		        				/*data = getAllUnderlyingNodes(requestedNode, data);
+		        				NodeElement requestedNode = NodeManager.getGraph().getNode(nodeName);
+		        				data = "{\"count\":\""+requestedNode.getEdgeSet().size()+"\", \"nodes\":[";		        				
+		        				for (Edge edge : requestedNode.getEdgeSet()) {
+		        					data += "\"" + edge.getOpposite(requestedNode).getId() + "\",";
+		        				}
 
 								buffer = new StringBuffer(data);
 								data = buffer.reverse().toString().replaceFirst(",", "");
 								data = new StringBuffer(data).reverse().toString();
 								
 		        				data += "]}";
-		        			}*/
+		        			}
 		        		}
 		        		break;
 		        		
@@ -215,6 +193,29 @@ public class RestServer {
 		        		data += "]";
 		        		break;
 		        		
+		        	case "all-underlying-nodes":
+		        		nodeName = request.params(":name");
+		        		if (nodeName == null || nodeName.isEmpty())
+		        			data = "{\"method\":\""+Arrays.toString(path).replaceAll(", ", ".")+"\", \"status\":\"ERROR\", \"message\":\"This method requires \"name\" of a node.\"}";
+		        		else {
+		        			allNodes = NodeManager.getAllNodes();
+		        			
+		        			if ( !allNodes.contains(nodeName) )
+		        				data = "{\"method\":\""+Arrays.toString(path).replaceAll(", ", ".")+"\", \"status\":\"ERROR\", \"message\":\"No node found with given name - "+nodeName+"\"}";
+		        			else {
+		        				NodeElement requestedNode = NodeManager.getGraph().getNode(nodeName);
+		        				data = "{\"count\":\""+requestedNode.getEdgeSet().size()+"\", \"nodes\":[";
+		        				data = getAllUnderlyingNodes(requestedNode, data);
+
+								buffer = new StringBuffer(data);
+								data = buffer.reverse().toString().replaceFirst(",", "");
+								data = new StringBuffer(data).reverse().toString();
+								
+		        				data += "]}";
+		        			}
+		        		}
+		        		break;
+		        		
 		        	default:
 		        		
 	        	}
@@ -229,21 +230,25 @@ public class RestServer {
 		        		if (nodeName == null || nodeName.isEmpty() || newState == null || newState.isEmpty())
 		        			data = "{\"method\":\""+Arrays.toString(path).replaceAll(", ", ".")+"\", \"status\":\"ERROR\", \"message\":\"This method requires \"name\" of a node.\"}";
 		        		else {
-		        			/*allNodes = NodeManager.getAllNodes();
+		        			allNodes = NodeManager.getAllNodes();
 		        			
-		        			if ( !allNodes.containsKey(nodeName) )
+		        			if ( !allNodes.contains(nodeName) )
 		        				data = "{\"method\":\""+Arrays.toString(path).replaceAll(", ", ".")+"\", \"status\":\"ERROR\", \"message\":\"No node found with given name - "+nodeName+"\"}";
-		        			else if ( !newState.matches("[Uu][Pp]|[Dd][Oo][Ww][Nn]") )
-		        				data = "{\"method\":\""+Arrays.toString(path).replaceAll(", ", ".")+"\", \"status\":\"ERROR\", \"message\":\"Invalid state. Valid values for state are UP|DOWN\"}";
+		        			else if ( !newState.equalsIgnoreCase("up")
+		        					&& !newState.equalsIgnoreCase("down")
+		        					&& !newState.equalsIgnoreCase("degraded"))
+		        				data = "{\"method\":\""+Arrays.toString(path).replaceAll(", ", ".")+"\", \"status\":\"ERROR\", \"message\":\"Invalid state. Valid values for state are UP|DOWN|DOWNGRADED\"}";
 		        			else {
-		        				Element requestedNode = allNodes.get(nodeName);
-		        				if ( newState.matches("[Uu][Pp]") )
+		        				NodeElement requestedNode = NodeManager.getGraph().getNode(nodeName);
+		        				if ( newState.equalsIgnoreCase("up") )
 		        					requestedNode.setCurrentState(STATE.UP);
-		        				if ( newState.matches("[Dd][Oo][Ww][Nn]") )
+		        				else if ( newState.equalsIgnoreCase("down") )
 		        					requestedNode.setCurrentState(STATE.DOWN);
-		        				data = "{\"method\":\""+Arrays.toString(path).replaceAll(", ", ".")+"\", \"status\":\"SUCCESS\", \"message\":\"State for "+requestedNode.getName()+" updated to "+requestedNode.getCurrentState()+"\"}";
-			        			GraphManager.updateNodeState(requestedNode, requestedNode.getCurrentState());
-		        			}*/
+		        				else if ( newState.equalsIgnoreCase("degraded") )
+		        					requestedNode.setCurrentState(STATE.DEGRADED);
+		        				data = "{\"method\":\""+Arrays.toString(path).replaceAll(", ", ".")+"\", \"status\":\"SUCCESS\", \"message\":\"State for "+requestedNode.getId()
+		        						+" updated to "+requestedNode.getCurrentState().toString()+"\"}";
+		        			}
 		        		}
 		        		
 		        		break;
@@ -301,7 +306,20 @@ public class RestServer {
 		return response;
 	}
 	
-	public static String setStateForRelatedNodes(Element element, String newState, String data) {
+	public static String getAllUnderlyingNodes(NodeElement node, String data) {
+		for (Edge edge : node.getEdgeSet()) {
+			NodeElement otherNode = edge.getOpposite(node);
+			if ( Integer.parseInt(otherNode.getAttribute("rank").toString()) < Integer.parseInt(node.getAttribute("rank").toString()) ) {
+				data += "\"" + otherNode.getId() + "\",";
+				
+				data = getAllUnderlyingNodes(otherNode, data);
+			}
+		}
+		
+		return data;
+	}
+	
+	public static String setStateForRelatedNodes(NodeElement element, String newState, String data) {
 		/*for (Relationship relationship : element.relationships) {
 			Element otherNode = relationship.getOtherNode(element);
 			if ( otherNode.level < element.level ) {
@@ -320,26 +338,8 @@ public class RestServer {
 		return data;
 	}
 	
-	public static String getAllUnderlyingNodes(Element element, String data) {
-		/*for (Relationship relationship : element.relationships) {
-			Element otherNode = relationship.getOtherNode(element);
-			if ( otherNode.level < element.level ) {
-				data += "\"" + relationship.getOtherNode(element).getName() + "\",";
-				
-				data = getAllUnderlyingNodes(relationship.getOtherNode(element), data);
-			}
-		}*/
-		
-		return data;
-	}
-	
 	public static void sendJSON(String jsonPayload) {
-		if (!Settings.getRestClientEnabled()) {
-			log.warn("trying to send JSON while eni.nms.simulator.rest.client.enabled is set to FALSE");
-			return;
-		}
-		
-		
+				
 		// TODO: this will cause an issue when # of objects goes above few Ks, use executor instead
 		new Thread() {
 			@Override

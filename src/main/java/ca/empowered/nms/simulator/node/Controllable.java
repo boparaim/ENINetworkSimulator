@@ -1,12 +1,10 @@
 package ca.empowered.nms.simulator.node;
 
-import ca.empowered.nms.simulator.utils.Constants;
+import ca.empowered.nms.simulator.utils.Constants.STATE;
 
 public interface Controllable {
 
-	public Constants.STATE getCurrentState();
-	public void setCurrentState(Constants.STATE newState);
-	public void changeStateRandomly(Boolean changeRandomly);
-	public Boolean changeStateRandomly();
+	public STATE getCurrentState();
+	public void setCurrentState(STATE newState);
 	
 }

@@ -1,7 +1,6 @@
 package ca.empowered.nms.simulator.api;
 
 import java.util.ArrayList;
-import java.util.Collection;
 import java.util.HashMap;
 
 import org.apache.logging.log4j.LogManager;
@@ -11,10 +10,11 @@ import org.graphstream.graph.Node;
 import org.graphstream.graph.NodeFactory;
 import org.graphstream.graph.implementations.AbstractGraph;
 import org.graphstream.graph.implementations.AdjacencyListGraph;
+import org.graphstream.ui.view.Viewer;
+import org.graphstream.ui.view.Viewer.CloseFramePolicy;
 
 import ca.empowered.nms.simulator.config.Settings;
 import ca.empowered.nms.simulator.event.EventObserver;
-import ca.empowered.nms.simulator.node.Element;
 import ca.empowered.nms.simulator.node.NodeElement;
 import ca.empowered.nms.simulator.node.NodeTemplate;
 import ca.empowered.nms.simulator.utils.Constants.STATE;
@@ -35,18 +35,30 @@ public final class NodeManager {
 		graph = new AdjacencyListGraph(Settings.getAppName());  // SingleGraph or MultiGraph() // less memory/faster - AdjacencyListGraph // thread-safe - ConcurrentGraph
 		graph.setStrict(true);
 		graph.setAutoCreate( false );
+		
 		// improve visual quality
-		graph.addAttribute("ui.quality");
-		graph.addAttribute("ui.antialias");
+		if (Settings.isUiAntiAlias())
+			graph.addAttribute("ui.quality");
+		if (Settings.isUiQuality())
+			graph.addAttribute("ui.antialias");
+		
 		// stylesheet
-		graph.addAttribute("ui.stylesheet", "url('graph-stream.css')");
+		graph.addAttribute("ui.stylesheet", "url('"+Settings.getCssStyleSheet()+"')");
 		
 		graph.setNodeFactory(new NodeFactory<NodeElement>() {
 			public NodeElement newInstance(String id, Graph graph) {
 				return new NodeElement((AbstractGraph) graph, id);
 			}
 		});
-		//graph.display();
+
+		// show GUI ?
+		if (Settings.isDisplayGUI()) {
+			Viewer viewer = graph.display();
+
+			if (!Settings.isGuiClosesApp()) {
+				viewer.setCloseFramePolicy(CloseFramePolicy.CLOSE_VIEWER);
+			}
+		}
 		
 		usable = true;
 	}
@@ -93,6 +105,8 @@ public final class NodeManager {
 		node.addAttribute("rank", rank);
 		node.addAttribute("ui.label", instanceName);
 		node.addAttribute("ui.class", className);
+		// for css property manipulation
+		node.addAttribute("class", className);
 		
 		for (String key: relatableTo.keySet()) {
 			node.addAttribute("rel"+key, relatableTo.get(key));
@@ -111,24 +125,59 @@ public final class NodeManager {
 			return;
 		}
 		
-		for (Node thisNode : graph.getNodeSet()) {
-			for (Node otherNode : graph.getNodeSet()) {
-				
-				NodeElement thisNodeElement = (NodeElement)thisNode;
-				NodeElement otherNodeElement = (NodeElement)otherNode;
-				
-				if ( thisNodeElement.isRelatableTo(otherNodeElement) ) {
-					graph.addEdge(thisNode.getId()+"."+otherNode.getId(), thisNode.getId(), otherNode.getId());
+		// for a large data set, use multiple threads
+		if (allNodes.size() > 5000) {
+			graph.getNodeSet()
+				.parallelStream()
+				.forEach(thisNode -> {
+					//log.info("1 processing: "+Thread.currentThread().getName()+" -> "+thisNode.getId());
 					
-					log.debug("connected: node1: " + thisNode.getId() + " node2: " + otherNode.getId());
-					if (disconnectedNodes.contains(thisNode.getId())) {
-						disconnectedNodes.remove(thisNode.getId());
+					graph.getNodeSet()
+					.parallelStream()
+					.forEach(otherNode -> {
+						//log.info("2 processing: "+Thread.currentThread().getName()+" -> "+thisNode.getId()+" :: "+otherNode.getId());
+						NodeElement thisNodeElement = (NodeElement)thisNode;
+						NodeElement otherNodeElement = (NodeElement)otherNode;
+	
+						if ( thisNodeElement.isRelatableTo(otherNodeElement) ) {
+							graph.addEdge(thisNode.getId()+"."+otherNode.getId(), thisNode.getId(), otherNode.getId());
+							
+							log.debug("connected: node1: " + thisNode.getId() + " node2: " + otherNode.getId());
+							synchronized (disconnectedNodes) {
+								if (disconnectedNodes.contains(thisNode.getId())) {
+									disconnectedNodes.remove(thisNode.getId());
+								}
+								if (disconnectedNodes.contains(otherNode.getId())) {
+									disconnectedNodes.remove(otherNode.getId());
+								}								
+							}
+						} else {
+							//log.debug("invalid relationship: node1: " + thisNode.getId() + " node2: " + otherNode.getId());
+						}
+					});
+				});
+		}
+		// for a small data set, use single thread
+		else {
+			for (Node thisNode : graph.getNodeSet()) {
+				for (Node otherNode : graph.getNodeSet()) {
+					
+					NodeElement thisNodeElement = (NodeElement)thisNode;
+					NodeElement otherNodeElement = (NodeElement)otherNode;
+					
+					if ( thisNodeElement.isRelatableTo(otherNodeElement) ) {
+						graph.addEdge(thisNode.getId()+"."+otherNode.getId(), thisNode.getId(), otherNode.getId());
+						
+						log.debug("connected: node1: " + thisNode.getId() + " node2: " + otherNode.getId());
+						if (disconnectedNodes.contains(thisNode.getId())) {
+							disconnectedNodes.remove(thisNode.getId());
+						}
+						if (disconnectedNodes.contains(otherNode.getId())) {
+							disconnectedNodes.remove(otherNode.getId());
+						}
+					} else {
+						//log.debug("invalid relationship: node1: " + thisNode.getId() + " node2: " + otherNode.getId());
 					}
-					if (disconnectedNodes.contains(otherNode.getId())) {
-						disconnectedNodes.remove(otherNode.getId());
-					}
-				} else {
-					log.debug("invalid relationship: node1: " + thisNode.getId() + " node2: " + otherNode.getId());
 				}
 			}
 		}
@@ -157,5 +206,9 @@ public final class NodeManager {
 
 	public void setNodeTemplates(ArrayList<NodeTemplate> nodeTemplates) {
 		this.nodeTemplates = nodeTemplates;
+	}
+
+	public static Graph getGraph() {
+		return graph;
 	}	
 }

@@ -1,7 +1,5 @@
 package ca.empowered.nms.simulator;
 
-import java.util.Date;
-
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.springframework.context.ApplicationContext;
@@ -21,8 +19,6 @@ public class Main {
 		log.info("INIT: ENINetworkSimulator");
 		
 		ApplicationContext context = new ClassPathXmlApplicationContext("beans.xml");
-		
-		//GraphManager.displayUI();
 		
 		NodeManager.generateNodes();
 		log.info("CREATION: took "+((System.nanoTime() - startTime)/1000000)+"(ms) "+((System.nanoTime() - startTime)/1000000000)+"(s)");

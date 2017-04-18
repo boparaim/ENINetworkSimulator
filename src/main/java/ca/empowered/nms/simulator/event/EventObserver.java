@@ -6,7 +6,7 @@ import java.util.Observer;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
-import ca.empowered.nms.simulator.node.Element;
+import ca.empowered.nms.simulator.node.NodeElement;
 
 public class EventObserver implements Observer {
 
@@ -14,11 +14,11 @@ public class EventObserver implements Observer {
 	
 	@Override
 	public void update(Observable observable, Object object) {
-		Element element = (Element)observable;
+		NodeElement node = (NodeElement)object;
 		
-		log.debug("got status update for "+element.getName()+" --> "+element.getCurrentState() + " = " + object.toString());
+		log.debug("got status update for "+node.getId()+" --> "+node.getAttribute("state"));
 		
-		NotificationFactory.submitNotifcation(element);
+		NotificationFactory.submitNotifcation(node);
 	}
 
 }
