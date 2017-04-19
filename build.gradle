@@ -79,8 +79,8 @@ dependencies {
 	//compileOnly "org.projectlombok:lombok:1.16.12"
 	
 	// jackson - json parser library
-	//compile 'com.fasterxml.jackson.core:jackson-databind:2.8.3+'
-    //compile 'com.fasterxml.jackson.core:jackson-core:2.8.3+'
+	compile 'com.fasterxml.jackson.core:jackson-databind:2.8.3+'
+    compile 'com.fasterxml.jackson.core:jackson-core:2.8.3+'
     ////compile 'com.fasterxml.jackson.core:jackson-annotations:2.8.3+'
     ////compile 'com.fasterxml.jackson.dataformat:jackson-dataformat-yaml:2.8.3+'
 	
