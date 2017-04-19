@@ -1,15 +1,21 @@
 package ca.empowered.nms.simulator.api;
 
+import java.awt.event.MouseEvent;
+import java.awt.event.MouseListener;
+import java.awt.event.MouseWheelEvent;
+import java.awt.event.MouseWheelListener;
 import java.util.ArrayList;
 import java.util.HashMap;
 
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
+import org.graphstream.algorithm.ConnectedComponents;
 import org.graphstream.graph.Graph;
 import org.graphstream.graph.Node;
 import org.graphstream.graph.NodeFactory;
 import org.graphstream.graph.implementations.AbstractGraph;
 import org.graphstream.graph.implementations.AdjacencyListGraph;
+import org.graphstream.ui.swingViewer.DefaultView;
 import org.graphstream.ui.view.Viewer;
 import org.graphstream.ui.view.Viewer.CloseFramePolicy;
 
@@ -35,6 +41,7 @@ public final class NodeManager {
 		graph = new AdjacencyListGraph(Settings.getAppName());  // SingleGraph or MultiGraph() // less memory/faster - AdjacencyListGraph // thread-safe - ConcurrentGraph
 		graph.setStrict(true);
 		graph.setAutoCreate( false );
+		graph.addAttribute("ui.title", Settings.getAppName());
 		
 		// improve visual quality
 		if (Settings.isUiAntiAlias())
@@ -50,14 +57,54 @@ public final class NodeManager {
 				return new NodeElement((AbstractGraph) graph, id);
 			}
 		});
+		
+		// graph -> viewer -> view
+		//				   -> renderer -> camera
 
 		// show GUI ?
 		if (Settings.isDisplayGUI()) {
 			Viewer viewer = graph.display();
+			DefaultView view = ((DefaultView)viewer.getView(Viewer.DEFAULT_VIEW_ID));
 
 			if (!Settings.isGuiClosesApp()) {
 				viewer.setCloseFramePolicy(CloseFramePolicy.CLOSE_VIEWER);
 			}
+			
+			view.addMouseWheelListener(new MouseWheelListener() {				
+				@Override
+				public void mouseWheelMoved(MouseWheelEvent e) {
+					log.debug("mouse wheel event: "+e.getWheelRotation()+" "+e.getScrollAmount());
+					
+					// 1x to nx
+					double currentViewPercent = view.getCamera().getViewPercent();
+					double newViewPercent = currentViewPercent;
+					double temp = currentViewPercent + (e.getWheelRotation() * Settings.getUiZoomFactor());
+					if ( temp > 0 && temp < 2 ) {
+						newViewPercent = temp;
+						log.debug("current: "+currentViewPercent+" new: "+newViewPercent);
+					}
+					
+					view.getCamera().setViewPercent(newViewPercent);
+				}
+			});
+			
+			view.addMouseListener(new MouseListener() {				
+				@Override
+				public void mouseReleased(MouseEvent e) {
+				}				
+				@Override
+				public void mousePressed(MouseEvent e) {
+				}				
+				@Override
+				public void mouseExited(MouseEvent e) {
+				}				
+				@Override
+				public void mouseEntered(MouseEvent e) {
+				}				
+				@Override
+				public void mouseClicked(MouseEvent e) {
+				}
+			});
 		}
 		
 		usable = true;
@@ -72,7 +119,7 @@ public final class NodeManager {
 		for ( NodeTemplate nodeTemplate : nodeTemplates ) {
 			log.debug(" -> "+nodeTemplate.toString());
 			if ( !nodeTemplate.getEnabled() ) {
-				log.info("this template is disabled");
+				log.info(nodeTemplate.getName()+": this template is disabled");
 				continue;
 			}
 			for ( int i = 0; i < nodeTemplate.getCount(); i++ ) {

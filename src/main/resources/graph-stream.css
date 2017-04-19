@@ -24,6 +24,12 @@ node.LoadBalancerDown {
 	shape: rounded-box;
 }
 
+node.LoadBalancerDegraded {
+	fill-color: darkorange;
+	size: 26px, 40px;
+	shape: rounded-box;
+}
+
 node.LoadBalancer {
 	fill-color: lightgoldenrodyellow;
 	size: 26px, 40px;
@@ -32,6 +38,12 @@ node.LoadBalancer {
 
 node.RouterDown {
 	fill-color: red;
+	size: 32px;
+	shape: circle;
+}
+
+node.RouterDegraded {
+	fill-color: darkorange;
 	size: 32px;
 	shape: circle;
 }
@@ -48,6 +60,12 @@ node.SwitchDown {
 	shape: box;
 }
 
+node.SwitchDegraded {
+	fill-color: darkorange;
+	size: 28px;
+	shape: box;
+}
+
 node.Switch {
 	fill-color: wheat;
 	size: 28px;
@@ -56,6 +74,12 @@ node.Switch {
 
 node.HostDown {
 	fill-color: red;
+	size: 24px;
+	shape: circle;
+}
+
+node.HostDegraded {
+	fill-color: darkorange;
 	size: 24px;
 	shape: circle;
 }
@@ -72,6 +96,12 @@ node.CardDown {
 	shape: diamond;
 }
 
+node.CardDegraded {
+	fill-color: darkorange;
+	size: 20px;
+	shape: diamond;
+}
+
 node.Card {
 	fill-color: gold;
 	size: 20px;
@@ -80,6 +110,12 @@ node.Card {
 
 node.InterfaceDown {
 	fill-color: red;
+	size: 18px;
+	shape: diamond;
+}
+
+node.InterfaceDegraded {
+	fill-color: darkorange;
 	size: 18px;
 	shape: diamond;
 }
@@ -96,6 +132,12 @@ node.WebApplicationDown {
 	shape: circle;
 }
 
+node.WebApplicationDegraded {
+	fill-color: darkorange;
+	size: 14px;
+	shape: circle;
+}
+
 node.WebApplication {
 	fill-color: darkolivegreen;
 	size: 14px;
@@ -108,6 +150,12 @@ node.NetworkConnectionDown {
 	shape: cross;
 }
 
+node.NetworkConnectionDegraded {
+	fill-color: darkorange;
+	size: 26px;
+	shape: cross;
+}
+
 node.NetworkConnection {
 	fill-color: mintcream;
 	size: 26px;
@@ -116,6 +164,12 @@ node.NetworkConnection {
 
 node.BGPSessionDown {
 	fill-color: red;
+	size: 18px;
+	shape: cross;
+}
+
+node.BGPSessionDegraded {
+	fill-color: darkorange;
 	size: 18px;
 	shape: cross;
 }

@@ -31,6 +31,8 @@ public class RestServer {
 
 	private static final Logger log = LogManager.getLogger(RestServer.class.getName());
 	
+	private static int underlyingNodeCount = 0;
+	
 	public RestServer() {
 		log.debug("INIT -> listening for rest requests on http://" + Settings.getRestServerIP() + ":" + Settings.getRestServerPort()
 		+Settings.getRestServerPath());
@@ -74,7 +76,7 @@ public class RestServer {
 			return processWebRequest(request, response).body();
 		});
 		
-		get(Settings.getRestServerPath()+"/set/related-nodes-state/:name/:state", (request, response) -> {
+		get(Settings.getRestServerPath()+"/set/all-underlying-nodes-state/:name/:state", (request, response) -> {
 			return processWebRequest(request, response).body();
 		});
 		
@@ -120,10 +122,10 @@ public class RestServer {
 		        				+ "/get/nodes\t\t lists all nodes\n"
 		        				+ "/get/node/<node-name>\t\t shows the given node\n"
 		        				+ "/get/related-nodes/<node-name>\t\t lists nodes given nodes are related to\n"
-		        				+ "/set/node-state/<node-name>/<state>\t\t updates state for the given node\n"
+		        				+ "/get/all-underlying-nodes/<node-name>\t\t lists nodes given nodes are related including nodes below nodes\n"
 		        				+ "/get/notifications\t\t lists all notifications\n"
-		        				+ "/set/related-nodes-state/<node-name>/<state>\n"
-		        				+ "/get/all-underlying-nodes/<node-name>\t\t lists nodes given nodes are related including nodes below nodes\n";
+		        				+ "/set/node-state/<node-name>/<state>\t\t updates state for the given node\n"
+		        				+ "/set/all-underlying-nodes-state/<node-name>/<state>\n";
 		        		break;
 		        	case "nodes":
 		        		allNodes = NodeManager.getAllNodes();
@@ -179,6 +181,31 @@ public class RestServer {
 		        		}
 		        		break;
 		        		
+		        	case "all-underlying-nodes":
+		        		nodeName = request.params(":name");
+		        		if (nodeName == null || nodeName.isEmpty())
+		        			data = "{\"method\":\""+Arrays.toString(path).replaceAll(", ", ".")+"\", \"status\":\"ERROR\", \"message\":\"This method requires \"name\" of a node.\"}";
+		        		else {
+		        			allNodes = NodeManager.getAllNodes();
+		        			
+		        			if ( !allNodes.contains(nodeName) )
+		        				data = "{\"method\":\""+Arrays.toString(path).replaceAll(", ", ".")+"\", \"status\":\"ERROR\", \"message\":\"No node found with given name - "+nodeName+"\"}";
+		        			else {
+		        				underlyingNodeCount = 0;
+		        				NodeElement requestedNode = NodeManager.getGraph().getNode(nodeName);
+		        				data = "{\"count\":\"UNDERLYING_NODE_COUNT\", \"nodes\":[";
+		        				data = getAllUnderlyingNodes(requestedNode, data);
+
+								buffer = new StringBuffer(data);
+								data = buffer.reverse().toString().replaceFirst(",", "");
+								data = new StringBuffer(data).reverse().toString();
+								
+		        				data += "]}";
+		        				data = data.replace("UNDERLYING_NODE_COUNT", String.valueOf(underlyingNodeCount));
+		        			}
+		        		}
+		        		break;
+		        		
 		        	case "notifications":
 		        		allNotifications = NotificationFactory.getAllNotifications();
 		        		data = "[";
@@ -191,29 +218,6 @@ public class RestServer {
 						data = new StringBuffer(data).reverse().toString();
 
 		        		data += "]";
-		        		break;
-		        		
-		        	case "all-underlying-nodes":
-		        		nodeName = request.params(":name");
-		        		if (nodeName == null || nodeName.isEmpty())
-		        			data = "{\"method\":\""+Arrays.toString(path).replaceAll(", ", ".")+"\", \"status\":\"ERROR\", \"message\":\"This method requires \"name\" of a node.\"}";
-		        		else {
-		        			allNodes = NodeManager.getAllNodes();
-		        			
-		        			if ( !allNodes.contains(nodeName) )
-		        				data = "{\"method\":\""+Arrays.toString(path).replaceAll(", ", ".")+"\", \"status\":\"ERROR\", \"message\":\"No node found with given name - "+nodeName+"\"}";
-		        			else {
-		        				NodeElement requestedNode = NodeManager.getGraph().getNode(nodeName);
-		        				data = "{\"count\":\""+requestedNode.getEdgeSet().size()+"\", \"nodes\":[";
-		        				data = getAllUnderlyingNodes(requestedNode, data);
-
-								buffer = new StringBuffer(data);
-								data = buffer.reverse().toString().replaceFirst(",", "");
-								data = new StringBuffer(data).reverse().toString();
-								
-		        				data += "]}";
-		        			}
-		        		}
 		        		break;
 		        		
 		        	default:
@@ -237,7 +241,7 @@ public class RestServer {
 		        			else if ( !newState.equalsIgnoreCase("up")
 		        					&& !newState.equalsIgnoreCase("down")
 		        					&& !newState.equalsIgnoreCase("degraded"))
-		        				data = "{\"method\":\""+Arrays.toString(path).replaceAll(", ", ".")+"\", \"status\":\"ERROR\", \"message\":\"Invalid state. Valid values for state are UP|DOWN|DOWNGRADED\"}";
+		        				data = "{\"method\":\""+Arrays.toString(path).replaceAll(", ", ".")+"\", \"status\":\"ERROR\", \"message\":\"Invalid state. Valid values for state are UP|DOWN|DEGRADED\"}";
 		        			else {
 		        				NodeElement requestedNode = NodeManager.getGraph().getNode(nodeName);
 		        				if ( newState.equalsIgnoreCase("up") )
@@ -253,38 +257,40 @@ public class RestServer {
 		        		
 		        		break;
 		        		
-		        	case "related-nodes-state":
+		        	case "all-underlying-nodes-state":
 		        		nodeName = request.params(":name");
 		        		newState = request.params(":state");
 		        		if (nodeName == null || nodeName.isEmpty() || newState == null || newState.isEmpty())
 		        			data = "{\"method\":\""+Arrays.toString(path).replaceAll(", ", ".")+"\", \"status\":\"ERROR\", \"message\":\"This method requires \"name\" of a node.\"}";
 		        		else {
-		        			/*allNodes = NodeManager.getAllNodes();
+		        			allNodes = NodeManager.getAllNodes();
 		        			
-		        			if ( !allNodes.containsKey(nodeName) )
+		        			if ( !allNodes.contains(nodeName) )
 		        				data = "{\"method\":\""+Arrays.toString(path).replaceAll(", ", ".")+"\", \"status\":\"ERROR\", \"message\":\"No node found with given name - "+nodeName+"\"}";
-		        			else if ( !newState.matches("[Uu][Pp]|[Dd][Oo][Ww][Nn]") )
-		        				data = "{\"method\":\""+Arrays.toString(path).replaceAll(", ", ".")+"\", \"status\":\"ERROR\", \"message\":\"Invalid state. Valid values for state are UP|DOWN\"}";
+		        			else if ( !newState.equalsIgnoreCase("up")
+		        					&& !newState.equalsIgnoreCase("down")
+		        					&& !newState.equalsIgnoreCase("degraded"))
+		        				data = "{\"method\":\""+Arrays.toString(path).replaceAll(", ", ".")+"\", \"status\":\"ERROR\", \"message\":\"Invalid state. Valid values for state are UP|DOWN|DEGRADED\"}";
 		        			else {
-		        				Element requestedNode = allNodes.get(nodeName);
+		        				NodeElement requestedNode = NodeManager.getGraph().getNode(nodeName);
 		        				data = "{\"method\":\""+Arrays.toString(path).replaceAll(", ", ".")+"\", \"status\":\"SUCCESS\", \"message\":\"States updated\", \"nodes\":[";		        				
-		        				
-		        				if ( newState.matches("[Uu][Pp]") )
+
+		        				if ( newState.equalsIgnoreCase("up") )
 		        					requestedNode.setCurrentState(STATE.UP);
-		        				if ( newState.matches("[Dd][Oo][Ww][Nn]") )
+		        				else if ( newState.equalsIgnoreCase("down") )
 		        					requestedNode.setCurrentState(STATE.DOWN);
-		        				data += "{\"name\":\"" + requestedNode.getName() + "\", \"state\":\""+requestedNode.getCurrentState()+"\"},";
-		        				GraphManager.updateNodeState(requestedNode, requestedNode.getCurrentState());
+		        				else if ( newState.equalsIgnoreCase("degraded") )
+		        					requestedNode.setCurrentState(STATE.DEGRADED);
 		        				
-		        				data = setStateForRelatedNodes(requestedNode, newState, data);
+		        				data += "{\"name\":\"" + requestedNode.getId() + "\", \"state\":\""+requestedNode.getCurrentState().toString()+"\"},";		        				
+		        				data = setStateForAllUnderlyingNodes(requestedNode, newState, data);
 
 								buffer = new StringBuffer(data);
 								data = buffer.reverse().toString().replaceFirst(",", "");
 								data = new StringBuffer(data).reverse().toString();
 								
-		        				data += "]}";
-			        			
-		        			}*/
+		        				data += "]}";			        			
+		        			}
 		        		}
 		        		
 		        		break;
@@ -311,6 +317,7 @@ public class RestServer {
 			NodeElement otherNode = edge.getOpposite(node);
 			if ( Integer.parseInt(otherNode.getAttribute("rank").toString()) < Integer.parseInt(node.getAttribute("rank").toString()) ) {
 				data += "\"" + otherNode.getId() + "\",";
+				underlyingNodeCount++;
 				
 				data = getAllUnderlyingNodes(otherNode, data);
 			}
@@ -319,21 +326,24 @@ public class RestServer {
 		return data;
 	}
 	
-	public static String setStateForRelatedNodes(NodeElement element, String newState, String data) {
-		/*for (Relationship relationship : element.relationships) {
-			Element otherNode = relationship.getOtherNode(element);
-			if ( otherNode.level < element.level ) {
-				if ( newState.matches("[Uu][Pp]") )
+	public static String setStateForAllUnderlyingNodes(NodeElement node, String newState, String data) {
+		for (Edge edge : node.getEdgeSet()) {
+			NodeElement otherNode = edge.getOpposite(node);
+			if ( Integer.parseInt(otherNode.getAttribute("rank").toString()) < Integer.parseInt(node.getAttribute("rank").toString()) ) {
+				if ( newState.equalsIgnoreCase("up") )
 					otherNode.setCurrentState(STATE.UP);
-				if ( newState.matches("[Dd][Oo][Ww][Nn]") )
+				// DOWN and DEGRADED gets propagated automatically
+				else if ( newState.equalsIgnoreCase("down") )
 					otherNode.setCurrentState(STATE.DOWN);
-				data += "{\"name\":\"" + otherNode.getName() + "\", \"state\":\""+otherNode.getCurrentState()+"\"},";
-				GraphManager.updateNodeState(otherNode, otherNode.getCurrentState());
+				else if ( newState.equalsIgnoreCase("degraded") )
+					otherNode.setCurrentState(STATE.DEGRADED);
+				
+				data += "{\"name\":\"" + otherNode.getId() + "\", \"state\":\""+otherNode.getCurrentState().toString()+"\"},";
 			
-				log.debug("===== "+element.level+" other "+otherNode.level);
-				data = setStateForRelatedNodes(otherNode, newState, data);
+				log.debug("===== "+node.getAttribute("rank").toString()+" other "+otherNode.getAttribute("rank").toString());
+				data = setStateForAllUnderlyingNodes(otherNode, newState, data);
 			}
-		}*/
+		}
 		
 		return data;
 	}

@@ -21,6 +21,11 @@ public final class Settings {
 	private static boolean guiClosesApp;
 	private static boolean uiAntiAlias;
 	private static boolean uiQuality;
+	private static String uiLayoutAlgorithm;
+	private static String uiRenderer;
+	private static boolean uiUseOpenGL;
+	private static boolean uiUseDirectX;
+	private static double uiZoomFactor;
 	
 	public static String getAppName() {
 		return appName;
@@ -105,5 +110,40 @@ public final class Settings {
 	}
 	public static void setUiQuality(boolean uiQuality) {
 		Settings.uiQuality = uiQuality;
+	}
+	public static String getUiLayoutAlgorithm() {
+		return uiLayoutAlgorithm;
+	}
+	public static void setUiLayoutAlgorithm(String uiLayoutAlgorithm) {
+		Settings.uiLayoutAlgorithm = "org.graphstream.ui.layout.springbox.implementations." + uiLayoutAlgorithm;
+		System.out.println("class is "+Settings.uiLayoutAlgorithm);
+		System.setProperty("org.graphstream.ui.layout", Settings.uiLayoutAlgorithm);
+	}
+	public static String getUiRenderer() {
+		return uiRenderer;
+	}
+	public static void setUiRenderer(String uiRenderer) {
+		Settings.uiRenderer = uiRenderer;
+		System.setProperty("org.graphstream.ui.renderer", Settings.uiRenderer);
+	}
+	public static boolean isUiUseOpenGL() {
+		return uiUseOpenGL;
+	}
+	public static void setUiUseOpenGL(boolean uiUseOpenGL) {
+		Settings.uiUseOpenGL = uiUseOpenGL;
+		System.setProperty("sun.java2d.opengl", String.valueOf(Settings.uiUseOpenGL));
+	}
+	public static boolean isUiUseDirectX() {
+		return uiUseDirectX;
+	}
+	public static void setUiUseDirectX(boolean uiUseDirectX) {
+		Settings.uiUseDirectX = uiUseDirectX;
+		System.setProperty("sun.java2d.directx", String.valueOf(Settings.uiUseDirectX));
+	}
+	public static double getUiZoomFactor() {
+		return uiZoomFactor;
+	}
+	public static void setUiZoomFactor(double uiZoomFactor) {
+		Settings.uiZoomFactor = uiZoomFactor;
 	}
 }

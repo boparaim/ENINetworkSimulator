@@ -35,6 +35,11 @@
 		<property name="guiClosesApp" value="${eni.nms.simulator.ui.closes.app}" />
 		<property name="uiAntiAlias" value="${eni.nms.simulator.ui.antialias}" />
 		<property name="uiQuality" value="${eni.nms.simulator.ui.quality}" />
+		<property name="uiLayoutAlgorithm" value="${eni.nms.simulator.ui.layout.algorithm}" />
+		<property name="uiRenderer" value="${eni.nms.simulator.ui.renderer}" />
+		<property name="uiUseOpenGL" value="${eni.nms.simulator.ui.use.opengl}" />
+		<property name="uiUseDirectX" value="${eni.nms.simulator.ui.use.directx}" />
+		<property name="uiZoomFactor" value="${eni.nms.simulator.ui.zoomfactor}" />
 	</bean>
 	
 	<bean

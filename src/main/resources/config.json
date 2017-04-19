@@ -4,17 +4,100 @@
 # 29k 9k+20k 619ms, 40104ms (streams)
 # 40k 10k+30k 636ms, 81108ms (streams)
 # 70k objects (20k + 50k) (1 -> 2 relations) (10k disconnected) creation: 646ms complete: 1261s = 21mins	+180%	1.3GB	with stream: 265s = 4.5mins
-# 700k objects (200k + 500k) (1 -> 2 relations) (100k disconnected) creation: 3s completed: 10h+					7.5GB
+# 700k objects (200k + 500k) (1 -> 2 relations) (100k disconnected) creation: 3s completed: 10h+	
+# on VM 3GB 3cores i7@2.9GHz x 2
+# 120000 objects = 55% max, 400mb max, 700 threads(one peak) max 40 threads average, generated and notified in 3 hours
+# 12000 objects = 35% max, 100mb max, 40 threads max, generated and notified in 3 mins
+#
+# 263k nodes 2519ms, 7451s = 2hrs 9GB, 25%cpu
 {
 	"nodes" : [
 		{
-			"name" : "Host",
+			"name" : "LoadBalancer",
 			"description" : "",
-			"count" : 1500,
+			"count" : 10,
 			"enabled" : true,
 			"init-state" : "UP",
-			"rank" : 1500,
+			"rank" : 100,
 			"relatable-to" : [
+				{
+					"name" : "Router", 
+					"max" : 2
+				},
+				{
+					"name" : "NetworkConnection", 
+					"max" : 1
+				},
+				{
+					"name" : "BGPSession",
+					"max" : 1
+				}
+			]
+		},
+		{
+			"name" : "Router",
+			"description" : "",
+			"count" : 20,
+			"enabled" : true,
+			"init-state" : "UP",
+			"rank" : 90,
+			"relatable-to" : [
+				{
+					"name" : "LoadBalancer", 
+					"max" : 1
+				},
+				{
+					"name" : "Router", 
+					"max" : 1
+				},
+				{
+					"name" : "Switch", 
+					"max" : 2
+				},
+				{
+					"name" : "NetworkConnection", 
+					"max" : 1
+				},
+				{
+					"name" : "BGPSession",
+					"max" : 1
+				}
+			]
+		},
+		{
+			"name" : "Switch",
+			"description" : "",
+			"count" : 40,
+			"enabled" : true,
+			"init-state" : "UP",
+			"rank" : 80,
+			"relatable-to" : [
+				{
+					"name" : "Router", 
+					"max" : 1
+				},
+				{
+					"name" : "Host", 
+					"max" : 2
+				},
+				{
+					"name" : "NetworkConnection", 
+					"max" : 1
+				}
+			]
+		},
+		{
+			"name" : "Host",
+			"description" : "",
+			"count" : 40,
+			"enabled" : true,
+			"init-state" : "UP",
+			"rank" : 70,
+			"relatable-to" : [
+				{
+					"name" : "Switch", 
+					"max" : 1
+				},
 				{
 					"name" : "Card", 
 					"max" : 2
@@ -24,14 +107,94 @@
 		{
 			"name" : "Card",
 			"description" : "",
-			"count" : 3501,
+			"count" : 60,
 			"enabled" : true,
 			"init-state" : "UP",
-			"rank" : 1100,
+			"rank" : 60,
 			"relatable-to" : [
 				{
 					"name" : "Host", 
 					"max" : 1
+				},
+				{
+					"name" : "Interface", 
+					"max" : 2
+				}
+			]
+		},
+		{
+			"name" : "Interface",
+			"description" : "",
+			"count" : 12,
+			"enabled" : true,
+			"init-state" : "UP",
+			"rank" : 50,
+			"relatable-to" : [
+				{
+					"name" : "Card", 
+					"max" : 1
+				},
+				{
+					"name" : "WebApplication", 
+					"max" : 2
+				},
+				{
+					"name" : "NetworkConnection", 
+					"max" : 1
+				}
+			]
+		},
+		{
+			"name" : "WebApplication",
+			"description" : "",
+			"count" : 4,
+			"enabled" : true,
+			"init-state" : "UP",
+			"rank" : 40,
+			"relatable-to" : [
+				{
+					"name" : "Interface", 
+					"max" : 3
+				}
+			]
+		},
+		{
+			"name" : "NetworkConnection",
+			"description" : "",
+			"count" : 2,
+			"enabled" : true,
+			"init-state" : "UP",
+			"rank" : 95,
+			"relatable-to" : [
+				{
+					"name" : "LoadBalancer", 
+					"max" : 1
+				},
+				{
+					"name" : "Router", 
+					"max" : 1
+				},
+				{
+					"name" : "Switch", 
+					"max" : 1
+				},
+				{
+					"name" : "Interface", 
+					"max" : 10
+				}
+			]
+		},
+		{
+			"name" : "BGPSession",
+			"description" : "",
+			"count" : 1,
+			"enabled" : true,
+			"init-state" : "UP",
+			"rank" : 95,
+			"relatable-to" : [
+				{
+					"name" : "Router", 
+					"max" : 4
 				}
 			]
 		}

@@ -8,6 +8,7 @@ import java.util.Set;
 
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
+import org.graphstream.graph.Edge;
 import org.graphstream.graph.implementations.AbstractGraph;
 import org.graphstream.graph.implementations.AdjacencyListNode;
 
@@ -84,24 +85,26 @@ public class NodeElement extends AdjacencyListNode implements Controllable {
 		this.notifyObservers(this);
 		
 		if (state.equals(STATE.DOWN))
-			this.addAttribute("ui.class", this.getAttribute("class")+"Down");
+			this.addAttribute("ui.class", this.getAttribute("class").toString()+"Down");
 		else if (state.equals(STATE.DEGRADED))
-			this.addAttribute("ui.class", this.getAttribute("class")+"Degraded");
+			this.addAttribute("ui.class", this.getAttribute("class").toString()+"Degraded");
 		else if (state.equals(STATE.UP))
-			this.addAttribute("ui.class", this.getAttribute("class"));
+			this.addAttribute("ui.class", this.getAttribute("class").toString());
 		else if (state.equals(STATE.UNKNOWN))
-			this.addAttribute("ui.class", this.getAttribute("class"));
-		
-		
+			this.addAttribute("ui.class", this.getAttribute("class").toString());
+				
 		// only report DOWNs to children
-		if (!state.equals(STATE.DOWN))
+		if (!state.equals(STATE.DOWN)
+				&& !state.equals(STATE.DEGRADED))
 			return;
 		
 		// now notify related nodes of this change
-		Iterator<NodeElement> it = this.getNeighborNodeIterator();
+		/*Iterator<NodeElement> it = this.getNeighborNodeIterator();
 		while ( it.hasNext() ) {
 			// if other element is below/behind/depends on this element
-			NodeElement otherNode = it.next();
+			NodeElement otherNode = it.next();*/
+		for (Edge edge : this.getEdgeSet()) {
+			NodeElement otherNode = edge.getOpposite(this);
 			log.debug("this level: ["+this.getAttribute("class")+"]"+this.getAttribute("rank")
 				+" other level: ["+otherNode.getAttribute("class")+"]"+otherNode.getAttribute("rank"));
 			if ( Integer.parseInt(otherNode.getAttribute("rank").toString()) >= Integer.parseInt(this.getAttribute("rank").toString()) ) {
