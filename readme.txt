@@ -15,6 +15,4 @@ To create new release -
 
 TODOs
 1. allow user to specify the format of the notification (json)
-2. allow user to zoom in on a node in GUI
-3. change title of the GUI from graphstream
-4. hower over to see connected node names
+4. hover over to see connected node names
