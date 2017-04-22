@@ -16,3 +16,6 @@ To create new release -
 TODOs
 1. allow user to specify the format of the notification (json)
 4. hover over to see connected node names
+5. add noise alarms (on nodes) which are otherwise meaningless
+6. export topology (parent child weight) doc for what?
+7. improve algorithm in NodeManager.relateObjects()

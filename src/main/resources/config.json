@@ -15,7 +15,7 @@
 		{
 			"name" : "LoadBalancer",
 			"description" : "",
-			"count" : 10,
+			"count" : 1,
 			"enabled" : true,
 			"init-state" : "UP",
 			"rank" : 100,
@@ -37,7 +37,7 @@
 		{
 			"name" : "Router",
 			"description" : "",
-			"count" : 20,
+			"count" : 2,
 			"enabled" : true,
 			"init-state" : "UP",
 			"rank" : 90,
@@ -67,7 +67,7 @@
 		{
 			"name" : "Switch",
 			"description" : "",
-			"count" : 40,
+			"count" : 4,
 			"enabled" : true,
 			"init-state" : "UP",
 			"rank" : 80,
@@ -89,7 +89,7 @@
 		{
 			"name" : "Host",
 			"description" : "",
-			"count" : 40,
+			"count" : 4,
 			"enabled" : true,
 			"init-state" : "UP",
 			"rank" : 70,
@@ -107,7 +107,7 @@
 		{
 			"name" : "Card",
 			"description" : "",
-			"count" : 60,
+			"count" : 6,
 			"enabled" : true,
 			"init-state" : "UP",
 			"rank" : 60,

@@ -40,6 +40,7 @@
 		<property name="uiUseOpenGL" value="${eni.nms.simulator.ui.use.opengl}" />
 		<property name="uiUseDirectX" value="${eni.nms.simulator.ui.use.directx}" />
 		<property name="uiZoomFactor" value="${eni.nms.simulator.ui.zoomfactor}" />
+		<property name="uiMaximize" value="${eni.nms.simulator.ui.maximize}" />
 	</bean>
 	
 	<bean

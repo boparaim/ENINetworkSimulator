@@ -1,10 +1,13 @@
 package ca.empowered.nms.simulator.api;
 
+import java.awt.event.ComponentEvent;
+import java.awt.event.ComponentListener;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 import java.awt.event.MouseWheelEvent;
 import java.awt.event.MouseWheelListener;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.HashMap;
 
 import org.apache.logging.log4j.LogManager;
@@ -15,6 +18,8 @@ import org.graphstream.graph.Node;
 import org.graphstream.graph.NodeFactory;
 import org.graphstream.graph.implementations.AbstractGraph;
 import org.graphstream.graph.implementations.AdjacencyListGraph;
+import org.graphstream.ui.geom.Point3;
+import org.graphstream.ui.graphicGraph.stylesheet.StyleConstants.Units;
 import org.graphstream.ui.swingViewer.DefaultView;
 import org.graphstream.ui.view.Viewer;
 import org.graphstream.ui.view.Viewer.CloseFramePolicy;
@@ -65,15 +70,18 @@ public final class NodeManager {
 		if (Settings.isDisplayGUI()) {
 			Viewer viewer = graph.display();
 			DefaultView view = ((DefaultView)viewer.getView(Viewer.DEFAULT_VIEW_ID));
+			view.getCamera().setViewCenter(0, 0, 0);
 
 			if (!Settings.isGuiClosesApp()) {
 				viewer.setCloseFramePolicy(CloseFramePolicy.CLOSE_VIEWER);
 			}
+
+			
 			
 			view.addMouseWheelListener(new MouseWheelListener() {				
 				@Override
 				public void mouseWheelMoved(MouseWheelEvent e) {
-					log.debug("mouse wheel event: "+e.getWheelRotation()+" "+e.getScrollAmount());
+					//log.debug("mouse wheel event: "+e.getWheelRotation()+" "+e.getScrollAmount());
 					
 					// 1x to nx
 					double currentViewPercent = view.getCamera().getViewPercent();
@@ -81,28 +89,64 @@ public final class NodeManager {
 					double temp = currentViewPercent + (e.getWheelRotation() * Settings.getUiZoomFactor());
 					if ( temp > 0 && temp < 2 ) {
 						newViewPercent = temp;
-						log.debug("current: "+currentViewPercent+" new: "+newViewPercent);
+						//log.debug("current: "+currentViewPercent+" new: "+newViewPercent);
 					}
-					
 					view.getCamera().setViewPercent(newViewPercent);
-				}
-			});
-			
-			view.addMouseListener(new MouseListener() {				
-				@Override
-				public void mouseReleased(MouseEvent e) {
-				}				
-				@Override
-				public void mousePressed(MouseEvent e) {
-				}				
-				@Override
-				public void mouseExited(MouseEvent e) {
-				}				
-				@Override
-				public void mouseEntered(MouseEvent e) {
-				}				
-				@Override
-				public void mouseClicked(MouseEvent e) {
+					
+					double width = view.getSize().getWidth();
+					double height = view.getSize().getHeight();
+					double xCenter = width / 2;
+					double yCenter = height  / 2;
+					double x = e.getX();						
+					double y = e.getY();
+					double xFromCenter = e.getX() - xCenter;						
+					double yFromCenter = -e.getY() + yCenter;
+					double cameraWidth = view.getCamera().getMetrics().getSize().x();
+					double cameraHeight = view.getCamera().getMetrics().getSize().y();
+					double cameraRatioX = width/cameraWidth;
+					double cameraRatioY = width/cameraHeight;
+					//double cameraWidth = view.getCamera().getMetrics().lengthToPx(view.getCamera().getMetrics().graphWidthGU(), Units.GU);
+					//double cameraHeight = view.getCamera().getMetrics().lengthToPx(view.getCamera().getMetrics().graphHeightGU(), Units.GU);
+					//log.debug(x*view.getCamera().getMetrics().ratioPx2Gu+" x "+y*view.getCamera().getMetrics().ratioPx2Gu+" ("+cameraWidth+","+cameraHeight+")");
+					//log.debug(xCenter+" x "+yCenter+" ("+e.getX()+","+e.getY()+")");
+					// these 2 give have width and height
+					log.debug(width+","+height);
+					log.debug(Arrays.toString(view.getCamera().getMetrics().viewport));
+					log.debug(xCenter+" x "+yCenter);
+					log.debug(x+","+y);
+					log.debug(xFromCenter+","+yFromCenter);
+					log.debug(cameraWidth+","+cameraHeight);
+					log.debug(cameraRatioX+","+cameraRatioY);
+					
+					view.getCamera().setViewCenter(xFromCenter/cameraRatioX, yFromCenter/cameraRatioY, 0);
+
+					/*double width = view.getSize().width;
+					double height = view.getSize().height;
+					double xcenter = width/2;
+					double ycenter = height/2;
+					double xratio = width/cameraWidth;
+					double yratio = height/cameraHeight;
+					double boundWidth = view.getBounds().getWidth();
+					double boundHeight = view.getBounds().getHeight();
+					log.debug("frame: "+width+","+height+"\n"
+							+"frame center: "+xcenter+","+ycenter+"\n"
+							+"camera: "+cameraWidth+","+cameraHeight+"\n"
+							+"bound: "+boundWidth+","+boundHeight+"\n"
+							+"ratio: "+xratio+"/"+yratio);
+					log.debug("\npointing at: "+e.getX()+","+e.getY()+"\n"
+							+" pointing at on screen: "+e.getXOnScreen()+","+e.getYOnScreen()+"\n"
+							+" frame size: "+view.size().width+","+view.size().height+"\n"
+							+" camera pointing at: "+view.getCamera().getViewCenter().x+","+view.getCamera().getViewCenter().y+"\n"
+							+" camera diagonal: "+view.getCamera().getGraphDimension()+"\n"
+							+" camera size: "+view.getCamera().getMetrics().getSize().x()+","+view.getCamera().getMetrics().getSize().y()+"\n"
+							+" camera low point: "+view.getCamera().getMetrics().getLowPoint().x+","+view.getCamera().getMetrics().getLowPoint().y+"\n"
+							+" camera high point: "+view.getCamera().getMetrics().getHighPoint().x+","+view.getCamera().getMetrics().getHighPoint().y+"\n"
+							+" camera size pixel: "+view.getCamera().getMetrics().lengthToPx(view.getCamera().getMetrics().getSize().x(), Units.GU)
+							+","+view.getCamera().getMetrics().lengthToPx(view.getCamera().getMetrics().getSize().y(), Units.GU)+"\n"
+							+" camera diagonal pixel : "+view.getCamera().getMetrics().lengthToPx(view.getCamera().getGraphDimension(), Units.GU)+"\n");*/
+					//log.debug("point: "+view.getCamera().getViewCenter().toString());
+					//log.debug("area: "+view.size().toString());
+					//if (newViewPercent < 1.0)
 				}
 			});
 		}

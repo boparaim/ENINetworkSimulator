@@ -26,6 +26,7 @@ public final class Settings {
 	private static boolean uiUseOpenGL;
 	private static boolean uiUseDirectX;
 	private static double uiZoomFactor;
+	private static boolean uiMaximize;
 	
 	public static String getAppName() {
 		return appName;
@@ -145,5 +146,11 @@ public final class Settings {
 	}
 	public static void setUiZoomFactor(double uiZoomFactor) {
 		Settings.uiZoomFactor = uiZoomFactor;
+	}
+	public static boolean isUiMaximize() {
+		return uiMaximize;
+	}
+	public static void setUiMaximize(boolean uiMaximize) {
+		Settings.uiMaximize = uiMaximize;
 	}
 }
