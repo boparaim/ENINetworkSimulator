@@ -6,6 +6,9 @@
 ##
 ##############################################################################
 
+# Manvinder Boparai
+JAVA_HOME="C:\Program Files\Java\jdk1.8.0_112"
+
 # Attempt to set APP_HOME
 # Resolve links: $0 may be a link
 PRG="$0"

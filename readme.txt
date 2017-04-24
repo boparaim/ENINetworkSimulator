@@ -30,3 +30,9 @@ TODOs:
 1. Allow user to specify the format of the notification. Currently only supports JSON.
 2. Export topology information for other tools.
 3. Improve algorithm in NodeManager.relateObjects()
+
+Build the project:
+1. Set JAVA_HOME in gradlew
+2. Run gradle build
+Create the release zip:
+1. Run ./gradlew task createReleaseZip

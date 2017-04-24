@@ -10,6 +10,7 @@
 // Apply the java plugin to add support for Java
 apply plugin: 'java'
 
+
 // In this section you declare where to find the dependencies of your project
 repositories {
     // Use 'jcenter' for resolving your dependencies.
@@ -98,3 +99,45 @@ task fatJar(type: Jar) {
     from { configurations.compile.collect { it.isDirectory() ? it : zipTree(it) } }
     with jar
 }
+
+// create release zip from 
+// bin, conf, libs, readme.txt
+//
+//FileTree tree = fileTree(dir: 'zips')
+//	 	tree.include '**/simulator.*'
+//	 	tree.exclude '**/Abstract*'
+//	 	
+//	  	destinationDir = file('zips/')
+//	  	from(tree)
+//
+task deleteReleaseZip(type: Delete) {
+  	delete 'zips/' + projectName + '-' + projectVersion + '-release.zip'
+}
+
+task createReleaseZip(type: Zip) {
+	//doLast {
+	 	archiveName = projectName + '-' + projectVersion + '-release.zip'
+	  	destinationDir = file('zips/')
+	  	from(fileTree(dir: 'app')) {
+	  		include '**/simulator.*'
+	  		into 'bin'
+	  	}
+	  	from(fileTree(dir: 'src/main/resources')) {
+	  		include '**/*'
+	  		exclude 'beans.xml'
+	  		into 'conf'
+	  	}
+	  	from(fileTree(dir: 'libs')) {
+	  		include '**/*.jar'
+	  		into 'libs'
+	  	}
+	  	from(fileTree(dir: 'build/libs')) {
+	  		include '**/ENINetworkSimulator.jar'
+	  		into 'libs'
+	  	}
+	  	from 'readme.txt'
+  	//}
+}
+
+createReleaseZip.dependsOn build
+createReleaseZip.dependsOn deleteReleaseZip
