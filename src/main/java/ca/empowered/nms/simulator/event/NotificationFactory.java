@@ -9,11 +9,23 @@ import ca.empowered.nms.simulator.api.rest.RestServer;
 import ca.empowered.nms.simulator.config.Settings;
 import ca.empowered.nms.simulator.node.NodeElement;
 
+/**
+ * This class handles notifications.
+ * 
+ * @author mboparai
+ *
+ */
 public class NotificationFactory {
 
 	private static final Logger log = LogManager.getLogger(NotificationFactory.class.getName());
+	/** list of notifications */
 	private static HashMap<String, Notification> allNotifications = new HashMap<>();
 
+	/**
+	 * Add notification to the notification list.
+	 * 
+	 * @param node
+	 */
 	public static void submitNotifcation(NodeElement node) {
 		Notification notification = new Notification(node);
 		notification.updateSeverity(node);
@@ -23,7 +35,12 @@ public class NotificationFactory {
 		reportNotifcation(notification);
 	}
 	
-	private static void reportNotifcation(Notification notification) {
+	/**
+	 * Send a notification to rest web service.
+	 * 
+	 * @param notification
+	 */
+	public static void reportNotifcation(Notification notification) {
 		if (!Settings.getRestClientEnabled()) {
 			log.warn("trying to send JSON while eni.nms.simulator.rest.client.enabled is set to FALSE");
 			return;
@@ -32,6 +49,11 @@ public class NotificationFactory {
 		RestServer.sendJSON(notification.toJSON());
 	}
 
+	/**
+	 * Get list of all notifications.
+	 * 
+	 * @return
+	 */
 	public static HashMap<String, Notification> getAllNotifications() {
 		return allNotifications;
 	}

@@ -2,6 +2,12 @@ package ca.empowered.nms.simulator.config;
 
 import org.springframework.stereotype.Component;
 
+/**
+ * This entity reads application properties. It acts as a utility class for accessing all the settings.
+ * 
+ * @author mboparai
+ *
+ */
 @Component
 public final class Settings {
 
@@ -11,6 +17,7 @@ public final class Settings {
 	private static String nodeNameSuffix;
 	private static Boolean evenlyDistributeRelationships;
 	private static Boolean randomizeEventGeneration;
+	private static Integer randomizeEventGenerationInterval;
 	private static String restServerIP;
 	private static String restServerPort;
 	private static String restServerPath;
@@ -27,6 +34,13 @@ public final class Settings {
 	private static boolean uiUseDirectX;
 	private static double uiZoomFactor;
 	private static boolean uiMaximize;
+	private static boolean uiZoomWithMouse;
+	private static boolean exportTopology;
+	private static String topologyFormat;
+	private static boolean noisyEventGeneration;
+	private static Integer noisyEventGenerationInterval;
+	private static String noisyEventGenerationEvents;
+	private static boolean uiShowRelatedNodesOnClick;
 	
 	public static String getAppName() {
 		return appName;
@@ -46,7 +60,7 @@ public final class Settings {
 	public static void setEvenlyDistributeRelationships(Boolean evenlyDistributeRelationships) {
 		Settings.evenlyDistributeRelationships = evenlyDistributeRelationships;
 	}
-	public static Boolean getRandomizeEventGeneration() {
+	public static Boolean isRandomizeEventGeneration() {
 		return randomizeEventGeneration;
 	}
 	public static void setRandomizeEventGeneration(Boolean randomizeEventGeneration) {
@@ -152,5 +166,53 @@ public final class Settings {
 	}
 	public static void setUiMaximize(boolean uiMaximize) {
 		Settings.uiMaximize = uiMaximize;
+	}
+	public static boolean isUiZoomWithMouse() {
+		return uiZoomWithMouse;
+	}
+	public static void setUiZoomWithMouse(boolean uiZoomWithMouse) {
+		Settings.uiZoomWithMouse = uiZoomWithMouse;
+	}
+	public static boolean isExportTopology() {
+		return exportTopology;
+	}
+	public static void setExportTopology(boolean exportTopology) {
+		Settings.exportTopology = exportTopology;
+	}
+	public static String getTopologyFormat() {
+		return topologyFormat;
+	}
+	public static void setTopologyFormat(String topologyFormat) {
+		Settings.topologyFormat = topologyFormat;
+	}
+	public static boolean isNoisyEventGeneration() {
+		return noisyEventGeneration;
+	}
+	public static void setNoisyEventGeneration(boolean noisyEventGeneration) {
+		Settings.noisyEventGeneration = noisyEventGeneration;
+	}
+	public static boolean isUiShowRelatedNodesOnClick() {
+		return uiShowRelatedNodesOnClick;
+	}
+	public static void setUiShowRelatedNodesOnClick(boolean uiShowRelatedNodesOnClick) {
+		Settings.uiShowRelatedNodesOnClick = uiShowRelatedNodesOnClick;
+	}
+	public static Integer getRandomizeEventGenerationInterval() {
+		return randomizeEventGenerationInterval;
+	}
+	public static void setRandomizeEventGenerationInterval(Integer randomizeEventGenerationInterval) {
+		Settings.randomizeEventGenerationInterval = randomizeEventGenerationInterval;
+	}
+	public static Integer getNoisyEventGenerationInterval() {
+		return noisyEventGenerationInterval;
+	}
+	public static void setNoisyEventGenerationInterval(Integer noisyEventGenerationInterval) {
+		Settings.noisyEventGenerationInterval = noisyEventGenerationInterval;
+	}
+	public static String getNoisyEventGenerationEvents() {
+		return noisyEventGenerationEvents;
+	}
+	public static void setNoisyEventGenerationEvents(String noisyEventGenerationEvents) {
+		Settings.noisyEventGenerationEvents = noisyEventGenerationEvents;
 	}
 }

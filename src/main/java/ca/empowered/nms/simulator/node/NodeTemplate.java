@@ -4,15 +4,31 @@ import java.util.HashMap;
 
 import ca.empowered.nms.simulator.utils.Constants.STATE;
 
+/**
+ * Template for nodes.
+ * 
+ * @author mboparai
+ *
+ */
 public class NodeTemplate {
+	/** name (or class name) for the node */
 	private String name;
+	/** description for the node */
 	private String description;
+	/** number of nodes to create from this template */
 	private Integer count;
+	/** flag for disabling this template in order to not create nodes of this type */
 	private Boolean enabled;
+	/** initialize the node with this state */
 	private STATE initialState;
+	/** rank of this node type which is used for event navigation */
 	private Integer rank;
+	/** list of node types this node type can connect to */
 	private HashMap<String, Integer> relatableTo = new HashMap<>();
-	
+
+	/**
+	 * String representation of this node template
+	 */
 	@Override
 	public String toString() {
 		String stringRepresentation = "";

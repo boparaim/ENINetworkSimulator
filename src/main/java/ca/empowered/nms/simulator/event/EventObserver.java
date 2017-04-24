@@ -8,10 +8,19 @@ import org.apache.logging.log4j.Logger;
 
 import ca.empowered.nms.simulator.node.NodeElement;
 
+/**
+ * Event observer for Node Elemenets.
+ * 
+ * @author mboparai
+ *
+ */
 public class EventObserver implements Observer {
 
 	private static final Logger log = LogManager.getLogger(EventObserver.class.getName());
-	
+
+	/**
+	 * Send node to Notification factory for processing.
+	 */
 	@Override
 	public void update(Observable observable, Object object) {
 		NodeElement node = (NodeElement)object;

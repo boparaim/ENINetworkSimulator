@@ -10,32 +10,37 @@ import java.io.InputStreamReader;
 import java.io.OutputStreamWriter;
 import java.net.HttpURLConnection;
 import java.net.URL;
-import java.util.ArrayList;
 import java.util.Arrays;
-import java.util.HashMap;
 
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
-import org.graphstream.graph.Edge;
 
 import ca.empowered.nms.simulator.api.NodeManager;
 import ca.empowered.nms.simulator.config.Settings;
-import ca.empowered.nms.simulator.event.Notification;
-import ca.empowered.nms.simulator.event.NotificationFactory;
-import ca.empowered.nms.simulator.node.NodeElement;
-import ca.empowered.nms.simulator.utils.Constants.STATE;
 import spark.Request;
 import spark.Response;
 
+/**
+ * This entity is responsible for managing all web service calls.
+ * 
+ * @author mboparai
+ *
+ */
 public class RestServer {
 
 	private static final Logger log = LogManager.getLogger(RestServer.class.getName());
 	
-	private static int underlyingNodeCount = 0;
-	
+	/**
+	 * RestServer - add all managed paths.
+	 */
 	public RestServer() {
-		log.debug("INIT -> listening for rest requests on http://" + Settings.getRestServerIP() + ":" + Settings.getRestServerPort()
-		+Settings.getRestServerPath());
+		log.debug("INIT -> listening for rest requests on http://" 
+				+ Settings.getRestServerIP() + ":" + Settings.getRestServerPort()
+				+Settings.getRestServerPath());
+		
+		System.setProperty("SPARK_LOCAL_IP", Settings.getRestServerIP());
+		// TODO: this doesn't work
+		System.setProperty("SPARK_LOCAL_PORT", String.valueOf(Settings.getRestServerPort()));
 		// using apache spark
 		// by default port is 4567
 		// options can be set on command line - https://github.com/apache/spark/blob/master/conf/spark-env.sh.template
@@ -93,6 +98,13 @@ public class RestServer {
 		});
 	}
 	
+	/**
+	 * Process web calls. Accept params from URL and send out JSON data.
+	 * 
+	 * @param request
+	 * @param response
+	 * @return
+	 */
 	private Response processWebRequest(Request request, Response response) {
 		response.status(200);
         response.type("application/json");
@@ -101,123 +113,44 @@ public class RestServer {
         path = Arrays.stream(path)
         		.filter(s -> (s != null && !s.isEmpty()))
         		.toArray(String[]::new);
-        //ArrayList<String> paths = new ArrayList<String>(Arrays.asList(path));
-        /*for (String p: path)
-        	log.debug(p);*/
         
         String data = "{}";
+        String pathText = Arrays.toString(path).replaceAll(", ", ".");
         
-        ArrayList<String> allNodes = null;
-        HashMap<String, Notification> allNotifications = null;
+        //ArrayList<String> allNodes = null;
+        //HashMap<String, Notification> allNotifications = null;
 		String nodeName = null;
 		String newState = null;
-		StringBuffer buffer = null;
+		//StringBuffer buffer = null;
         
         switch (path[1]) {
 	        case "get":
 	        	switch (path[2]) {
 		        	case "help":
-		        		data = "Available paths: \n"
-		        				+ "/get/help\t\t shows this help\n"
-		        				+ "/get/nodes\t\t lists all nodes\n"
-		        				+ "/get/node/<node-name>\t\t shows the given node\n"
-		        				+ "/get/related-nodes/<node-name>\t\t lists nodes given nodes are related to\n"
-		        				+ "/get/all-underlying-nodes/<node-name>\t\t lists nodes given nodes are related including nodes below nodes\n"
-		        				+ "/get/notifications\t\t lists all notifications\n"
-		        				+ "/set/node-state/<node-name>/<state>\t\t updates state for the given node\n"
-		        				+ "/set/all-underlying-nodes-state/<node-name>/<state>\n";
+		        		data = NodeManager.getHelp();
 		        		break;
+		        		
 		        	case "nodes":
-		        		allNodes = NodeManager.getAllNodes();
-		        		data = "[";
-		        		for (String name : allNodes) {
-		        			data += "{\"name\":\""+name+"\", \"state\":\""+NodeManager.getGraph().getNode(name).getAttribute("state")+"\"},";
-		        		}
-
-						buffer = new StringBuffer(data);
-						data = buffer.reverse().toString().replaceFirst(",", "");
-						data = new StringBuffer(data).reverse().toString();
-
-		        		data += "]";
+		        		data = NodeManager.getNodes();
 		        		break;
 		        		
 		        	case "node":
 		        		nodeName = request.params(":name");
-		        		if (nodeName == null || nodeName.isEmpty())
-		        			data = "{\"method\":\""+Arrays.toString(path).replaceAll(", ", ".")+"\", \"status\":\"ERROR\", \"message\":\"This method requires \"name\" of a node.\"}";
-		        		else {
-		        			allNodes = NodeManager.getAllNodes();
-		        			
-		        			if ( !allNodes.contains(nodeName) )
-		        				data = "{\"method\":\""+Arrays.toString(path).replaceAll(", ", ".")+"\", \"status\":\"ERROR\", \"message\":\"No node found with given name - "+nodeName+"\"}";
-		        			else {
-		        				data = "{\"name\":\""+nodeName+"\", \"state\":\""+NodeManager.getGraph().getNode(nodeName).getAttribute("state")+"\"}";
-		        			}
-		        		}
+		        		data = NodeManager.getNode(nodeName, pathText);
 		        		break;
 		        		
 		        	case "related-nodes":
 		        		nodeName = request.params(":name");
-		        		if (nodeName == null || nodeName.isEmpty())
-		        			data = "{\"method\":\""+Arrays.toString(path).replaceAll(", ", ".")+"\", \"status\":\"ERROR\", \"message\":\"This method requires \"name\" of a node.\"}";
-		        		else {
-		        			allNodes = NodeManager.getAllNodes();
-		        			
-		        			if ( !allNodes.contains(nodeName) )
-		        				data = "{\"method\":\""+Arrays.toString(path).replaceAll(", ", ".")+"\", \"status\":\"ERROR\", \"message\":\"No node found with given name - "+nodeName+"\"}";
-		        			else {
-		        				NodeElement requestedNode = NodeManager.getGraph().getNode(nodeName);
-		        				data = "{\"count\":\""+requestedNode.getEdgeSet().size()+"\", \"nodes\":[";		        				
-		        				for (Edge edge : requestedNode.getEdgeSet()) {
-		        					data += "\"" + edge.getOpposite(requestedNode).getId() + "\",";
-		        				}
-
-								buffer = new StringBuffer(data);
-								data = buffer.reverse().toString().replaceFirst(",", "");
-								data = new StringBuffer(data).reverse().toString();
-								
-		        				data += "]}";
-		        			}
-		        		}
+		        		data = NodeManager.getRelatedNodes(nodeName, pathText);
 		        		break;
 		        		
 		        	case "all-underlying-nodes":
 		        		nodeName = request.params(":name");
-		        		if (nodeName == null || nodeName.isEmpty())
-		        			data = "{\"method\":\""+Arrays.toString(path).replaceAll(", ", ".")+"\", \"status\":\"ERROR\", \"message\":\"This method requires \"name\" of a node.\"}";
-		        		else {
-		        			allNodes = NodeManager.getAllNodes();
-		        			
-		        			if ( !allNodes.contains(nodeName) )
-		        				data = "{\"method\":\""+Arrays.toString(path).replaceAll(", ", ".")+"\", \"status\":\"ERROR\", \"message\":\"No node found with given name - "+nodeName+"\"}";
-		        			else {
-		        				underlyingNodeCount = 0;
-		        				NodeElement requestedNode = NodeManager.getGraph().getNode(nodeName);
-		        				data = "{\"count\":\"UNDERLYING_NODE_COUNT\", \"nodes\":[";
-		        				data = getAllUnderlyingNodes(requestedNode, data);
-
-								buffer = new StringBuffer(data);
-								data = buffer.reverse().toString().replaceFirst(",", "");
-								data = new StringBuffer(data).reverse().toString();
-								
-		        				data += "]}";
-		        				data = data.replace("UNDERLYING_NODE_COUNT", String.valueOf(underlyingNodeCount));
-		        			}
-		        		}
+		        		data = NodeManager.getAllUnderlyingNodes(nodeName, pathText);
 		        		break;
 		        		
 		        	case "notifications":
-		        		allNotifications = NotificationFactory.getAllNotifications();
-		        		data = "[";
-		        		for (Notification notification : allNotifications.values()) {
-		        			data += notification.toJSON()+",";
-		        		}
-
-						buffer = new StringBuffer(data);
-						data = buffer.reverse().toString().replaceFirst(",", "");
-						data = new StringBuffer(data).reverse().toString();
-
-		        		data += "]";
+		        		data = NodeManager.getNotifications();
 		        		break;
 		        		
 		        	default:
@@ -231,68 +164,13 @@ public class RestServer {
 		        	case "node-state":
 		        		nodeName = request.params(":name");
 		        		newState = request.params(":state");
-		        		if (nodeName == null || nodeName.isEmpty() || newState == null || newState.isEmpty())
-		        			data = "{\"method\":\""+Arrays.toString(path).replaceAll(", ", ".")+"\", \"status\":\"ERROR\", \"message\":\"This method requires \"name\" of a node.\"}";
-		        		else {
-		        			allNodes = NodeManager.getAllNodes();
-		        			
-		        			if ( !allNodes.contains(nodeName) )
-		        				data = "{\"method\":\""+Arrays.toString(path).replaceAll(", ", ".")+"\", \"status\":\"ERROR\", \"message\":\"No node found with given name - "+nodeName+"\"}";
-		        			else if ( !newState.equalsIgnoreCase("up")
-		        					&& !newState.equalsIgnoreCase("down")
-		        					&& !newState.equalsIgnoreCase("degraded"))
-		        				data = "{\"method\":\""+Arrays.toString(path).replaceAll(", ", ".")+"\", \"status\":\"ERROR\", \"message\":\"Invalid state. Valid values for state are UP|DOWN|DEGRADED\"}";
-		        			else {
-		        				NodeElement requestedNode = NodeManager.getGraph().getNode(nodeName);
-		        				if ( newState.equalsIgnoreCase("up") )
-		        					requestedNode.setCurrentState(STATE.UP);
-		        				else if ( newState.equalsIgnoreCase("down") )
-		        					requestedNode.setCurrentState(STATE.DOWN);
-		        				else if ( newState.equalsIgnoreCase("degraded") )
-		        					requestedNode.setCurrentState(STATE.DEGRADED);
-		        				data = "{\"method\":\""+Arrays.toString(path).replaceAll(", ", ".")+"\", \"status\":\"SUCCESS\", \"message\":\"State for "+requestedNode.getId()
-		        						+" updated to "+requestedNode.getCurrentState().toString()+"\"}";
-		        			}
-		        		}
-		        		
+		        		data = NodeManager.setNodeState(nodeName, newState, pathText);
 		        		break;
 		        		
 		        	case "all-underlying-nodes-state":
 		        		nodeName = request.params(":name");
 		        		newState = request.params(":state");
-		        		if (nodeName == null || nodeName.isEmpty() || newState == null || newState.isEmpty())
-		        			data = "{\"method\":\""+Arrays.toString(path).replaceAll(", ", ".")+"\", \"status\":\"ERROR\", \"message\":\"This method requires \"name\" of a node.\"}";
-		        		else {
-		        			allNodes = NodeManager.getAllNodes();
-		        			
-		        			if ( !allNodes.contains(nodeName) )
-		        				data = "{\"method\":\""+Arrays.toString(path).replaceAll(", ", ".")+"\", \"status\":\"ERROR\", \"message\":\"No node found with given name - "+nodeName+"\"}";
-		        			else if ( !newState.equalsIgnoreCase("up")
-		        					&& !newState.equalsIgnoreCase("down")
-		        					&& !newState.equalsIgnoreCase("degraded"))
-		        				data = "{\"method\":\""+Arrays.toString(path).replaceAll(", ", ".")+"\", \"status\":\"ERROR\", \"message\":\"Invalid state. Valid values for state are UP|DOWN|DEGRADED\"}";
-		        			else {
-		        				NodeElement requestedNode = NodeManager.getGraph().getNode(nodeName);
-		        				data = "{\"method\":\""+Arrays.toString(path).replaceAll(", ", ".")+"\", \"status\":\"SUCCESS\", \"message\":\"States updated\", \"nodes\":[";		        				
-
-		        				if ( newState.equalsIgnoreCase("up") )
-		        					requestedNode.setCurrentState(STATE.UP);
-		        				else if ( newState.equalsIgnoreCase("down") )
-		        					requestedNode.setCurrentState(STATE.DOWN);
-		        				else if ( newState.equalsIgnoreCase("degraded") )
-		        					requestedNode.setCurrentState(STATE.DEGRADED);
-		        				
-		        				data += "{\"name\":\"" + requestedNode.getId() + "\", \"state\":\""+requestedNode.getCurrentState().toString()+"\"},";		        				
-		        				data = setStateForAllUnderlyingNodes(requestedNode, newState, data);
-
-								buffer = new StringBuffer(data);
-								data = buffer.reverse().toString().replaceFirst(",", "");
-								data = new StringBuffer(data).reverse().toString();
-								
-		        				data += "]}";			        			
-		        			}
-		        		}
-		        		
+		        		data = NodeManager.setAllUnderlyingNodesState(nodeName, newState, pathText);		        		
 		        		break;
 		        		
 	        		default:
@@ -310,42 +188,6 @@ public class RestServer {
         response.body( data );
 		
 		return response;
-	}
-	
-	public static String getAllUnderlyingNodes(NodeElement node, String data) {
-		for (Edge edge : node.getEdgeSet()) {
-			NodeElement otherNode = edge.getOpposite(node);
-			if ( Integer.parseInt(otherNode.getAttribute("rank").toString()) < Integer.parseInt(node.getAttribute("rank").toString()) ) {
-				data += "\"" + otherNode.getId() + "\",";
-				underlyingNodeCount++;
-				
-				data = getAllUnderlyingNodes(otherNode, data);
-			}
-		}
-		
-		return data;
-	}
-	
-	public static String setStateForAllUnderlyingNodes(NodeElement node, String newState, String data) {
-		for (Edge edge : node.getEdgeSet()) {
-			NodeElement otherNode = edge.getOpposite(node);
-			if ( Integer.parseInt(otherNode.getAttribute("rank").toString()) < Integer.parseInt(node.getAttribute("rank").toString()) ) {
-				if ( newState.equalsIgnoreCase("up") )
-					otherNode.setCurrentState(STATE.UP);
-				// DOWN and DEGRADED gets propagated automatically
-				else if ( newState.equalsIgnoreCase("down") )
-					otherNode.setCurrentState(STATE.DOWN);
-				else if ( newState.equalsIgnoreCase("degraded") )
-					otherNode.setCurrentState(STATE.DEGRADED);
-				
-				data += "{\"name\":\"" + otherNode.getId() + "\", \"state\":\""+otherNode.getCurrentState().toString()+"\"},";
-			
-				log.debug("===== "+node.getAttribute("rank").toString()+" other "+otherNode.getAttribute("rank").toString());
-				data = setStateForAllUnderlyingNodes(otherNode, newState, data);
-			}
-		}
-		
-		return data;
 	}
 	
 	public static void sendJSON(String jsonPayload) {

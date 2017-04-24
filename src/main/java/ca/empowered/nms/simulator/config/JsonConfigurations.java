@@ -13,13 +13,28 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 import ca.empowered.nms.simulator.node.NodeTemplate;
 import ca.empowered.nms.simulator.utils.Constants.STATE;
 
+/**
+ * This entity reads json configuration file and builds node templates from it.
+ * 
+ * @author mboparai
+ *
+ */
 public class JsonConfigurations {
 
 	private static final Logger log = LogManager.getLogger(JsonConfigurations.class.getName());
+	
+	/** json object mapper */
 	private ObjectMapper objectMapper;
+	/** json root node */
 	private JsonNode jsonRootNode;
+	/** node templates */
 	private ArrayList<NodeTemplate> nodeTemplates = new ArrayList<NodeTemplate>();
 	
+	/**
+	 * Read the file and create node templates.
+	 * 
+	 * @param file
+	 */
 	JsonConfigurations(String file) {
 		try {
 			objectMapper = new ObjectMapper();
@@ -36,6 +51,9 @@ public class JsonConfigurations {
 		}
 	}
 	
+	/**
+	 * Create node template objects.
+	 */
 	private void readConfigs() {
 		if (jsonRootNode == null) {
 			log.error("Unable to read json configuration file. Can't create nodes.");
@@ -71,7 +89,12 @@ public class JsonConfigurations {
 			nodeTemplates.add(nodeTemplate);
 		}
 	}
-	
+
+	/**
+	 * Get node templates.
+	 * 
+	 * @return
+	 */
 	public ArrayList<NodeTemplate> getNodeTemplates() {
 		return nodeTemplates;
 	}

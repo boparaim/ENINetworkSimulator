@@ -7,6 +7,12 @@ import ca.empowered.nms.simulator.node.NodeElement;
 import ca.empowered.nms.simulator.utils.Constants.SEVERITY;
 import ca.empowered.nms.simulator.utils.Constants.STATE;
 
+/**
+ * This class represents a notification.
+ * 
+ * @author mboparai
+ *
+ */
 public class Notification {
 	
 	// class/instance/type
@@ -28,12 +34,12 @@ public class Notification {
 	private String description;
 	private long timestamp;
 	
-	public Notification(String className, String instanceName, String eventName) {
+	public Notification(String className, String instanceName, String eventName, String tag) {
 		this.className = className;
 		this.instanceName = instanceName;
 		this.eventName = eventName;
 		
-		id = this.className + ":_:" + this.instanceName;// + ":_:" + this.eventName;
+		id = this.className + ":_:" + this.instanceName + ":_:" + tag;
 		manager = Settings.getAppName();
 		source = "Agent-"+instanceName;
 		
@@ -43,9 +49,18 @@ public class Notification {
 	}
 	
 	public Notification(NodeElement node) {
-		this(node.getAttribute("class"), node.getId(), node.getCurrentState().toString());
+		this(node, "");
 	}
 	
+	public Notification(NodeElement node, String tag) {
+		this(node.getAttribute("class"), node.getId(), node.getCurrentState().toString(), tag);
+	}
+	
+	/**
+	 * Get json representation of this notification.
+	 * 
+	 * @return
+	 */
 	public String toJSON() {
 		// TODO: testing with moog
 		String sev = "1";
@@ -115,6 +130,11 @@ public class Notification {
 	public void setSeverity(SEVERITY severity) {
 		this.severity = severity;
 	}
+	/**
+	 * Update severity of this notification based on current state.
+	 * 
+	 * @param node
+	 */
 	public void updateSeverity(NodeElement node) {
 		if (node.getCurrentState().equals(STATE.DOWN))
 			this.setSeverity(SEVERITY.CRITICAL);

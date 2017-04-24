@@ -63,7 +63,7 @@ dependencies {
 	//compile group: 'com.googlecode.json-simple', name: 'json-simple', version: '1.1'
 	
 	// https://mvnrepository.com/artifact/org.snmp4j/snmp4j
-	compile group: 'org.snmp4j', name: 'snmp4j', version: '2.5.0'
+	//compile group: 'org.snmp4j', name: 'snmp4j', version: '2.5.0'
 	
 	// http://sparkjava.com/download.html
 	compile "com.sparkjava:spark-core:2.5.4"

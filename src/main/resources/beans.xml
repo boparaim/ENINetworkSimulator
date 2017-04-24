@@ -6,25 +6,19 @@
 	xmlns:aop="http://www.springframework.org/schema/aop"
 	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
 						http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context.xsd
-						http://www.springframework.org/schema/aop http://www.springframework.org/schema/aop/spring-aop.xsd
-					    ">
+						http://www.springframework.org/schema/aop http://www.springframework.org/schema/aop/spring-aop.xsd">
 
 	<context:property-placeholder location="classpath:application.properties"/>
 	
- 
-
-	<!-- <bean
-		class="org.springframework.beans.factory.config.PropertyPlaceholderConfigurer">
-		<property name="location" value="classpath:config.properties" />
-	</bean> -->
-	
+	<!-- settings from application.properties -->
 	<bean
 		id="settings"
 		class="ca.empowered.nms.simulator.config.Settings">
-		<property name="appName" value="${eni.nms.simulator.AppName}" />
+		<property name="appName" value="${eni.nms.simulator.appName}" />
 		<property name="nodeNameSuffix" value="${eni.nms.simulator.node.name.suffix}" />
 		<property name="evenlyDistributeRelationships" value="${eni.nms.simulator.relationship.distribution.even}" />
 		<property name="randomizeEventGeneration" value="${eni.nms.simulator.event.generation.randomize}" />
+		<property name="randomizeEventGenerationInterval" value="${eni.nms.simulator.event.generation.randomize.interval}" />
 		<property name="restServerIP" value="${eni.nms.simulator.rest.server.ip}" />
 		<property name="restServerPort" value="${eni.nms.simulator.rest.server.port}" />
 		<property name="restServerPath" value="${eni.nms.simulator.rest.server.path}" />
@@ -41,14 +35,23 @@
 		<property name="uiUseDirectX" value="${eni.nms.simulator.ui.use.directx}" />
 		<property name="uiZoomFactor" value="${eni.nms.simulator.ui.zoomfactor}" />
 		<property name="uiMaximize" value="${eni.nms.simulator.ui.maximize}" />
+		<property name="uiZoomWithMouse" value="${eni.nms.simulator.ui.zoomWithMouse}" />
+		<property name="exportTopology" value="${eni.nms.simulator.topology.export}" />
+		<property name="topologyFormat" value="${eni.nms.simulator.topology.format}" />
+		<property name="noisyEventGeneration" value="${eni.nms.simulator.event.generation.noisy}" />
+		<property name="noisyEventGenerationInterval" value="${eni.nms.simulator.event.generation.noisy.interval}" />
+		<property name="noisyEventGenerationEvents" value="${eni.nms.simulator.event.generation.noisy.events}" />
+		<property name="uiShowRelatedNodesOnClick" value="${eni.nms.simulator.ui.showRelatedNodesOnClick}" />
 	</bean>
 	
+	<!-- node template from json configuration file -->
 	<bean
 		id="jsonConfigurations"
 		class="ca.empowered.nms.simulator.config.JsonConfigurations">
 		<constructor-arg type="java.lang.String" value="config.json" />
 	</bean>
 	
+	<!-- node manager for creating and relating nodes -->
 	<bean
 		id="nodeManager"
 		class="ca.empowered.nms.simulator.api.NodeManager"
@@ -57,11 +60,13 @@
 		<property name="nodeTemplates" value="#{jsonConfigurations.nodeTemplates}" />
 	</bean>
 	
+	<!-- event observer for nodes -->
 	<bean
 		id="eventObserver"
 		class="ca.empowered.nms.simulator.event.EventObserver">	
 	</bean>
 	
+	<!-- rest server api -->
 	<bean
 		id="restServer"
 		class="ca.empowered.nms.simulator.api.rest.RestServer">	

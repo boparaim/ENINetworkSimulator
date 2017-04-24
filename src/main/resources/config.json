@@ -1,3 +1,7 @@
+# windows 7 64bit 32GB i7 2x2.9GHz
+# nodes		# disconnected nodes	# creation	# completed
+
+
 # 700 objects (200 + 500) (1 -> 2 relations) (100 disconnected) creation: 510ms complete: 777ms    [500k iterations in 267ms] = 1835 iterations / ms
 # 7k objects (2k + 5k) (1 -> 2 relations) (1k disconnected) creation: 533ms complete: 6.5s					+8%		800MB
 # 14k 4k+10k 538ms, 37197ms with streams 9505ms

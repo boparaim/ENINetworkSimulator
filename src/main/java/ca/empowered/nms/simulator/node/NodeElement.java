@@ -12,14 +12,18 @@ import org.graphstream.graph.Edge;
 import org.graphstream.graph.implementations.AbstractGraph;
 import org.graphstream.graph.implementations.AdjacencyListNode;
 
-import ca.empowered.nms.simulator.api.NodeManager;
 import ca.empowered.nms.simulator.utils.Constants.STATE;
 
+/**
+ * NodeElement class extends Node in GraphStream.
+ * 
+ * @author mboparai
+ *
+ */
 public class NodeElement extends AdjacencyListNode implements Controllable {
 	
 	private static final Logger log = LogManager.getLogger(NodeElement.class.getName());
-	
-	private STATE currentState;
+	/** event observable */
 	private static Observable observable = new Observable();
 
 	public NodeElement(AbstractGraph graph, String id) {
@@ -27,6 +31,14 @@ public class NodeElement extends AdjacencyListNode implements Controllable {
 		observers = new LinkedHashSet<>();
 	}
 	
+	/**
+	 * Check if given node can be connected to this node according to the node template.
+	 * 
+	 * Two nodes can be connected if there is a relatable-to defined and limit for this type of nodes hasn't been passed.
+	 * 
+	 * @param otherNode
+	 * @return
+	 */
 	public boolean isRelatableTo(NodeElement otherNode) {
 		boolean isValid = false;
 		NodeElement thisNode = this;
@@ -115,13 +127,13 @@ public class NodeElement extends AdjacencyListNode implements Controllable {
 		}
 	}
 	
-	// source code from Observable
+	// source code from Observable Java8 (Oracle)
 	
 	/** Tracks whether this object has changed. */
    private boolean changed;
  
    /* List of the Observers registered as interested in this Observable. */
-   private LinkedHashSet observers;
+   private LinkedHashSet<Observer> observers;
  
    /**
     * Adds an Observer. If the observer was already added this method does
@@ -208,6 +220,7 @@ public class NodeElement extends AdjacencyListNode implements Controllable {
     * @param obj argument to Observer's update method
     * @see Observer#update(Observable, Object)
     */
+   @SuppressWarnings("unchecked")
    public void notifyObservers(Object obj)
    {
      if (! hasChanged())
@@ -215,15 +228,15 @@ public class NodeElement extends AdjacencyListNode implements Controllable {
      // Create clone inside monitor, as that is relatively fast and still
      // important to keep threadsafe, but update observers outside of the
      // lock since update() can call arbitrary code.
-     Set s;
+     Set<Observer> s;
      synchronized (this)
        {
-         s = (Set) observers.clone();
+         s = (Set<Observer>) observers.clone();
        }
      int i = s.size();
-     Iterator iter = s.iterator();
+     Iterator<Observer> iter = s.iterator();
      while (--i >= 0)
-       ((Observer) iter.next()).update(observable, obj);
+       iter.next().update(observable, obj);
      clearChanged();
    }
  
