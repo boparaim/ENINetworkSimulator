@@ -100,42 +100,36 @@ task fatJar(type: Jar) {
     with jar
 }
 
-// create release zip from 
+// 1. buil the project
+// 2. delete the release zip
+// 3. create release zip from 
 // bin, conf, libs, readme.txt
-//
-//FileTree tree = fileTree(dir: 'zips')
-//	 	tree.include '**/simulator.*'
-//	 	tree.exclude '**/Abstract*'
-//	 	
-//	  	destinationDir = file('zips/')
-//	  	from(tree)
-//
 task deleteReleaseZip(type: Delete) {
-  	delete 'zips/' + projectName + '-' + projectVersion + '-release.zip'
+  	delete zipDir + projectName + '-' + projectVersion + '-release.zip'
 }
 
 task createReleaseZip(type: Zip) {
 	//doLast {
 	 	archiveName = projectName + '-' + projectVersion + '-release.zip'
-	  	destinationDir = file('zips/')
-	  	from(fileTree(dir: 'app')) {
+	  	destinationDir = file(zipDir)
+	  	from(fileTree(dir: srcDirBin)) {
 	  		include '**/simulator.*'
-	  		into 'bin'
+	  		into dstDirBin
 	  	}
-	  	from(fileTree(dir: 'src/main/resources')) {
+	  	from(fileTree(dir: srcDirConf)) {
 	  		include '**/*'
 	  		exclude 'beans.xml'
-	  		into 'conf'
+	  		into dstDirConf
 	  	}
-	  	from(fileTree(dir: 'libs')) {
+	  	from(fileTree(dir: srcDirLib)) {
 	  		include '**/*.jar'
-	  		into 'libs'
+	  		into dstDirLib
 	  	}
-	  	from(fileTree(dir: 'build/libs')) {
-	  		include '**/ENINetworkSimulator.jar'
-	  		into 'libs'
+	  	from(fileTree(dir: srcDirApp)) {
+	  		include '**/' + projectName + '.jar'
+	  		into dstDirApp
 	  	}
-	  	from 'readme.txt'
+	  	from srcFileReadMe
   	//}
 }
 
