@@ -1,5 +1,5 @@
 This application simulates a network map. You can generate network nodes and simulate events on these nodes.
-It can be used to testing effectiveness of NMSs.
+It can be used for testing the effectiveness of NMSs.
 
 Credits: 
 1. https://github.com/apache/spark
@@ -30,6 +30,7 @@ TODOs:
 1. Allow user to specify the format of the notification. Currently only supports JSON.
 2. Export topology information for other tools.
 3. Improve algorithm in NodeManager.relateObjects()
+4. Correct the implementation for degraded events. Degrade should move from lower to higher rank nodes.
 
 Build the project:
 1. Set JAVA_HOME in gradlew
