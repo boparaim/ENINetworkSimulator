@@ -11,19 +11,37 @@ import ca.empowered.nms.simulator.utils.Constants.STATE;
  *
  */
 public class NodeTemplate {
-	/** name (or class name) for the node */
+	/**
+	 * name (or class name) for the node
+	 */
 	private String name;
-	/** description for the node */
+	/**
+	 * description for the node
+	 */
 	private String description;
-	/** number of nodes to create from this template */
+	/**
+	 * number of nodes to create from this template
+	 */
 	private Integer count;
-	/** flag for disabling this template in order to not create nodes of this type */
+	/**
+	 * flag for disabling this template in order to not create nodes of this type
+	 */
 	private Boolean enabled;
-	/** initialize the node with this state */
+	/**
+	 * initialize the node with this state
+	 */
 	private STATE initialState;
-	/** rank of this node type which is used for event navigation */
+	/**
+	 * rank of this node type which is used for event navigation
+	 */
 	private Integer rank;
-	/** list of node types this node type can connect to */
+	/**
+	 * list of node types this node type can connect to
+	 */
+
+	private String ip_addr; // Need IP
+
+
 	private HashMap<String, Integer> relatableTo = new HashMap<>();
 
 	/**
@@ -32,61 +50,83 @@ public class NodeTemplate {
 	@Override
 	public String toString() {
 		String stringRepresentation = "";
-		stringRepresentation += "name : "+name+", ";
-		stringRepresentation += "description : "+description+", ";
-		stringRepresentation += "count : "+count+", ";
-		stringRepresentation += "enabled : "+enabled+", ";
-		stringRepresentation += "initialState : "+initialState+", ";
-		stringRepresentation += "rank : "+rank+", ";
-		for (String key : relatableTo.keySet() ) {
-			stringRepresentation += "{name : "+key+", ";
-			stringRepresentation += "max : "+relatableTo.get(key)+"}, ";
+		stringRepresentation += "name : " + name + ", ";
+		stringRepresentation += "description : " + description + ", ";
+		stringRepresentation += "count : " + count + ", ";
+		stringRepresentation += "enabled : " + enabled + ", ";
+		stringRepresentation += "initialState : " + initialState + ", ";
+		stringRepresentation += "rank : " + rank + ", ";
+		stringRepresentation += "ip_address : " + ip_addr + ", ";
+		for (String key : relatableTo.keySet()) {
+			stringRepresentation += "{name : " + key + ", ";
+			stringRepresentation += "max : " + relatableTo.get(key) + "}, ";
 		}
 		return stringRepresentation;
 	}
-	
+
 	public String getName() {
 		return name;
 	}
+
 	public NodeTemplate setName(String name) {
 		this.name = name;
 		return this;
 	}
+
 	public String getDescription() {
 		return description;
 	}
+
 	public NodeTemplate setDescription(String description) {
 		this.description = description;
 		return this;
 	}
+
 	public Integer getCount() {
 		return count;
 	}
+
 	public NodeTemplate setCount(Integer count) {
 		this.count = count;
 		return this;
 	}
+
 	public Boolean getEnabled() {
 		return enabled;
 	}
+
 	public NodeTemplate setEnabled(Boolean enabled) {
 		this.enabled = enabled;
 		return this;
 	}
+
+	public String getIP_addr() {
+		return ip_addr;
+	}
+
+	public NodeTemplate setIP_addr(String ip_addr) {
+		this.ip_addr = ip_addr;
+		return this;
+	}
+
 	public STATE getInitialState() {
 		return initialState;
 	}
+
 	public NodeTemplate setInitialState(STATE initialState) {
 		this.initialState = initialState;
 		return this;
 	}
+
 	public Integer getRank() {
 		return rank;
 	}
+
 	public NodeTemplate setRank(Integer rank) {
 		this.rank = rank;
 		return this;
 	}
+
 	public HashMap<String, Integer> getRelatableTo() {
 		return relatableTo;
 	}

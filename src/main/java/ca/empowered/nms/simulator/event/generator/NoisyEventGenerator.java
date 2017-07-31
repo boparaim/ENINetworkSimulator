@@ -50,6 +50,7 @@ public class NoisyEventGenerator extends EventGenerator {
 						Notification notification = new Notification(node, alarmNameList.get(j));
 						notification.setSeverity(SEVERITY.values()[k]);
 						notification.setDescription(notification.getDescription() + " " + alarmNameList.get(j));
+						notification.setNotificationID(random1.nextInt(1000));
 						synchronized (NotificationFactory.getAllNotifications()) {
 							NotificationFactory.getAllNotifications().put(notification.getId(), notification);
 						}

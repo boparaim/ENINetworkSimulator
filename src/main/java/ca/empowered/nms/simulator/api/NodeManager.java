@@ -205,8 +205,9 @@ public final class NodeManager {
 				addNode(i,
 						nodeTemplate.getName(), 
 						nodeTemplate.getDescription(), 
-						nodeTemplate.getInitialState(), 
-						nodeTemplate.getRank(), 
+						nodeTemplate.getInitialState(),
+						nodeTemplate.getRank(),
+						nodeTemplate.getIP_addr(),
 						nodeTemplate.getRelatableTo());
 			}
 		}
@@ -225,7 +226,7 @@ public final class NodeManager {
 	 * @param rank
 	 * @param relatableTo
 	 */
-	public static void addNode(int id, String className, String description, STATE initialState, int rank, HashMap<String, Integer> relatableTo) {
+	public static void addNode(int id, String className, String description, STATE initialState, int rank, String ip_addr, HashMap<String, Integer> relatableTo) {
 		if (!usable || graph == null) {
 			log.error("NodeFactory is not initialized properly. Call init() before using it.");
 			return;
@@ -239,6 +240,7 @@ public final class NodeManager {
 		node.addAttribute("description", description);
 		node.addAttribute("state", initialState.toString());
 		node.addAttribute("rank", rank);
+		node.addAttribute("ip_address", ip_addr);
 		node.addAttribute("ui.label", instanceName);
 		node.addAttribute("ui.class", className);
 		// for css property manipulation
