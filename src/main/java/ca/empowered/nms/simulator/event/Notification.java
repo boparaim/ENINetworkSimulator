@@ -1,11 +1,13 @@
 package ca.empowered.nms.simulator.event;
 
 import java.sql.Timestamp;
+import java.util.Random;
 
 import ca.empowered.nms.simulator.config.Settings;
 import ca.empowered.nms.simulator.node.NodeElement;
 import ca.empowered.nms.simulator.utils.Constants.SEVERITY;
 import ca.empowered.nms.simulator.utils.Constants.STATE;
+import scala.Int;
 
 /**
  * This class represents a notification.
@@ -14,10 +16,13 @@ import ca.empowered.nms.simulator.utils.Constants.STATE;
  *
  */
 public class Notification {
-	
+
+	//https://docs.moogsoft.com/display/050203/Generic+Rest+LAM
+	//Above is a link to default mappings and what they represent.
+
 	// class/instance/type
 	private String id;
-	
+
 	// this app
 	private String manager;
 	// element
@@ -25,6 +30,7 @@ public class Notification {
 	private String className;
 	private String instanceName;
 	private String eventName;
+	private String source_id; // IP ADDRESS. THIS IS MANDATORY IN MOOG
 	// populate on element on generation
 	private String location;
 	// populate on element on generation
@@ -33,19 +39,22 @@ public class Notification {
 	private SEVERITY severity;
 	private String description;
 	private long timestamp;
+
+	private int notificationID;
 	
-	public Notification(String className, String instanceName, String eventName, String tag) {
+	public Notification(String className, String instanceName, String eventName, String tag, String ip) {
 		this.className = className;
 		this.instanceName = instanceName;
 		this.eventName = eventName;
-		
-		id = this.className + ":_:" + this.instanceName + ":_:" + tag;
+		this.source_id = ip;
+
+		id = this.className + "::" + this.instanceName + "::" + tag;
 		manager = Settings.getAppName();
-		source = "Agent-"+instanceName;
+		source = instanceName;
 		
 		// TODO: change back to milliseconds
-		timestamp = new Timestamp(System.currentTimeMillis()).toInstant().toEpochMilli();
-		//timestamp = new Timestamp(System.currentTimeMillis()).toInstant().getEpochSecond();
+		//timestamp = new Timestamp(System.currentTimeMillis()).toInstant().toEpochMilli();
+		timestamp = new Timestamp(System.currentTimeMillis()).toInstant().getEpochSecond();
 	}
 	
 	public Notification(NodeElement node) {
@@ -53,7 +62,7 @@ public class Notification {
 	}
 	
 	public Notification(NodeElement node, String tag) {
-		this(node.getAttribute("class"), node.getId(), node.getCurrentState().toString(), tag);
+		this(node.getAttribute("class"), node.getId(), node.getCurrentState().toString(), tag, node.getAttribute("ip_address"));
 	}
 	
 	/**
@@ -63,23 +72,26 @@ public class Notification {
 	 */
 	public String toJSON() {
 		// TODO: testing with moog
-		String sev = "1";
+		int sev = 1;
 		if (severity.toString().equals("CLEAR"))
-			sev = "0";
+			sev = 0;
 		if (severity.toString().equals("CRITICAL"))
-			sev = "5";
-		
-		return "{\"id\":\""+id+"\", "
+			sev = 5;
+
+
+		return
+				  "{\"events\":[{"
+				+ "\"signature\":\""+id+"\", "
 				+ "\"manager\":\""+manager+"\", "
-				+ "\"source\":\""+source+"\", "
-				+ "\"className\":\""+className+"\", "
-				+ "\"instanceName\":\""+instanceName+"\", "
-				+ "\"eventName\":\""+eventName+"\", "
-				+ "\"location\":\""+location+"\", "
-				+ "\"type\":\""+type+"\", "
-				+ "\"severity\":\""+sev+"\", "
+				+ "\"source\":\""+instanceName+"\", "
+				+ "\"source_id\":\""+source_id+"\" , "
+				+ "\"class\":\""+className+"\", "
+				+ "\"agent_location\":\"ottawa\", "
+				+ "\"external_id\":\""+notificationID+"\", "
+				+ "\"type\":\""+eventName+"\", "
+				+ "\"severity\":"+sev+", "
 				+ "\"description\":\""+description+"\", "
-				+ "\"timestamp\":\""+timestamp+"\"}";
+				+ "\"agent_time\":"+timestamp+"}]}";
 	}
 	
 	public String getManager() {
@@ -154,6 +166,9 @@ public class Notification {
 	public void updateDescription() {
 		description = className+" "+instanceName+" "+eventName+" "+severity;
 	}
+	public int getNotificationID() {return notificationID;}
+	public void setNotificationID(int notificationID) { this.notificationID = notificationID; }
+	public void updateNotificationID() { notificationID += 1;}
 	public long getTimestamp() {
 		return timestamp;
 	}
@@ -163,5 +178,7 @@ public class Notification {
 	public String getId() {
 		return id;
 	}
+	public String getSource_id() {return source_id;}
+	public void setSource_id(String source_id) {this.source_id = source_id;}
 	
 }

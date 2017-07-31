@@ -2,6 +2,7 @@ package ca.empowered.nms.simulator.config;
 
 import java.io.InputStream;
 import java.util.ArrayList;
+import java.util.Random;
 
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
@@ -55,6 +56,8 @@ public class JsonConfigurations {
 	 * Create node template objects.
 	 */
 	private void readConfigs() {
+		Random random = new Random();
+
 		if (jsonRootNode == null) {
 			log.error("Unable to read json configuration file. Can't create nodes.");
 			return;
@@ -69,6 +72,10 @@ public class JsonConfigurations {
 			nodeTemplate.setDescription(node.path("description").textValue());
 			nodeTemplate.setCount(node.path("count").asInt(0));
 			nodeTemplate.setEnabled(node.path("enabled").asBoolean(false));
+			if(node.has("subnet"))
+
+				nodeTemplate.setIP_addr(node.path("subnet").textValue() + Integer.toString(random.nextInt(254)).replace("\"", ""));
+
 			if ( node.path("init-state").textValue().equalsIgnoreCase("down") )
 				nodeTemplate.setInitialState(STATE.DOWN);
 			else if ( node.path("init-state").textValue().equalsIgnoreCase("degraded") )

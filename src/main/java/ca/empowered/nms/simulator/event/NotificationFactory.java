@@ -30,6 +30,7 @@ public class NotificationFactory {
 		Notification notification = new Notification(node);
 		notification.updateSeverity(node);
 		notification.updateDescription();
+		notification.updateNotificationID();
 		allNotifications.put(notification.getId(), notification);
 		
 		reportNotifcation(notification);

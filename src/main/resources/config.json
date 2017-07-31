@@ -27,6 +27,7 @@
 			"description" : "",
 			"count" : 1,
 			"enabled" : true,
+			"subnet" : "192.168.2.",
 			"init-state" : "UP",
 			"rank" : 100,
 			"relatable-to" : [
@@ -49,6 +50,7 @@
 			"description" : "",
 			"count" : 2,
 			"enabled" : true,
+			"subnet" : "192.168.2.",
 			"init-state" : "UP",
 			"rank" : 90,
 			"relatable-to" : [
@@ -79,6 +81,7 @@
 			"description" : "",
 			"count" : 4,
 			"enabled" : true,
+			"subnet" : "192.168.2.",
 			"init-state" : "UP",
 			"rank" : 80,
 			"relatable-to" : [
@@ -101,6 +104,7 @@
 			"description" : "",
 			"count" : 4,
 			"enabled" : true,
+			"subnet" : "192.168.2.",
 			"init-state" : "UP",
 			"rank" : 70,
 			"relatable-to" : [
@@ -119,6 +123,7 @@
 			"description" : "",
 			"count" : 6,
 			"enabled" : true,
+			"subnet" : "192.168.2.",
 			"init-state" : "UP",
 			"rank" : 60,
 			"relatable-to" : [
@@ -137,6 +142,7 @@
 			"description" : "",
 			"count" : 12,
 			"enabled" : true,
+			"subnet" : "192.168.2.",
 			"init-state" : "UP",
 			"rank" : 50,
 			"relatable-to" : [
@@ -159,6 +165,7 @@
 			"description" : "",
 			"count" : 4,
 			"enabled" : true,
+			"subnet" : "192.168.2.",
 			"init-state" : "UP",
 			"rank" : 40,
 			"relatable-to" : [
@@ -173,6 +180,7 @@
 			"description" : "",
 			"count" : 2,
 			"enabled" : true,
+			"subnet" : "192.168.2.",
 			"init-state" : "UP",
 			"rank" : 95,
 			"relatable-to" : [
@@ -199,6 +207,7 @@
 			"description" : "",
 			"count" : 1,
 			"enabled" : true,
+			"subnet" : "192.168.2.",
 			"init-state" : "UP",
 			"rank" : 95,
 			"relatable-to" : [
