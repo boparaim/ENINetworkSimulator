@@ -126,7 +126,15 @@ public class JsonFileTopologySource extends TopologySource {
 				node.setDescription(description);
 				node.setInitialState(initialState);
 				node.setRank(rank);
-				node.setRelatableTo(relatableTo);
+				
+				// copies references = thus, in isRelatable it changes counts for all nodes of a type
+				//node.setRelatableTo(relatableTo);
+				
+				HashMap<String, Integer> thisRelatableTo = new HashMap<>();
+				relatableTo.forEach((key, val) -> {
+					thisRelatableTo.put(new String(key), new Integer(val));					
+				});
+				node.setRelatableTo(thisRelatableTo);
 				nodes.add(node);
 			}
 			/*return true;
@@ -251,11 +259,11 @@ public class JsonFileTopologySource extends TopologySource {
 		}*/
 		log.debug("entries in map: "+networkMap.size());
 		
-		for (Node key : networkMap.keySet()) {
+		/*for (Node key : networkMap.keySet()) {
 			for (Node list : networkMap.get(key)) {
 				log.debug(key.getName()+" -> "+list.getName());
 			}
-		}
+		}*/
 	}
 	
 }

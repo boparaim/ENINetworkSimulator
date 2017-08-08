@@ -56,10 +56,10 @@
 					"name" : "LoadBalancer", 
 					"max" : 1
 				},
-				{
-					"name" : "Router", 
-					"max" : 1
-				},
+				#{
+				#	"name" : "Router", 
+				#	"max" : 1
+				#},
 				{
 					"name" : "Switch", 
 					"max" : 2
@@ -99,7 +99,7 @@
 		{
 			"name" : "Host",
 			"description" : "",
-			"count" : 4,
+			"count" : 8,
 			"enabled" : true,
 			"init-state" : "UP",
 			"rank" : 70,
@@ -117,7 +117,7 @@
 		{
 			"name" : "Card",
 			"description" : "",
-			"count" : 6,
+			"count" : 16,
 			"enabled" : true,
 			"init-state" : "UP",
 			"rank" : 60,
@@ -135,7 +135,7 @@
 		{
 			"name" : "Interface",
 			"description" : "",
-			"count" : 12,
+			"count" : 32,
 			"enabled" : true,
 			"init-state" : "UP",
 			"rank" : 50,
@@ -157,22 +157,40 @@
 		{
 			"name" : "WebApplication",
 			"description" : "",
-			"count" : 4,
+			"count" : 64,
 			"enabled" : true,
 			"init-state" : "UP",
 			"rank" : 40,
 			"relatable-to" : [
 				{
+					"name" : "WebApplicationModules", 
+					"max" : 2
+				},
+				{
 					"name" : "Interface", 
-					"max" : 3
+					"max" : 1
 				}
 			]
 		},
+		#{
+		#	"name" : "WebApplicationModules",
+		#	"description" : "",
+		#	"count" : 128,
+		#	"enabled" : true,
+		#	"init-state" : "UP",
+		#	"rank" : 40,
+		#	"relatable-to" : [
+		#		{
+		#			"name" : "WebApplication", 
+		#			"max" : 1
+		#		}
+		#	]
+		#},
 		{
 			"name" : "NetworkConnection",
 			"description" : "",
 			"count" : 2,
-			"enabled" : true,
+			"enabled" : false,
 			"init-state" : "UP",
 			"rank" : 95,
 			"relatable-to" : [
@@ -198,7 +216,7 @@
 			"name" : "BGPSession",
 			"description" : "",
 			"count" : 1,
-			"enabled" : true,
+			"enabled" : false,
 			"init-state" : "UP",
 			"rank" : 95,
 			"relatable-to" : [

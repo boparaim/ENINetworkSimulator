@@ -13,6 +13,8 @@ import org.springframework.context.ConfigurableApplicationContext;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
 
 import ca.empowered.nms.simulator.topology.element.Node;
+import ca.empowered.nms.simulator.topology.generator.CustomGraph;
+import ca.empowered.nms.simulator.topology.generator.NodeManger;
 import ca.empowered.nms.simulator.topology.source.TopologySource;
 import ca.empowered.nms.simulator.topology.source.TopologySourceManager;
 import ca.empowered.nms.simulator.topology.source.file.json.JsonFileTopologySource;
@@ -43,7 +45,11 @@ public class Main {
 			File file = Paths.get(Main.class.getClass().getResource("/config.json").toURI()).toFile();
 			TopologySource topoSource = new JsonFileTopologySource(file);
 			TopologySourceManager topoManager = new TopologySourceManager(topoSource);
-			MultiValuedMap<Node, Node> ntwkMap = topoManager.process();
+			MultiValuedMap<Node, Node> networkMap = topoManager.process();
+			
+			CustomGraph graph = new CustomGraph("from settings");
+			NodeManger nodeManager = new NodeManger(graph);
+			nodeManager.createMap(networkMap);
 			
 			executor.shutdown();
 			while (!executor.isTerminated()) {

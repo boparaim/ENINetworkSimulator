@@ -20,6 +20,8 @@ public class Node {
 	private HashMap<String, Integer> relatableTo;
 	private ArrayList<String> connectedTo = new ArrayList<>();
 	
+	private static Object lock = new Object();
+	
 	public boolean isRelatableTo(Node otherNode) {
 		boolean isValid = false;
 		Node thisNode = this;
@@ -56,23 +58,22 @@ public class Node {
 		int thisNodeOtherPossibleCount = 0;
 		int otherNodeThisPossibleCount = 0;
 		
-		thisNodeOtherPossibleCount = thisNode.relatableTo.get(otherNodeClass);
-		otherNodeThisPossibleCount = otherNode.relatableTo.get(thisNodeClass);
-		//log.debug("count this - "+thisNodeOtherPossibleCount+" count other - "+otherNodeThisPossibleCount);
+		synchronized (lock) {
 		
-		// validate we haven't passed the limit on any side
-		if (thisNodeOtherPossibleCount > 0
-				&& otherNodeThisPossibleCount > 0) {
-			synchronized (thisNode) {
+			thisNodeOtherPossibleCount = thisNode.relatableTo.get(otherNodeClass);
+			otherNodeThisPossibleCount = otherNode.relatableTo.get(thisNodeClass);
+			//log.debug("count this - "+thisNodeOtherPossibleCount+" count other - "+otherNodeThisPossibleCount);
+			
+			// validate we haven't passed the limit on any side
+			if (thisNodeOtherPossibleCount > 0
+					&& otherNodeThisPossibleCount > 0) {
 				thisNode.relatableTo.put(otherNodeClass, (thisNodeOtherPossibleCount - 1));
 				thisNode.connectedTo.add(otherNode.getName());
-			}
-			synchronized (otherNode) {
 				otherNode.relatableTo.put(thisNodeClass, (otherNodeThisPossibleCount - 1));
 				otherNode.connectedTo.add(thisNode.getName());
+				
+				isValid = true;
 			}
-			
-			isValid = true;
 		}
 		
 		return isValid;
