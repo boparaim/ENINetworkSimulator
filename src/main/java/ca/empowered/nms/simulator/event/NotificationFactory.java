@@ -29,7 +29,7 @@ public class NotificationFactory {
 	public static void submitNotifcation(NodeElement node) {
 		Notification notification = new Notification(node);
 		notification.updateSeverity(node);
-		notification.updateDescription();
+		notification.getDescription();
 		notification.updateNotificationID();
 		allNotifications.put(notification.getId(), notification);
 		

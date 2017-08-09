@@ -49,11 +49,24 @@ public class NoisyEventGenerator extends EventGenerator {
 						NodeElement node = NodeManager.getGraph().getNode(nodeList.get(i));
 						Notification notification = new Notification(node, alarmNameList.get(j));
 						notification.setSeverity(SEVERITY.values()[k]);
-						notification.setDescription(notification.getDescription() + " " + alarmNameList.get(j));
-						notification.setNotificationID(random1.nextInt(1000));
-						synchronized (NotificationFactory.getAllNotifications()) {
-							NotificationFactory.getAllNotifications().put(notification.getId(), notification);
+						notification.setType(notification.getSeverity());
+						notification.setDescription(alarmNameList.get(j)); //Removes NULL issue
+						for(String x : alarmNameList)
+						{
+							log.debug(x);
 						}
+						log.debug(j);
+						//notification.setDescription(notification.getDescription() + " " + alarmNameList.get(j));
+						notification.setNotificationID(random1.nextInt(1000));
+
+						synchronized (NotificationFactory.getAllNotifications()) {
+							NotificationFactory.getAllNotifications().put(notification.getId(), notification); //DISABLED FOR TESTING REASONS
+						}
+						NotificationFactory.getAllNotifications().forEach((s, n) -> {
+							log.debug(s+" "+n);
+						});
+
+						//NotificationFactory.getAllNotifications().put(notification.getId(), notification);
 						
 						NotificationFactory.reportNotifcation(notification);
 					} catch (Exception e) {

@@ -8,8 +8,10 @@ import java.awt.event.MouseWheelListener;
 import java.io.FileNotFoundException;
 import java.io.PrintWriter;
 import java.io.UnsupportedEncodingException;
+import java.lang.reflect.Array;
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.Map;
 
 import javax.swing.JOptionPane;
 
@@ -208,7 +210,9 @@ public final class NodeManager {
 						nodeTemplate.getInitialState(),
 						nodeTemplate.getRank(),
 						nodeTemplate.getIP_addr(),
-						nodeTemplate.getRelatableTo());
+						nodeTemplate.getRelatableTo(),
+						nodeTemplate.getPOI()
+				);
 			}
 		}
 		
@@ -226,13 +230,13 @@ public final class NodeManager {
 	 * @param rank
 	 * @param relatableTo
 	 */
-	public static void addNode(int id, String className, String description, STATE initialState, int rank, String ip_addr, HashMap<String, Integer> relatableTo) {
+	public static void addNode(int id, String className, String description, STATE initialState, int rank, String ip_addr, HashMap<String, Integer> relatableTo, HashMap<String, Integer> poiList) {
 		if (!usable || graph == null) {
 			log.error("NodeFactory is not initialized properly. Call init() before using it.");
 			return;
 		}
-		
-		String instanceName = className + "-" + (id + 1000) + Settings.getNodeNameSuffix();
+		String instanceName = className + Settings.getNodeNameSuffix();
+		//String instanceName = className + "-" + (id + 1000) + Settings.getNodeNameSuffix(); // Testing with ID
 		log.debug("instance name: "+instanceName);		
 		graph.addNode(instanceName);
 		
@@ -245,7 +249,11 @@ public final class NodeManager {
 		node.addAttribute("ui.class", className);
 		// for css property manipulation
 		node.addAttribute("class", className);
-		
+		//Hashmap containing POIs and their 0-100 % usage.
+		for (Map.Entry<String, Integer> poi : poiList.entrySet()){
+			node.addAttribute(poi.getKey(), poi.getValue() );
+		}
+
 		// node types this node can connect to
 		for (String key: relatableTo.keySet()) {
 			node.addAttribute("rel"+key, relatableTo.get(key));

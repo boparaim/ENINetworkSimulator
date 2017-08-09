@@ -1,5 +1,6 @@
 package ca.empowered.nms.simulator.node;
 
+import java.util.ArrayList;
 import java.util.HashMap;
 
 import ca.empowered.nms.simulator.utils.Constants.STATE;
@@ -40,6 +41,8 @@ public class NodeTemplate {
 	 */
 
 	private String ip_addr; // Need IP
+	//Points of Interest are areas on a Node that can fail. Think CPU, MEMORY, HDD, etc.
+	private HashMap<String,Integer> POI;
 
 
 	private HashMap<String, Integer> relatableTo = new HashMap<>();
@@ -126,6 +129,13 @@ public class NodeTemplate {
 		this.rank = rank;
 		return this;
 	}
+	public HashMap<String, Integer> getPOI() { return POI; }
+
+	public NodeTemplate setPOI(HashMap<String, Integer> POI) {
+		this.POI = POI;
+		return this;
+	}
+
 
 	public HashMap<String, Integer> getRelatableTo() {
 		return relatableTo;

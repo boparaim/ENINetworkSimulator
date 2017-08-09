@@ -1,13 +1,11 @@
 package ca.empowered.nms.simulator.event;
 
 import java.sql.Timestamp;
-import java.util.Random;
 
 import ca.empowered.nms.simulator.config.Settings;
 import ca.empowered.nms.simulator.node.NodeElement;
 import ca.empowered.nms.simulator.utils.Constants.SEVERITY;
 import ca.empowered.nms.simulator.utils.Constants.STATE;
-import scala.Int;
 
 /**
  * This class represents a notification.
@@ -18,7 +16,7 @@ import scala.Int;
 public class Notification {
 
 	//https://docs.moogsoft.com/display/050203/Generic+Rest+LAM
-	//Above is a link to default mappings and what they represent.
+	//Above is a link to default mappings and what they represent
 
 	// class/instance/type
 	private String id;
@@ -39,16 +37,18 @@ public class Notification {
 	private SEVERITY severity;
 	private String description;
 	private long timestamp;
-
+	//Class Is needed for MOOG and likely all monitoring solutions. Class should be stuff like Memory, CPU, Storage etc.
+	private String classType;
 	private int notificationID;
 	
-	public Notification(String className, String instanceName, String eventName, String tag, String ip) {
+	public Notification(String className, String instanceName, String eventName, String classType, String ip) {
+
 		this.className = className;
 		this.instanceName = instanceName;
 		this.eventName = eventName;
 		this.source_id = ip;
 
-		id = this.className + "::" + this.instanceName + "::" + tag;
+		id = this.className + "::" + this.instanceName + "::" + classType;
 		manager = Settings.getAppName();
 		source = instanceName;
 		
@@ -85,7 +85,7 @@ public class Notification {
 				+ "\"manager\":\""+manager+"\", "
 				+ "\"source\":\""+instanceName+"\", "
 				+ "\"source_id\":\""+source_id+"\" , "
-				+ "\"class\":\""+className+"\", "
+				+ "\"class\":\""+classType+"\", "
 				+ "\"agent_location\":\"ottawa\", "
 				+ "\"external_id\":\""+notificationID+"\", "
 				+ "\"type\":\""+eventName+"\", "
@@ -133,8 +133,14 @@ public class Notification {
 	public String getType() {
 		return type;
 	}
-	public void setType(String type) {
-		this.type = type;
+	public void setType(SEVERITY severity) {
+		if (severity != SEVERITY.CLEAR)
+		{
+			this.type = "DOWN";
+		}
+		else {
+			this.type = "UP";
+		}
 	}
 	public SEVERITY getSeverity() {
 		return severity;
@@ -163,9 +169,9 @@ public class Notification {
 	public void setDescription(String description) {
 		this.description = description;
 	}
-	public void updateDescription() {
+	/*public void updateDescription() {
 		description = className+" "+instanceName+" "+eventName+" "+severity;
-	}
+	}*/
 	public int getNotificationID() {return notificationID;}
 	public void setNotificationID(int notificationID) { this.notificationID = notificationID; }
 	public void updateNotificationID() { notificationID += 1;}
@@ -180,5 +186,14 @@ public class Notification {
 	}
 	public String getSource_id() {return source_id;}
 	public void setSource_id(String source_id) {this.source_id = source_id;}
-	
+
+	/*
+	Class Type is generated from the POI. POIs are areas of failure such as CPU,MEM,STORAGE,etc.
+	Class Should be the failure point. What SPECIFICALLY is being monitored. What SPECIFICALLY went wrong. Desc
+	could be generated from this.
+	 */
+	public String getClassType() { return classType; }
+	public void setClass(String classType) { this.classType = classType; }
+
+
 }

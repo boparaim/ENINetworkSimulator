@@ -25,12 +25,15 @@ public abstract class EventGenerator implements EventBuilder {
 	protected String eventNameSet;
 	/** list of event names to use */
 	protected ArrayList<String> alarmNameList;
+	//List of hardware types to use (CPU,MEM,HDD ETC)
+	protected ArrayList<String> hardwareSet;
+
 	
 	public EventGenerator(final Integer intervalSeconds, final ArrayList<String> nodeList, final String eventNameSet) {
 		this.intervalSeconds = intervalSeconds;
 		this.nodeList = nodeList;
 		this.eventNameSet = eventNameSet;
-		
+
 		this.alarmNameList = parseEventNameSet();
 	}
 	
@@ -50,7 +53,7 @@ public abstract class EventGenerator implements EventBuilder {
 		
 		return alarmNames;
 	}
-	
+
 	public Integer getIntervalSeconds() {
 		return intervalSeconds;
 	}
@@ -75,5 +78,5 @@ public abstract class EventGenerator implements EventBuilder {
 	public void setAlarmNameList(ArrayList<String> alarmNameList) {
 		this.alarmNameList = alarmNameList;
 	}
-	
+	public void setHardwareSet(ArrayList<String> hardwareSet) { this.hardwareSet = hardwareSet; }
 }

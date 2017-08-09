@@ -40,7 +40,8 @@ public class Main {
 			EventBuilder evenBuilder1 = new NoisyEventGenerator(
 					Settings.getNoisyEventGenerationInterval(), 
 					NodeManager.getAllNodes(), 
-					Settings.getNoisyEventGenerationEvents());
+					Settings.getNoisyEventGenerationEvents()
+					);
 			evenBuilder1.start();
 		}
 
