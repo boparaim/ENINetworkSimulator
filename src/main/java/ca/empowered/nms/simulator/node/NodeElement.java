@@ -1,10 +1,6 @@
 package ca.empowered.nms.simulator.node;
 
-import java.util.Iterator;
-import java.util.LinkedHashSet;
-import java.util.Observable;
-import java.util.Observer;
-import java.util.Set;
+import java.util.*;
 
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
@@ -83,6 +79,10 @@ public class NodeElement extends AdjacencyListNode implements Controllable {
 		
 		return isValid;
 	}
+
+	public HashMap<String, Integer> getCurrentPOIs() { return this.getAttribute("poi");}
+
+	public void setCurrentPOIs( HashMap<String, Integer> pois) {}
 
 	@Override
 	public STATE getCurrentState() {
@@ -247,5 +247,7 @@ public class NodeElement extends AdjacencyListNode implements Controllable {
    {
      changed = true;
    }
+
+
 
 }

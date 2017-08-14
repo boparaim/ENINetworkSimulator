@@ -1,9 +1,7 @@
 package ca.empowered.nms.simulator.config;
 
 import java.io.InputStream;
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.Random;
+import java.util.*;
 
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
@@ -101,14 +99,15 @@ public class JsonConfigurations {
             }
             //POINT OF INTEREST IN NODE
             if (node.has("poi")) {
-                HashMap<String,Integer> pois = new HashMap<>();
-                JsonNode poi = node.path("poi");
-                for (JsonNode key : poi) {
-                    //TODO FIX
+                HashMap<String,Integer> pois = new HashMap<>(); //Inserting into Node Object
+
+                Iterator<Map.Entry<String, JsonNode>> poisNodes = node.get("poi").fields(); //Used to POI object
+
+                while (poisNodes.hasNext()){ //loop through poi objects
+                    Map.Entry<String, JsonNode> poiNode = poisNodes.next();
+                    pois.put(poiNode.getKey(), poiNode.getValue().intValue() ); // get fieldname,value
                 }
-
-
-                nodeTemplate.setPOI(pois);
+                nodeTemplate.setPOI(pois); // set node with Points of Interest in place.
             }
             nodeTemplates.add(nodeTemplate);
         }
