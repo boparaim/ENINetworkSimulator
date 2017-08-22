@@ -129,13 +129,12 @@ public class NodeTemplate {
 		this.rank = rank;
 		return this;
 	}
-	public HashMap<String, Integer> getPOI() { return POI; }
+	public HashMap<String, Integer> getPOIS() { return POI; }
 
-	public NodeTemplate setPOI(HashMap<String, Integer> POI) {
+	public NodeTemplate setPOIS(HashMap<String, Integer> POI) {
 		this.POI = POI;
 		return this;
 	}
-
 
 	public HashMap<String, Integer> getRelatableTo() {
 		return relatableTo;

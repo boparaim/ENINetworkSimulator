@@ -211,7 +211,7 @@ public final class NodeManager {
 						nodeTemplate.getRank(),
 						nodeTemplate.getIP_addr(),
 						nodeTemplate.getRelatableTo(),
-						nodeTemplate.getPOI()
+						nodeTemplate.getPOIS()
 				);
 			}
 		}
@@ -250,9 +250,7 @@ public final class NodeManager {
 		// for css property manipulation
 		node.addAttribute("class", className);
 		//Hashmap containing POIs and their 0-100 % usage.
-		for (Map.Entry<String, Integer> poi : poiList.entrySet()){
-			node.addAttribute(poi.getKey(), poi.getValue() );
-		}
+		node.addAttribute("pois", poiList);
 
 		// node types this node can connect to
 		for (String key: relatableTo.keySet()) {

@@ -80,9 +80,7 @@ public class NodeElement extends AdjacencyListNode implements Controllable {
 		return isValid;
 	}
 
-	public HashMap<String, Integer> getCurrentPOIs() { return this.getAttribute("poi");}
 
-	public void setCurrentPOIs( HashMap<String, Integer> pois) {}
 
 	@Override
 	public STATE getCurrentState() {

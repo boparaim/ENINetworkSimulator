@@ -41,14 +41,14 @@ public class Notification {
 	private String classType;
 	private int notificationID;
 	
-	public Notification(String className, String instanceName, String eventName, String classType, String ip) {
+	public Notification(String className, String instanceName, String eventName, String ip) {
 
 		this.className = className;
 		this.instanceName = instanceName;
 		this.eventName = eventName;
 		this.source_id = ip;
 
-		id = this.className + "::" + this.instanceName + "::" + classType;
+
 		manager = Settings.getAppName();
 		source = instanceName;
 		
@@ -57,12 +57,12 @@ public class Notification {
 		timestamp = new Timestamp(System.currentTimeMillis()).toInstant().getEpochSecond();
 	}
 	
-	public Notification(NodeElement node) {
-		this(node, "");
-	}
+	//public Notification(NodeElement node) {
+	//	this(node);
+	//}
 	
-	public Notification(NodeElement node, String tag) {
-		this(node.getAttribute("class"), node.getId(), node.getCurrentState().toString(), tag, node.getAttribute("ip_address"));
+	public Notification(NodeElement node) {
+		this(node.getAttribute("class"), node.getId(), node.getCurrentState().toString(), node.getAttribute("ip_address"));
 	}
 	
 	/**
@@ -93,7 +93,8 @@ public class Notification {
 				+ "\"description\":\""+description+"\", "
 				+ "\"agent_time\":"+timestamp+"}]}";
 	}
-	
+	public String getID() { return id; }
+	public void setID() { id = this.className + "::" + this.instanceName + "::" + this.classType;}
 	public String getManager() {
 		return manager;
 	}
@@ -134,12 +135,19 @@ public class Notification {
 		return type;
 	}
 	public void setType(SEVERITY severity) {
-		if (severity != SEVERITY.CLEAR)
+		if (severity == SEVERITY.CRITICAL)
 		{
 			this.type = "DOWN";
 		}
-		else {
+		if (severity == SEVERITY.MAJOR)
+		{
+			this.type = "HIGH LOAD";
+		}
+		if (severity == SEVERITY.CLEAR) {
 			this.type = "UP";
+		}
+		else if (severity == SEVERITY.INFO) {
+			this.type = "INFO";
 		}
 	}
 	public SEVERITY getSeverity() {
@@ -174,7 +182,7 @@ public class Notification {
 	}*/
 	public int getNotificationID() {return notificationID;}
 	public void setNotificationID(int notificationID) { this.notificationID = notificationID; }
-	public void updateNotificationID() { notificationID += 1;}
+	public void updateNotificationID() { notificationID += 1;} //temporary value for dev purposes.
 	public long getTimestamp() {
 		return timestamp;
 	}
@@ -193,7 +201,7 @@ public class Notification {
 	could be generated from this.
 	 */
 	public String getClassType() { return classType; }
-	public void setClass(String classType) { this.classType = classType; }
+	public void setClassType(String classType) { this.classType = classType; }
 
 
 }

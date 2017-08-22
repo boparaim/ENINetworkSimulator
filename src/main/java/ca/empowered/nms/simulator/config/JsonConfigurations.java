@@ -107,7 +107,7 @@ public class JsonConfigurations {
                     Map.Entry<String, JsonNode> poiNode = poisNodes.next();
                     pois.put(poiNode.getKey(), poiNode.getValue().intValue() ); // get fieldname,value
                 }
-                nodeTemplate.setPOI(pois); // set node with Points of Interest in place.
+                nodeTemplate.setPOIS(pois); // set node with Points of Interest in place.
             }
             nodeTemplates.add(nodeTemplate);
         }

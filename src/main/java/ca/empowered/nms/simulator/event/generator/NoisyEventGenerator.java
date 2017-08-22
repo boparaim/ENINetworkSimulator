@@ -47,7 +47,7 @@ public class NoisyEventGenerator extends EventGenerator {
 						log.debug("i:"+i+" "+nodeList.get(i)+", j:"+j+" "+alarmNameList.get(j)+", k:"+k+" "+SEVERITY.values()[k].toString());
 						
 						NodeElement node = NodeManager.getGraph().getNode(nodeList.get(i));
-						Notification notification = new Notification(node, alarmNameList.get(j));
+						Notification notification = new Notification(node);//, alarmNameList.get(j));
 						notification.setSeverity(SEVERITY.values()[k]);
 						notification.setType(notification.getSeverity());
 						notification.setDescription(alarmNameList.get(j)); //Removes NULL issue
