@@ -1,0 +1,595 @@
+2018-05-23 15:02:38,142 INFO o.h.v.i.u.Version [background-preinit] HV000001: Hibernate Validator 6.0.9.Final
+2018-05-23 16:50:49,873 INFO o.h.v.i.u.Version [background-preinit] HV000001: Hibernate Validator 6.0.9.Final
+2018-05-23 17:01:14,783 DEBUG o.h.v.m.ResourceBundleMessageInterpolator [background-preinit] Loaded expression factory via original TCCL
+2018-05-23 17:01:14,798 DEBUG o.h.v.i.e.ValidatorFactoryImpl [background-preinit] HV000234: Using org.hibernate.validator.messageinterpolation.ResourceBundleMessageInterpolator as ValidatorFactory-scoped message interpolator.
+2018-05-23 17:01:14,798 DEBUG o.h.v.i.e.ValidatorFactoryImpl [background-preinit] HV000234: Using org.hibernate.validator.internal.engine.resolver.TraverseAllTraversableResolver as ValidatorFactory-scoped traversable resolver.
+2018-05-23 17:01:14,799 DEBUG o.h.v.i.e.ValidatorFactoryImpl [background-preinit] HV000234: Using org.hibernate.validator.internal.util.ExecutableParameterNameProvider as ValidatorFactory-scoped parameter name provider.
+2018-05-23 17:01:14,799 DEBUG o.h.v.i.e.ValidatorFactoryImpl [background-preinit] HV000234: Using org.hibernate.validator.internal.engine.DefaultClockProvider as ValidatorFactory-scoped clock provider.
+2018-05-23 17:01:14,799 DEBUG o.h.v.i.e.ValidatorFactoryImpl [background-preinit] HV000234: Using org.hibernate.validator.internal.engine.scripting.DefaultScriptEvaluatorFactory as ValidatorFactory-scoped script evaluator factory.
+2018-05-23 17:10:49,896 DEBUG o.h.v.i.x.ResourceLoaderHelper [background-preinit] Trying to load META-INF/validation.xml via Hibernate Validator's class loader
+2018-05-23 17:10:49,898 DEBUG o.h.v.i.x.ValidationXmlParser [background-preinit] No META-INF/validation.xml found. Using annotation based configuration only.
+2018-05-23 18:07:40,941 INFO o.h.v.i.u.Version [background-preinit] HV000001: Hibernate Validator 6.0.9.Final
+2018-05-23 18:07:40,983 DEBUG o.h.v.i.e.r.TraversableResolvers [background-preinit] Cannot find javax.persistence.Persistence on classpath. Assuming non JPA 2 environment. All properties will per default be traversable.
+2018-05-23 18:07:40,997 DEBUG o.h.v.i.x.ValidationXmlParser [background-preinit] Trying to load META-INF/validation.xml for XML based Validator configuration.
+2018-05-23 18:07:41,003 DEBUG o.h.v.i.x.ResourceLoaderHelper [background-preinit] Trying to load META-INF/validation.xml via TCCL
+2018-05-23 18:07:41,005 DEBUG o.h.v.i.x.ResourceLoaderHelper [background-preinit] Trying to load META-INF/validation.xml via Hibernate Validator's class loader
+2018-05-23 18:07:41,006 DEBUG o.h.v.i.x.ValidationXmlParser [background-preinit] No META-INF/validation.xml found. Using annotation based configuration only.
+2018-05-26 10:53:48,370 DEBUG o.h.v.i.x.ResourceLoaderHelper [background-preinit] Trying to load META-INF/validation.xml via TCCL
+2018-05-26 10:53:48,371 DEBUG o.h.v.i.x.ResourceLoaderHelper [background-preinit] Trying to load META-INF/validation.xml via Hibernate Validator's class loader
+2018-05-26 10:53:48,373 DEBUG o.h.v.i.x.ValidationXmlParser [background-preinit] No META-INF/validation.xml found. Using annotation based configuration only.
+2018-05-26 11:21:45,331 DEBUG o.h.v.i.x.ValidationXmlParser [background-preinit] Trying to load META-INF/validation.xml for XML based Validator configuration.
+2018-05-26 11:21:45,334 DEBUG o.h.v.i.x.ResourceLoaderHelper [background-preinit] Trying to load META-INF/validation.xml via TCCL
+2018-05-26 11:21:45,335 DEBUG o.h.v.i.x.ResourceLoaderHelper [background-preinit] Trying to load META-INF/validation.xml via Hibernate Validator's class loader
+2018-05-26 11:21:45,335 DEBUG o.h.v.i.x.ValidationXmlParser [background-preinit] No META-INF/validation.xml found. Using annotation based configuration only.
+2018-05-26 12:06:02,939 DEBUG o.h.v.i.x.ValidationXmlParser [background-preinit] Trying to load META-INF/validation.xml for XML based Validator configuration.
+2018-05-26 12:06:02,942 DEBUG o.h.v.i.x.ResourceLoaderHelper [background-preinit] Trying to load META-INF/validation.xml via TCCL
+2018-05-26 12:06:02,943 DEBUG o.h.v.i.x.ResourceLoaderHelper [background-preinit] Trying to load META-INF/validation.xml via Hibernate Validator's class loader
+2018-05-26 12:06:02,943 DEBUG o.h.v.i.x.ValidationXmlParser [background-preinit] No META-INF/validation.xml found. Using annotation based configuration only.
+2018-05-26 12:27:49,755 DEBUG o.h.v.i.e.r.TraversableResolvers [background-preinit] Found javax.persistence.Persistence on classpath containing 'getPersistenceUtil'. Assuming JPA 2 environment. Trying to instantiate JPA aware TraversableResolver
+2018-05-26 12:27:49,756 DEBUG o.h.v.i.e.r.TraversableResolvers [background-preinit] Instantiated JPA aware TraversableResolver of type org.hibernate.validator.internal.engine.resolver.JPATraversableResolver.
+2018-05-26 12:27:49,757 DEBUG o.h.v.i.e.r.TraversableResolvers [background-preinit] Unable to load or instantiate JPA aware resolver org.hibernate.validator.internal.engine.resolver.JPATraversableResolver. All properties will per default be traversable.
+2018-05-26 12:27:49,766 DEBUG o.h.v.i.x.ValidationXmlParser [background-preinit] Trying to load META-INF/validation.xml for XML based Validator configuration.
+2018-05-26 12:27:49,768 DEBUG o.h.v.i.x.ResourceLoaderHelper [background-preinit] Trying to load META-INF/validation.xml via TCCL
+2018-05-26 12:27:49,769 DEBUG o.h.v.i.x.ResourceLoaderHelper [background-preinit] Trying to load META-INF/validation.xml via Hibernate Validator's class loader
+2018-05-26 12:27:49,769 DEBUG o.h.v.i.x.ValidationXmlParser [background-preinit] No META-INF/validation.xml found. Using annotation based configuration only.
+2018-05-26 13:19:16,814 DEBUG o.h.v.i.e.r.TraversableResolvers [background-preinit] Found javax.persistence.Persistence on classpath containing 'getPersistenceUtil'. Assuming JPA 2 environment. Trying to instantiate JPA aware TraversableResolver
+2018-05-26 13:19:16,816 DEBUG o.h.v.i.e.r.TraversableResolvers [background-preinit] Instantiated JPA aware TraversableResolver of type org.hibernate.validator.internal.engine.resolver.JPATraversableResolver.
+2018-05-26 13:19:16,817 DEBUG o.h.v.i.e.r.TraversableResolvers [background-preinit] Unable to load or instantiate JPA aware resolver org.hibernate.validator.internal.engine.resolver.JPATraversableResolver. All properties will per default be traversable.
+2018-05-26 13:19:16,824 DEBUG o.h.v.i.x.ValidationXmlParser [background-preinit] Trying to load META-INF/validation.xml for XML based Validator configuration.
+2018-05-26 13:19:16,827 DEBUG o.h.v.i.x.ResourceLoaderHelper [background-preinit] Trying to load META-INF/validation.xml via TCCL
+2018-05-26 13:19:16,828 DEBUG o.h.v.i.x.ResourceLoaderHelper [background-preinit] Trying to load META-INF/validation.xml via Hibernate Validator's class loader
+2018-05-26 13:19:16,828 DEBUG o.h.v.i.x.ValidationXmlParser [background-preinit] No META-INF/validation.xml found. Using annotation based configuration only.
+2018-05-26 13:21:11,616 DEBUG o.h.v.i.e.r.TraversableResolvers [background-preinit] Found javax.persistence.Persistence on classpath containing 'getPersistenceUtil'. Assuming JPA 2 environment. Trying to instantiate JPA aware TraversableResolver
+2018-05-26 13:21:11,618 DEBUG o.h.v.i.e.r.TraversableResolvers [background-preinit] Instantiated JPA aware TraversableResolver of type org.hibernate.validator.internal.engine.resolver.JPATraversableResolver.
+2018-05-26 13:21:11,619 DEBUG o.h.v.i.e.r.TraversableResolvers [background-preinit] Unable to load or instantiate JPA aware resolver org.hibernate.validator.internal.engine.resolver.JPATraversableResolver. All properties will per default be traversable.
+2018-05-26 13:25:56,771 DEBUG o.h.v.i.e.r.TraversableResolvers [background-preinit] Found javax.persistence.Persistence on classpath containing 'getPersistenceUtil'. Assuming JPA 2 environment. Trying to instantiate JPA aware TraversableResolver
+2018-05-26 13:25:56,772 DEBUG o.h.v.i.e.r.TraversableResolvers [background-preinit] Instantiated JPA aware TraversableResolver of type org.hibernate.validator.internal.engine.resolver.JPATraversableResolver.
+2018-05-26 13:25:56,773 DEBUG o.h.v.i.e.r.TraversableResolvers [background-preinit] Unable to load or instantiate JPA aware resolver org.hibernate.validator.internal.engine.resolver.JPATraversableResolver. All properties will per default be traversable.
+2018-05-26 13:25:56,781 DEBUG o.h.v.i.x.ValidationXmlParser [background-preinit] Trying to load META-INF/validation.xml for XML based Validator configuration.
+2018-05-26 13:25:56,784 DEBUG o.h.v.i.x.ResourceLoaderHelper [background-preinit] Trying to load META-INF/validation.xml via TCCL
+2018-05-26 13:25:56,785 DEBUG o.h.v.i.x.ResourceLoaderHelper [background-preinit] Trying to load META-INF/validation.xml via Hibernate Validator's class loader
+2018-05-26 13:25:56,785 DEBUG o.h.v.i.x.ValidationXmlParser [background-preinit] No META-INF/validation.xml found. Using annotation based configuration only.
+2018-05-26 13:27:55,105 DEBUG o.h.v.i.e.r.TraversableResolvers [background-preinit] Found javax.persistence.Persistence on classpath containing 'getPersistenceUtil'. Assuming JPA 2 environment. Trying to instantiate JPA aware TraversableResolver
+2018-05-26 13:27:55,106 DEBUG o.h.v.i.e.r.TraversableResolvers [background-preinit] Instantiated JPA aware TraversableResolver of type org.hibernate.validator.internal.engine.resolver.JPATraversableResolver.
+2018-05-26 13:27:55,107 DEBUG o.h.v.i.e.r.TraversableResolvers [background-preinit] Unable to load or instantiate JPA aware resolver org.hibernate.validator.internal.engine.resolver.JPATraversableResolver. All properties will per default be traversable.
+2018-05-26 13:27:55,116 DEBUG o.h.v.i.x.ValidationXmlParser [background-preinit] Trying to load META-INF/validation.xml for XML based Validator configuration.
+2018-05-26 13:27:55,119 DEBUG o.h.v.i.x.ResourceLoaderHelper [background-preinit] Trying to load META-INF/validation.xml via TCCL
+2018-05-26 13:27:55,120 DEBUG o.h.v.i.x.ResourceLoaderHelper [background-preinit] Trying to load META-INF/validation.xml via Hibernate Validator's class loader
+2018-05-26 13:27:55,120 DEBUG o.h.v.i.x.ValidationXmlParser [background-preinit] No META-INF/validation.xml found. Using annotation based configuration only.
+2018-05-26 13:42:40,464 DEBUG o.h.v.i.e.r.TraversableResolvers [background-preinit] Found javax.persistence.Persistence on classpath containing 'getPersistenceUtil'. Assuming JPA 2 environment. Trying to instantiate JPA aware TraversableResolver
+2018-05-26 13:42:40,467 DEBUG o.h.v.i.e.r.TraversableResolvers [background-preinit] Instantiated JPA aware TraversableResolver of type org.hibernate.validator.internal.engine.resolver.JPATraversableResolver.
+2018-05-26 13:42:40,469 DEBUG o.h.v.i.e.r.TraversableResolvers [background-preinit] Unable to load or instantiate JPA aware resolver org.hibernate.validator.internal.engine.resolver.JPATraversableResolver. All properties will per default be traversable.
+2018-05-26 13:42:40,478 DEBUG o.h.v.i.x.ValidationXmlParser [background-preinit] Trying to load META-INF/validation.xml for XML based Validator configuration.
+2018-05-26 13:42:40,480 DEBUG o.h.v.i.x.ResourceLoaderHelper [background-preinit] Trying to load META-INF/validation.xml via TCCL
+2018-05-26 13:42:40,482 DEBUG o.h.v.i.x.ResourceLoaderHelper [background-preinit] Trying to load META-INF/validation.xml via Hibernate Validator's class loader
+2018-05-26 13:42:40,483 DEBUG o.h.v.i.x.ValidationXmlParser [background-preinit] No META-INF/validation.xml found. Using annotation based configuration only.
+2018-05-26 13:46:49,214 DEBUG o.h.v.i.e.r.TraversableResolvers [background-preinit] Instantiated JPA aware TraversableResolver of type org.hibernate.validator.internal.engine.resolver.JPATraversableResolver.
+2018-05-26 13:46:49,215 DEBUG o.h.v.i.e.r.TraversableResolvers [background-preinit] Unable to load or instantiate JPA aware resolver org.hibernate.validator.internal.engine.resolver.JPATraversableResolver. All properties will per default be traversable.
+2018-05-26 13:46:49,224 DEBUG o.h.v.i.x.ValidationXmlParser [background-preinit] Trying to load META-INF/validation.xml for XML based Validator configuration.
+2018-05-26 13:46:49,227 DEBUG o.h.v.i.x.ResourceLoaderHelper [background-preinit] Trying to load META-INF/validation.xml via TCCL
+2018-05-26 13:46:49,227 DEBUG o.h.v.i.x.ResourceLoaderHelper [background-preinit] Trying to load META-INF/validation.xml via Hibernate Validator's class loader
+2018-05-26 13:46:49,228 DEBUG o.h.v.i.x.ValidationXmlParser [background-preinit] No META-INF/validation.xml found. Using annotation based configuration only.
+2018-05-26 13:54:06,256 DEBUG o.h.v.i.x.ValidationXmlParser [background-preinit] Trying to load META-INF/validation.xml for XML based Validator configuration.
+2018-05-26 13:54:06,259 DEBUG o.h.v.i.x.ResourceLoaderHelper [background-preinit] Trying to load META-INF/validation.xml via TCCL
+2018-05-26 13:54:06,260 DEBUG o.h.v.i.x.ResourceLoaderHelper [background-preinit] Trying to load META-INF/validation.xml via Hibernate Validator's class loader
+2018-05-26 13:54:06,260 DEBUG o.h.v.i.x.ValidationXmlParser [background-preinit] No META-INF/validation.xml found. Using annotation based configuration only.
+2018-05-26 14:09:03,708 DEBUG o.h.v.i.e.r.TraversableResolvers [background-preinit] Found javax.persistence.Persistence on classpath containing 'getPersistenceUtil'. Assuming JPA 2 environment. Trying to instantiate JPA aware TraversableResolver
+2018-05-26 14:09:03,711 DEBUG o.h.v.i.e.r.TraversableResolvers [background-preinit] Instantiated JPA aware TraversableResolver of type org.hibernate.validator.internal.engine.resolver.JPATraversableResolver.
+2018-05-26 14:09:03,712 DEBUG o.h.v.i.e.r.TraversableResolvers [background-preinit] Unable to load or instantiate JPA aware resolver org.hibernate.validator.internal.engine.resolver.JPATraversableResolver. All properties will per default be traversable.
+2018-05-26 14:09:03,724 DEBUG o.h.v.i.x.ValidationXmlParser [background-preinit] Trying to load META-INF/validation.xml for XML based Validator configuration.
+2018-05-26 14:09:03,726 DEBUG o.h.v.i.x.ResourceLoaderHelper [background-preinit] Trying to load META-INF/validation.xml via TCCL
+2018-05-26 14:09:03,727 DEBUG o.h.v.i.x.ResourceLoaderHelper [background-preinit] Trying to load META-INF/validation.xml via Hibernate Validator's class loader
+2018-05-26 14:09:03,728 DEBUG o.h.v.i.x.ValidationXmlParser [background-preinit] No META-INF/validation.xml found. Using annotation based configuration only.
+2018-05-26 15:07:42,487 DEBUG o.h.v.i.e.r.TraversableResolvers [background-preinit] Found javax.persistence.Persistence on classpath containing 'getPersistenceUtil'. Assuming JPA 2 environment. Trying to instantiate JPA aware TraversableResolver
+2018-05-26 15:07:42,489 DEBUG o.h.v.i.e.r.TraversableResolvers [background-preinit] Instantiated JPA aware TraversableResolver of type org.hibernate.validator.internal.engine.resolver.JPATraversableResolver.
+2018-05-26 15:07:42,490 DEBUG o.h.v.i.e.r.TraversableResolvers [background-preinit] Unable to load or instantiate JPA aware resolver org.hibernate.validator.internal.engine.resolver.JPATraversableResolver. All properties will per default be traversable.
+2018-05-26 15:07:42,499 DEBUG o.h.v.i.x.ValidationXmlParser [background-preinit] Trying to load META-INF/validation.xml for XML based Validator configuration.
+2018-05-26 15:07:42,501 DEBUG o.h.v.i.x.ResourceLoaderHelper [background-preinit] Trying to load META-INF/validation.xml via TCCL
+2018-05-26 15:07:42,502 DEBUG o.h.v.i.x.ResourceLoaderHelper [background-preinit] Trying to load META-INF/validation.xml via Hibernate Validator's class loader
+2018-05-26 15:07:42,503 DEBUG o.h.v.i.x.ValidationXmlParser [background-preinit] No META-INF/validation.xml found. Using annotation based configuration only.
+2018-05-26 15:38:40,430 DEBUG o.h.v.i.e.r.TraversableResolvers [background-preinit] Instantiated JPA aware TraversableResolver of type org.hibernate.validator.internal.engine.resolver.JPATraversableResolver.
+2018-05-26 15:38:40,431 DEBUG o.h.v.i.e.r.TraversableResolvers [background-preinit] Unable to load or instantiate JPA aware resolver org.hibernate.validator.internal.engine.resolver.JPATraversableResolver. All properties will per default be traversable.
+2018-05-26 15:38:40,438 DEBUG o.h.v.i.x.ValidationXmlParser [background-preinit] Trying to load META-INF/validation.xml for XML based Validator configuration.
+2018-05-26 15:38:40,440 DEBUG o.h.v.i.x.ResourceLoaderHelper [background-preinit] Trying to load META-INF/validation.xml via TCCL
+2018-05-26 15:38:40,440 DEBUG o.h.v.i.x.ResourceLoaderHelper [background-preinit] Trying to load META-INF/validation.xml via Hibernate Validator's class loader
+2018-05-26 15:38:40,441 DEBUG o.h.v.i.x.ValidationXmlParser [background-preinit] No META-INF/validation.xml found. Using annotation based configuration only.
+2018-05-26 15:43:55,767 DEBUG o.h.v.i.e.r.TraversableResolvers [background-preinit] Found javax.persistence.Persistence on classpath containing 'getPersistenceUtil'. Assuming JPA 2 environment. Trying to instantiate JPA aware TraversableResolver
+2018-05-26 15:43:55,768 DEBUG o.h.v.i.e.r.TraversableResolvers [background-preinit] Instantiated JPA aware TraversableResolver of type org.hibernate.validator.internal.engine.resolver.JPATraversableResolver.
+2018-05-26 15:43:55,769 DEBUG o.h.v.i.e.r.TraversableResolvers [background-preinit] Unable to load or instantiate JPA aware resolver org.hibernate.validator.internal.engine.resolver.JPATraversableResolver. All properties will per default be traversable.
+2018-05-26 15:43:55,776 DEBUG o.h.v.i.x.ValidationXmlParser [background-preinit] Trying to load META-INF/validation.xml for XML based Validator configuration.
+2018-05-26 15:43:55,779 DEBUG o.h.v.i.x.ResourceLoaderHelper [background-preinit] Trying to load META-INF/validation.xml via TCCL
+2018-05-26 15:43:55,780 DEBUG o.h.v.i.x.ResourceLoaderHelper [background-preinit] Trying to load META-INF/validation.xml via Hibernate Validator's class loader
+2018-05-26 15:43:55,781 DEBUG o.h.v.i.x.ValidationXmlParser [background-preinit] No META-INF/validation.xml found. Using annotation based configuration only.
+2018-05-26 15:52:18,834 DEBUG o.h.v.i.x.ResourceLoaderHelper [background-preinit] Trying to load META-INF/validation.xml via Hibernate Validator's class loader
+2018-05-26 15:52:18,835 DEBUG o.h.v.i.x.ValidationXmlParser [background-preinit] No META-INF/validation.xml found. Using annotation based configuration only.
+2018-05-26 16:43:39,775 DEBUG o.h.v.i.x.ValidationXmlParser [background-preinit] Trying to load META-INF/validation.xml for XML based Validator configuration.
+2018-05-26 16:43:39,779 DEBUG o.h.v.i.x.ResourceLoaderHelper [background-preinit] Trying to load META-INF/validation.xml via TCCL
+2018-05-26 16:43:39,779 DEBUG o.h.v.i.x.ResourceLoaderHelper [background-preinit] Trying to load META-INF/validation.xml via Hibernate Validator's class loader
+2018-05-26 16:43:39,780 DEBUG o.h.v.i.x.ValidationXmlParser [background-preinit] No META-INF/validation.xml found. Using annotation based configuration only.
+2018-05-26 18:02:12,270 DEBUG o.h.v.i.e.r.TraversableResolvers [background-preinit] Found javax.persistence.Persistence on classpath containing 'getPersistenceUtil'. Assuming JPA 2 environment. Trying to instantiate JPA aware TraversableResolver
+2018-05-26 18:02:12,272 DEBUG o.h.v.i.e.r.TraversableResolvers [background-preinit] Instantiated JPA aware TraversableResolver of type org.hibernate.validator.internal.engine.resolver.JPATraversableResolver.
+2018-05-26 18:02:12,273 DEBUG o.h.v.i.e.r.TraversableResolvers [background-preinit] Unable to load or instantiate JPA aware resolver org.hibernate.validator.internal.engine.resolver.JPATraversableResolver. All properties will per default be traversable.
+2018-05-26 18:02:12,281 DEBUG o.h.v.i.x.ValidationXmlParser [background-preinit] Trying to load META-INF/validation.xml for XML based Validator configuration.
+2018-05-26 18:02:12,284 DEBUG o.h.v.i.x.ResourceLoaderHelper [background-preinit] Trying to load META-INF/validation.xml via TCCL
+2018-05-26 18:02:12,285 DEBUG o.h.v.i.x.ResourceLoaderHelper [background-preinit] Trying to load META-INF/validation.xml via Hibernate Validator's class loader
+2018-05-26 18:02:12,285 DEBUG o.h.v.i.x.ValidationXmlParser [background-preinit] No META-INF/validation.xml found. Using annotation based configuration only.
+2018-05-26 18:03:59,398 DEBUG o.h.v.i.e.r.TraversableResolvers [background-preinit] Found javax.persistence.Persistence on classpath containing 'getPersistenceUtil'. Assuming JPA 2 environment. Trying to instantiate JPA aware TraversableResolver
+2018-05-26 18:03:59,400 DEBUG o.h.v.i.e.r.TraversableResolvers [background-preinit] Instantiated JPA aware TraversableResolver of type org.hibernate.validator.internal.engine.resolver.JPATraversableResolver.
+2018-05-26 18:03:59,400 DEBUG o.h.v.i.e.r.TraversableResolvers [background-preinit] Unable to load or instantiate JPA aware resolver org.hibernate.validator.internal.engine.resolver.JPATraversableResolver. All properties will per default be traversable.
+2018-05-26 18:03:59,408 DEBUG o.h.v.i.x.ValidationXmlParser [background-preinit] Trying to load META-INF/validation.xml for XML based Validator configuration.
+2018-05-26 18:03:59,410 DEBUG o.h.v.i.x.ResourceLoaderHelper [background-preinit] Trying to load META-INF/validation.xml via TCCL
+2018-05-26 18:03:59,411 DEBUG o.h.v.i.x.ResourceLoaderHelper [background-preinit] Trying to load META-INF/validation.xml via Hibernate Validator's class loader
+2018-05-26 18:03:59,411 DEBUG o.h.v.i.x.ValidationXmlParser [background-preinit] No META-INF/validation.xml found. Using annotation based configuration only.
+2018-05-26 18:15:27,916 DEBUG o.h.v.i.e.r.TraversableResolvers [background-preinit] Found javax.persistence.Persistence on classpath containing 'getPersistenceUtil'. Assuming JPA 2 environment. Trying to instantiate JPA aware TraversableResolver
+2018-05-26 18:15:27,919 DEBUG o.h.v.i.e.r.TraversableResolvers [background-preinit] Instantiated JPA aware TraversableResolver of type org.hibernate.validator.internal.engine.resolver.JPATraversableResolver.
+2018-05-26 18:15:27,920 DEBUG o.h.v.i.e.r.TraversableResolvers [background-preinit] Unable to load or instantiate JPA aware resolver org.hibernate.validator.internal.engine.resolver.JPATraversableResolver. All properties will per default be traversable.
+2018-05-26 18:15:27,930 DEBUG o.h.v.i.x.ValidationXmlParser [background-preinit] Trying to load META-INF/validation.xml for XML based Validator configuration.
+2018-05-26 18:23:23,435 DEBUG o.h.v.i.e.r.TraversableResolvers [background-preinit] Found javax.persistence.Persistence on classpath containing 'getPersistenceUtil'. Assuming JPA 2 environment. Trying to instantiate JPA aware TraversableResolver
+2018-05-26 18:23:23,437 DEBUG o.h.v.i.e.r.TraversableResolvers [background-preinit] Instantiated JPA aware TraversableResolver of type org.hibernate.validator.internal.engine.resolver.JPATraversableResolver.
+2018-05-26 18:23:23,438 DEBUG o.h.v.i.e.r.TraversableResolvers [background-preinit] Unable to load or instantiate JPA aware resolver org.hibernate.validator.internal.engine.resolver.JPATraversableResolver. All properties will per default be traversable.
+2018-05-26 18:23:23,445 DEBUG o.h.v.i.x.ValidationXmlParser [background-preinit] Trying to load META-INF/validation.xml for XML based Validator configuration.
+2018-05-26 18:23:23,447 DEBUG o.h.v.i.x.ResourceLoaderHelper [background-preinit] Trying to load META-INF/validation.xml via TCCL
+2018-05-26 18:23:23,448 DEBUG o.h.v.i.x.ResourceLoaderHelper [background-preinit] Trying to load META-INF/validation.xml via Hibernate Validator's class loader
+2018-05-26 18:23:23,448 DEBUG o.h.v.i.x.ValidationXmlParser [background-preinit] No META-INF/validation.xml found. Using annotation based configuration only.
+2018-05-26 18:31:29,520 DEBUG o.h.v.i.e.r.TraversableResolvers [background-preinit] Found javax.persistence.Persistence on classpath containing 'getPersistenceUtil'. Assuming JPA 2 environment. Trying to instantiate JPA aware TraversableResolver
+2018-05-26 18:31:29,521 DEBUG o.h.v.i.e.r.TraversableResolvers [background-preinit] Instantiated JPA aware TraversableResolver of type org.hibernate.validator.internal.engine.resolver.JPATraversableResolver.
+2018-05-26 18:31:29,522 DEBUG o.h.v.i.e.r.TraversableResolvers [background-preinit] Unable to load or instantiate JPA aware resolver org.hibernate.validator.internal.engine.resolver.JPATraversableResolver. All properties will per default be traversable.
+2018-05-26 18:31:29,531 DEBUG o.h.v.i.x.ValidationXmlParser [background-preinit] Trying to load META-INF/validation.xml for XML based Validator configuration.
+2018-05-26 18:31:29,534 DEBUG o.h.v.i.x.ResourceLoaderHelper [background-preinit] Trying to load META-INF/validation.xml via TCCL
+2018-05-26 18:31:29,534 DEBUG o.h.v.i.x.ResourceLoaderHelper [background-preinit] Trying to load META-INF/validation.xml via Hibernate Validator's class loader
+2018-05-26 18:31:29,535 DEBUG o.h.v.i.x.ValidationXmlParser [background-preinit] No META-INF/validation.xml found. Using annotation based configuration only.
+2018-05-26 18:32:30,070 DEBUG o.h.v.i.e.r.TraversableResolvers [background-preinit] Found javax.persistence.Persistence on classpath containing 'getPersistenceUtil'. Assuming JPA 2 environment. Trying to instantiate JPA aware TraversableResolver
+2018-05-26 18:32:30,073 DEBUG o.h.v.i.e.r.TraversableResolvers [background-preinit] Instantiated JPA aware TraversableResolver of type org.hibernate.validator.internal.engine.resolver.JPATraversableResolver.
+2018-05-26 18:32:30,074 DEBUG o.h.v.i.e.r.TraversableResolvers [background-preinit] Unable to load or instantiate JPA aware resolver org.hibernate.validator.internal.engine.resolver.JPATraversableResolver. All properties will per default be traversable.
+2018-05-26 18:32:30,082 DEBUG o.h.v.i.x.ValidationXmlParser [background-preinit] Trying to load META-INF/validation.xml for XML based Validator configuration.
+2018-05-26 18:32:30,084 DEBUG o.h.v.i.x.ResourceLoaderHelper [background-preinit] Trying to load META-INF/validation.xml via TCCL
+2018-05-26 18:32:30,085 DEBUG o.h.v.i.x.ResourceLoaderHelper [background-preinit] Trying to load META-INF/validation.xml via Hibernate Validator's class loader
+2018-05-26 19:03:21,328 DEBUG o.h.v.i.e.r.TraversableResolvers [background-preinit] Found javax.persistence.Persistence on classpath containing 'getPersistenceUtil'. Assuming JPA 2 environment. Trying to instantiate JPA aware TraversableResolver
+2018-05-26 19:03:21,330 DEBUG o.h.v.i.e.r.TraversableResolvers [background-preinit] Instantiated JPA aware TraversableResolver of type org.hibernate.validator.internal.engine.resolver.JPATraversableResolver.
+2018-05-26 19:03:21,331 DEBUG o.h.v.i.e.r.TraversableResolvers [background-preinit] Unable to load or instantiate JPA aware resolver org.hibernate.validator.internal.engine.resolver.JPATraversableResolver. All properties will per default be traversable.
+2018-05-26 19:03:21,338 DEBUG o.h.v.i.x.ValidationXmlParser [background-preinit] Trying to load META-INF/validation.xml for XML based Validator configuration.
+2018-05-26 19:03:21,341 DEBUG o.h.v.i.x.ResourceLoaderHelper [background-preinit] Trying to load META-INF/validation.xml via TCCL
+2018-05-26 19:03:21,341 DEBUG o.h.v.i.x.ResourceLoaderHelper [background-preinit] Trying to load META-INF/validation.xml via Hibernate Validator's class loader
+2018-05-26 19:03:21,341 DEBUG o.h.v.i.x.ValidationXmlParser [background-preinit] No META-INF/validation.xml found. Using annotation based configuration only.
+2018-05-26 19:06:20,927 DEBUG o.h.v.i.e.r.TraversableResolvers [background-preinit] Found javax.persistence.Persistence on classpath containing 'getPersistenceUtil'. Assuming JPA 2 environment. Trying to instantiate JPA aware TraversableResolver
+2018-05-26 19:06:20,929 DEBUG o.h.v.i.e.r.TraversableResolvers [background-preinit] Instantiated JPA aware TraversableResolver of type org.hibernate.validator.internal.engine.resolver.JPATraversableResolver.
+2018-05-26 19:06:20,930 DEBUG o.h.v.i.e.r.TraversableResolvers [background-preinit] Unable to load or instantiate JPA aware resolver org.hibernate.validator.internal.engine.resolver.JPATraversableResolver. All properties will per default be traversable.
+2018-05-26 19:06:20,939 DEBUG o.h.v.i.x.ValidationXmlParser [background-preinit] Trying to load META-INF/validation.xml for XML based Validator configuration.
+2018-05-26 19:06:20,942 DEBUG o.h.v.i.x.ResourceLoaderHelper [background-preinit] Trying to load META-INF/validation.xml via TCCL
+2018-05-26 19:06:20,943 DEBUG o.h.v.i.x.ResourceLoaderHelper [background-preinit] Trying to load META-INF/validation.xml via Hibernate Validator's class loader
+2018-05-26 19:06:20,944 DEBUG o.h.v.i.x.ValidationXmlParser [background-preinit] No META-INF/validation.xml found. Using annotation based configuration only.
+2018-05-26 19:09:00,275 DEBUG o.h.v.i.e.r.TraversableResolvers [background-preinit] Instantiated JPA aware TraversableResolver of type org.hibernate.validator.internal.engine.resolver.JPATraversableResolver.
+2018-05-26 19:09:00,276 DEBUG o.h.v.i.e.r.TraversableResolvers [background-preinit] Unable to load or instantiate JPA aware resolver org.hibernate.validator.internal.engine.resolver.JPATraversableResolver. All properties will per default be traversable.
+2018-05-26 19:09:00,285 DEBUG o.h.v.i.x.ValidationXmlParser [background-preinit] Trying to load META-INF/validation.xml for XML based Validator configuration.
+2018-05-26 19:09:00,287 DEBUG o.h.v.i.x.ResourceLoaderHelper [background-preinit] Trying to load META-INF/validation.xml via TCCL
+2018-05-26 19:09:00,288 DEBUG o.h.v.i.x.ResourceLoaderHelper [background-preinit] Trying to load META-INF/validation.xml via Hibernate Validator's class loader
+2018-05-26 19:09:00,288 DEBUG o.h.v.i.x.ValidationXmlParser [background-preinit] No META-INF/validation.xml found. Using annotation based configuration only.
+2018-05-26 19:11:33,267 DEBUG o.h.v.i.e.r.TraversableResolvers [background-preinit] Found javax.persistence.Persistence on classpath containing 'getPersistenceUtil'. Assuming JPA 2 environment. Trying to instantiate JPA aware TraversableResolver
+2018-05-26 19:11:33,269 DEBUG o.h.v.i.e.r.TraversableResolvers [background-preinit] Instantiated JPA aware TraversableResolver of type org.hibernate.validator.internal.engine.resolver.JPATraversableResolver.
+2018-05-26 19:11:33,270 DEBUG o.h.v.i.e.r.TraversableResolvers [background-preinit] Unable to load or instantiate JPA aware resolver org.hibernate.validator.internal.engine.resolver.JPATraversableResolver. All properties will per default be traversable.
+2018-05-26 19:11:33,278 DEBUG o.h.v.i.x.ValidationXmlParser [background-preinit] Trying to load META-INF/validation.xml for XML based Validator configuration.
+2018-05-26 19:11:33,331 DEBUG o.h.v.i.x.ResourceLoaderHelper [background-preinit] Trying to load META-INF/validation.xml via TCCL
+2018-05-26 19:11:33,332 DEBUG o.h.v.i.x.ResourceLoaderHelper [background-preinit] Trying to load META-INF/validation.xml via Hibernate Validator's class loader
+2018-05-26 19:11:33,332 DEBUG o.h.v.i.x.ValidationXmlParser [background-preinit] No META-INF/validation.xml found. Using annotation based configuration only.
+2018-05-26 19:13:43,533 DEBUG o.h.v.i.e.r.TraversableResolvers [background-preinit] Found javax.persistence.Persistence on classpath containing 'getPersistenceUtil'. Assuming JPA 2 environment. Trying to instantiate JPA aware TraversableResolver
+2018-05-26 19:13:43,535 DEBUG o.h.v.i.e.r.TraversableResolvers [background-preinit] Instantiated JPA aware TraversableResolver of type org.hibernate.validator.internal.engine.resolver.JPATraversableResolver.
+2018-05-26 19:13:43,536 DEBUG o.h.v.i.e.r.TraversableResolvers [background-preinit] Unable to load or instantiate JPA aware resolver org.hibernate.validator.internal.engine.resolver.JPATraversableResolver. All properties will per default be traversable.
+2018-05-26 19:13:43,545 DEBUG o.h.v.i.x.ValidationXmlParser [background-preinit] Trying to load META-INF/validation.xml for XML based Validator configuration.
+2018-05-26 19:13:43,547 DEBUG o.h.v.i.x.ResourceLoaderHelper [background-preinit] Trying to load META-INF/validation.xml via TCCL
+2018-05-26 19:13:43,548 DEBUG o.h.v.i.x.ResourceLoaderHelper [background-preinit] Trying to load META-INF/validation.xml via Hibernate Validator's class loader
+2018-05-26 19:13:43,548 DEBUG o.h.v.i.x.ValidationXmlParser [background-preinit] No META-INF/validation.xml found. Using annotation based configuration only.
+2018-05-26 19:23:09,372 DEBUG o.h.v.i.e.r.TraversableResolvers [background-preinit] Found javax.persistence.Persistence on classpath containing 'getPersistenceUtil'. Assuming JPA 2 environment. Trying to instantiate JPA aware TraversableResolver
+2018-05-26 19:23:09,374 DEBUG o.h.v.i.e.r.TraversableResolvers [background-preinit] Instantiated JPA aware TraversableResolver of type org.hibernate.validator.internal.engine.resolver.JPATraversableResolver.
+2018-05-26 19:23:09,374 DEBUG o.h.v.i.e.r.TraversableResolvers [background-preinit] Unable to load or instantiate JPA aware resolver org.hibernate.validator.internal.engine.resolver.JPATraversableResolver. All properties will per default be traversable.
+2018-05-26 19:23:09,383 DEBUG o.h.v.i.x.ValidationXmlParser [background-preinit] Trying to load META-INF/validation.xml for XML based Validator configuration.
+2018-05-26 19:30:39,611 DEBUG o.h.v.i.e.r.TraversableResolvers [background-preinit] Found javax.persistence.Persistence on classpath containing 'getPersistenceUtil'. Assuming JPA 2 environment. Trying to instantiate JPA aware TraversableResolver
+2018-05-26 19:30:39,613 DEBUG o.h.v.i.e.r.TraversableResolvers [background-preinit] Instantiated JPA aware TraversableResolver of type org.hibernate.validator.internal.engine.resolver.JPATraversableResolver.
+2018-05-26 19:30:39,613 DEBUG o.h.v.i.e.r.TraversableResolvers [background-preinit] Unable to load or instantiate JPA aware resolver org.hibernate.validator.internal.engine.resolver.JPATraversableResolver. All properties will per default be traversable.
+2018-05-26 19:30:39,621 DEBUG o.h.v.i.x.ValidationXmlParser [background-preinit] Trying to load META-INF/validation.xml for XML based Validator configuration.
+2018-05-26 19:30:39,624 DEBUG o.h.v.i.x.ResourceLoaderHelper [background-preinit] Trying to load META-INF/validation.xml via TCCL
+2018-05-26 19:30:39,625 DEBUG o.h.v.i.x.ResourceLoaderHelper [background-preinit] Trying to load META-INF/validation.xml via Hibernate Validator's class loader
+2018-05-26 19:30:39,626 DEBUG o.h.v.i.x.ValidationXmlParser [background-preinit] No META-INF/validation.xml found. Using annotation based configuration only.
+2018-05-26 19:33:39,922 DEBUG o.h.v.i.e.r.TraversableResolvers [background-preinit] Found javax.persistence.Persistence on classpath containing 'getPersistenceUtil'. Assuming JPA 2 environment. Trying to instantiate JPA aware TraversableResolver
+2018-05-26 19:33:39,923 DEBUG o.h.v.i.e.r.TraversableResolvers [background-preinit] Instantiated JPA aware TraversableResolver of type org.hibernate.validator.internal.engine.resolver.JPATraversableResolver.
+2018-05-26 19:33:39,924 DEBUG o.h.v.i.e.r.TraversableResolvers [background-preinit] Unable to load or instantiate JPA aware resolver org.hibernate.validator.internal.engine.resolver.JPATraversableResolver. All properties will per default be traversable.
+2018-05-26 19:33:39,933 DEBUG o.h.v.i.x.ValidationXmlParser [background-preinit] Trying to load META-INF/validation.xml for XML based Validator configuration.
+2018-05-26 19:52:55,125 DEBUG o.h.v.i.e.r.TraversableResolvers [background-preinit] Found javax.persistence.Persistence on classpath containing 'getPersistenceUtil'. Assuming JPA 2 environment. Trying to instantiate JPA aware TraversableResolver
+2018-05-26 19:52:55,127 DEBUG o.h.v.i.e.r.TraversableResolvers [background-preinit] Instantiated JPA aware TraversableResolver of type org.hibernate.validator.internal.engine.resolver.JPATraversableResolver.
+2018-05-26 19:52:55,128 DEBUG o.h.v.i.e.r.TraversableResolvers [background-preinit] Unable to load or instantiate JPA aware resolver org.hibernate.validator.internal.engine.resolver.JPATraversableResolver. All properties will per default be traversable.
+2018-05-26 19:52:55,135 DEBUG o.h.v.i.x.ValidationXmlParser [background-preinit] Trying to load META-INF/validation.xml for XML based Validator configuration.
+2018-05-26 19:52:55,138 DEBUG o.h.v.i.x.ResourceLoaderHelper [background-preinit] Trying to load META-INF/validation.xml via TCCL
+2018-05-26 19:52:55,139 DEBUG o.h.v.i.x.ResourceLoaderHelper [background-preinit] Trying to load META-INF/validation.xml via Hibernate Validator's class loader
+2018-05-26 19:52:55,140 DEBUG o.h.v.i.x.ValidationXmlParser [background-preinit] No META-INF/validation.xml found. Using annotation based configuration only.
+2018-05-26 19:58:35,982 DEBUG o.h.v.i.e.r.TraversableResolvers [background-preinit] Found javax.persistence.Persistence on classpath containing 'getPersistenceUtil'. Assuming JPA 2 environment. Trying to instantiate JPA aware TraversableResolver
+2018-05-26 19:58:35,985 DEBUG o.h.v.i.e.r.TraversableResolvers [background-preinit] Instantiated JPA aware TraversableResolver of type org.hibernate.validator.internal.engine.resolver.JPATraversableResolver.
+2018-05-26 19:58:35,986 DEBUG o.h.v.i.e.r.TraversableResolvers [background-preinit] Unable to load or instantiate JPA aware resolver org.hibernate.validator.internal.engine.resolver.JPATraversableResolver. All properties will per default be traversable.
+2018-05-26 19:58:35,994 DEBUG o.h.v.i.x.ValidationXmlParser [background-preinit] Trying to load META-INF/validation.xml for XML based Validator configuration.
+2018-05-26 19:58:35,997 DEBUG o.h.v.i.x.ResourceLoaderHelper [background-preinit] Trying to load META-INF/validation.xml via TCCL
+2018-05-26 20:02:16,251 DEBUG o.h.v.i.e.r.TraversableResolvers [background-preinit] Found javax.persistence.Persistence on classpath containing 'getPersistenceUtil'. Assuming JPA 2 environment. Trying to instantiate JPA aware TraversableResolver
+2018-05-26 20:02:16,253 DEBUG o.h.v.i.e.r.TraversableResolvers [background-preinit] Instantiated JPA aware TraversableResolver of type org.hibernate.validator.internal.engine.resolver.JPATraversableResolver.
+2018-05-26 20:02:16,254 DEBUG o.h.v.i.e.r.TraversableResolvers [background-preinit] Unable to load or instantiate JPA aware resolver org.hibernate.validator.internal.engine.resolver.JPATraversableResolver. All properties will per default be traversable.
+2018-05-26 20:02:16,261 DEBUG o.h.v.i.x.ValidationXmlParser [background-preinit] Trying to load META-INF/validation.xml for XML based Validator configuration.
+2018-05-26 20:02:16,263 DEBUG o.h.v.i.x.ResourceLoaderHelper [background-preinit] Trying to load META-INF/validation.xml via TCCL
+2018-05-26 20:02:16,264 DEBUG o.h.v.i.x.ResourceLoaderHelper [background-preinit] Trying to load META-INF/validation.xml via Hibernate Validator's class loader
+2018-05-26 20:02:16,264 DEBUG o.h.v.i.x.ValidationXmlParser [background-preinit] No META-INF/validation.xml found. Using annotation based configuration only.
+2018-05-26 20:06:26,770 DEBUG o.h.v.i.e.r.TraversableResolvers [background-preinit] Found javax.persistence.Persistence on classpath containing 'getPersistenceUtil'. Assuming JPA 2 environment. Trying to instantiate JPA aware TraversableResolver
+2018-05-26 20:06:26,772 DEBUG o.h.v.i.e.r.TraversableResolvers [background-preinit] Instantiated JPA aware TraversableResolver of type org.hibernate.validator.internal.engine.resolver.JPATraversableResolver.
+2018-05-26 20:06:26,773 DEBUG o.h.v.i.e.r.TraversableResolvers [background-preinit] Unable to load or instantiate JPA aware resolver org.hibernate.validator.internal.engine.resolver.JPATraversableResolver. All properties will per default be traversable.
+2018-05-26 20:06:26,781 DEBUG o.h.v.i.x.ValidationXmlParser [background-preinit] Trying to load META-INF/validation.xml for XML based Validator configuration.
+2018-05-26 20:06:26,783 DEBUG o.h.v.i.x.ResourceLoaderHelper [background-preinit] Trying to load META-INF/validation.xml via TCCL
+2018-05-26 20:06:26,783 DEBUG o.h.v.i.x.ResourceLoaderHelper [background-preinit] Trying to load META-INF/validation.xml via Hibernate Validator's class loader
+2018-05-26 20:06:26,784 DEBUG o.h.v.i.x.ValidationXmlParser [background-preinit] No META-INF/validation.xml found. Using annotation based configuration only.
+2018-05-26 20:09:59,258 DEBUG o.h.v.i.e.r.TraversableResolvers [background-preinit] Unable to load or instantiate JPA aware resolver org.hibernate.validator.internal.engine.resolver.JPATraversableResolver. All properties will per default be traversable.
+2018-05-26 20:09:59,267 DEBUG o.h.v.i.x.ValidationXmlParser [background-preinit] Trying to load META-INF/validation.xml for XML based Validator configuration.
+2018-05-26 20:09:59,270 DEBUG o.h.v.i.x.ResourceLoaderHelper [background-preinit] Trying to load META-INF/validation.xml via TCCL
+2018-05-26 20:09:59,271 DEBUG o.h.v.i.x.ResourceLoaderHelper [background-preinit] Trying to load META-INF/validation.xml via Hibernate Validator's class loader
+2018-05-26 20:09:59,271 DEBUG o.h.v.i.x.ValidationXmlParser [background-preinit] No META-INF/validation.xml found. Using annotation based configuration only.
+2018-05-26 20:14:00,241 DEBUG o.h.v.i.x.ValidationXmlParser [background-preinit] Trying to load META-INF/validation.xml for XML based Validator configuration.
+2018-05-26 20:14:00,243 DEBUG o.h.v.i.x.ResourceLoaderHelper [background-preinit] Trying to load META-INF/validation.xml via TCCL
+2018-05-26 20:14:00,244 DEBUG o.h.v.i.x.ResourceLoaderHelper [background-preinit] Trying to load META-INF/validation.xml via Hibernate Validator's class loader
+2018-05-26 20:14:00,244 DEBUG o.h.v.i.x.ValidationXmlParser [background-preinit] No META-INF/validation.xml found. Using annotation based configuration only.
+2018-05-26 20:33:01,240 DEBUG o.h.v.i.x.ValidationXmlParser [background-preinit] Trying to load META-INF/validation.xml for XML based Validator configuration.
+2018-05-26 20:33:01,243 DEBUG o.h.v.i.x.ResourceLoaderHelper [background-preinit] Trying to load META-INF/validation.xml via TCCL
+2018-05-26 20:33:01,244 DEBUG o.h.v.i.x.ResourceLoaderHelper [background-preinit] Trying to load META-INF/validation.xml via Hibernate Validator's class loader
+2018-05-26 20:33:01,244 DEBUG o.h.v.i.x.ValidationXmlParser [background-preinit] No META-INF/validation.xml found. Using annotation based configuration only.
+2018-05-28 12:20:52,025 DEBUG o.h.v.i.x.ValidationXmlParser [background-preinit] Trying to load META-INF/validation.xml for XML based Validator configuration.
+2018-05-28 12:20:52,028 DEBUG o.h.v.i.x.ResourceLoaderHelper [background-preinit] Trying to load META-INF/validation.xml via TCCL
+2018-05-28 12:20:52,029 DEBUG o.h.v.i.x.ResourceLoaderHelper [background-preinit] Trying to load META-INF/validation.xml via Hibernate Validator's class loader
+2018-05-28 12:20:52,030 DEBUG o.h.v.i.x.ValidationXmlParser [background-preinit] No META-INF/validation.xml found. Using annotation based configuration only.
+2018-05-30 08:34:06,314 DEBUG o.h.v.i.e.r.TraversableResolvers [background-preinit] Instantiated JPA aware TraversableResolver of type org.hibernate.validator.internal.engine.resolver.JPATraversableResolver.
+2018-05-30 08:34:06,316 DEBUG o.h.v.i.e.r.TraversableResolvers [background-preinit] Unable to load or instantiate JPA aware resolver org.hibernate.validator.internal.engine.resolver.JPATraversableResolver. All properties will per default be traversable.
+2018-05-30 08:34:06,323 DEBUG o.h.v.i.x.ValidationXmlParser [background-preinit] Trying to load META-INF/validation.xml for XML based Validator configuration.
+2018-05-30 08:34:06,326 DEBUG o.h.v.i.x.ResourceLoaderHelper [background-preinit] Trying to load META-INF/validation.xml via TCCL
+2018-05-30 08:34:06,327 DEBUG o.h.v.i.x.ResourceLoaderHelper [background-preinit] Trying to load META-INF/validation.xml via Hibernate Validator's class loader
+2018-05-30 08:34:06,328 DEBUG o.h.v.i.x.ValidationXmlParser [background-preinit] No META-INF/validation.xml found. Using annotation based configuration only.
+2018-05-30 11:22:49,722 DEBUG o.h.v.i.e.r.TraversableResolvers [background-preinit] Found javax.persistence.Persistence on classpath containing 'getPersistenceUtil'. Assuming JPA 2 environment. Trying to instantiate JPA aware TraversableResolver
+2018-05-30 11:22:49,724 DEBUG o.h.v.i.e.r.TraversableResolvers [background-preinit] Instantiated JPA aware TraversableResolver of type org.hibernate.validator.internal.engine.resolver.JPATraversableResolver.
+2018-05-30 11:22:49,725 DEBUG o.h.v.i.e.r.TraversableResolvers [background-preinit] Unable to load or instantiate JPA aware resolver org.hibernate.validator.internal.engine.resolver.JPATraversableResolver. All properties will per default be traversable.
+2018-05-30 11:22:49,733 DEBUG o.h.v.i.x.ValidationXmlParser [background-preinit] Trying to load META-INF/validation.xml for XML based Validator configuration.
+2018-05-30 11:22:49,735 DEBUG o.h.v.i.x.ResourceLoaderHelper [background-preinit] Trying to load META-INF/validation.xml via TCCL
+2018-05-30 11:22:49,736 DEBUG o.h.v.i.x.ResourceLoaderHelper [background-preinit] Trying to load META-INF/validation.xml via Hibernate Validator's class loader
+2018-05-30 11:22:49,736 DEBUG o.h.v.i.x.ValidationXmlParser [background-preinit] No META-INF/validation.xml found. Using annotation based configuration only.
+2018-05-30 13:20:06,352 DEBUG o.h.v.i.e.r.TraversableResolvers [background-preinit] Found javax.persistence.Persistence on classpath containing 'getPersistenceUtil'. Assuming JPA 2 environment. Trying to instantiate JPA aware TraversableResolver
+2018-05-30 13:20:06,354 DEBUG o.h.v.i.e.r.TraversableResolvers [background-preinit] Instantiated JPA aware TraversableResolver of type org.hibernate.validator.internal.engine.resolver.JPATraversableResolver.
+2018-05-30 13:20:06,355 DEBUG o.h.v.i.e.r.TraversableResolvers [background-preinit] Unable to load or instantiate JPA aware resolver org.hibernate.validator.internal.engine.resolver.JPATraversableResolver. All properties will per default be traversable.
+2018-05-30 13:20:06,362 DEBUG o.h.v.i.x.ValidationXmlParser [background-preinit] Trying to load META-INF/validation.xml for XML based Validator configuration.
+2018-05-30 13:20:06,364 DEBUG o.h.v.i.x.ResourceLoaderHelper [background-preinit] Trying to load META-INF/validation.xml via TCCL
+2018-05-30 13:20:06,365 DEBUG o.h.v.i.x.ResourceLoaderHelper [background-preinit] Trying to load META-INF/validation.xml via Hibernate Validator's class loader
+2018-05-30 13:20:06,365 DEBUG o.h.v.i.x.ValidationXmlParser [background-preinit] No META-INF/validation.xml found. Using annotation based configuration only.
+2018-05-30 15:28:23,987 DEBUG o.h.v.i.e.r.TraversableResolvers [background-preinit] Found javax.persistence.Persistence on classpath containing 'getPersistenceUtil'. Assuming JPA 2 environment. Trying to instantiate JPA aware TraversableResolver
+2018-05-30 15:28:23,989 DEBUG o.h.v.i.e.r.TraversableResolvers [background-preinit] Instantiated JPA aware TraversableResolver of type org.hibernate.validator.internal.engine.resolver.JPATraversableResolver.
+2018-05-30 15:28:23,990 DEBUG o.h.v.i.e.r.TraversableResolvers [background-preinit] Unable to load or instantiate JPA aware resolver org.hibernate.validator.internal.engine.resolver.JPATraversableResolver. All properties will per default be traversable.
+2018-05-30 15:28:23,997 DEBUG o.h.v.i.x.ValidationXmlParser [background-preinit] Trying to load META-INF/validation.xml for XML based Validator configuration.
+2018-05-30 15:28:23,999 DEBUG o.h.v.i.x.ResourceLoaderHelper [background-preinit] Trying to load META-INF/validation.xml via TCCL
+2018-05-30 15:28:24,000 DEBUG o.h.v.i.x.ResourceLoaderHelper [background-preinit] Trying to load META-INF/validation.xml via Hibernate Validator's class loader
+2018-05-30 15:28:24,000 DEBUG o.h.v.i.x.ValidationXmlParser [background-preinit] No META-INF/validation.xml found. Using annotation based configuration only.
+2018-05-31 18:08:23,196 DEBUG o.h.v.i.e.r.TraversableResolvers [background-preinit] Instantiated JPA aware TraversableResolver of type org.hibernate.validator.internal.engine.resolver.JPATraversableResolver.
+2018-05-31 18:08:23,197 DEBUG o.h.v.i.e.r.TraversableResolvers [background-preinit] Unable to load or instantiate JPA aware resolver org.hibernate.validator.internal.engine.resolver.JPATraversableResolver. All properties will per default be traversable.
+2018-05-31 18:08:23,204 DEBUG o.h.v.i.x.ValidationXmlParser [background-preinit] Trying to load META-INF/validation.xml for XML based Validator configuration.
+2018-05-31 18:08:23,207 DEBUG o.h.v.i.x.ResourceLoaderHelper [background-preinit] Trying to load META-INF/validation.xml via TCCL
+2018-05-31 18:08:23,207 DEBUG o.h.v.i.x.ResourceLoaderHelper [background-preinit] Trying to load META-INF/validation.xml via Hibernate Validator's class loader
+2018-05-31 18:08:23,207 DEBUG o.h.v.i.x.ValidationXmlParser [background-preinit] No META-INF/validation.xml found. Using annotation based configuration only.
+2018-05-31 18:11:57,782 DEBUG o.h.v.i.e.r.TraversableResolvers [background-preinit] Found javax.persistence.Persistence on classpath containing 'getPersistenceUtil'. Assuming JPA 2 environment. Trying to instantiate JPA aware TraversableResolver
+2018-05-31 18:11:57,785 DEBUG o.h.v.i.e.r.TraversableResolvers [background-preinit] Instantiated JPA aware TraversableResolver of type org.hibernate.validator.internal.engine.resolver.JPATraversableResolver.
+2018-05-31 18:11:57,785 DEBUG o.h.v.i.e.r.TraversableResolvers [background-preinit] Unable to load or instantiate JPA aware resolver org.hibernate.validator.internal.engine.resolver.JPATraversableResolver. All properties will per default be traversable.
+2018-05-31 18:11:57,793 DEBUG o.h.v.i.x.ValidationXmlParser [background-preinit] Trying to load META-INF/validation.xml for XML based Validator configuration.
+2018-05-31 18:11:57,796 DEBUG o.h.v.i.x.ResourceLoaderHelper [background-preinit] Trying to load META-INF/validation.xml via TCCL
+2018-05-31 19:28:31,338 DEBUG o.h.v.i.e.r.TraversableResolvers [background-preinit] Found javax.persistence.Persistence on classpath containing 'getPersistenceUtil'. Assuming JPA 2 environment. Trying to instantiate JPA aware TraversableResolver
+2018-05-31 19:28:31,340 DEBUG o.h.v.i.e.r.TraversableResolvers [background-preinit] Instantiated JPA aware TraversableResolver of type org.hibernate.validator.internal.engine.resolver.JPATraversableResolver.
+2018-05-31 19:28:31,341 DEBUG o.h.v.i.e.r.TraversableResolvers [background-preinit] Unable to load or instantiate JPA aware resolver org.hibernate.validator.internal.engine.resolver.JPATraversableResolver. All properties will per default be traversable.
+2018-05-31 19:28:31,348 DEBUG o.h.v.i.x.ValidationXmlParser [background-preinit] Trying to load META-INF/validation.xml for XML based Validator configuration.
+2018-05-31 19:28:31,350 DEBUG o.h.v.i.x.ResourceLoaderHelper [background-preinit] Trying to load META-INF/validation.xml via TCCL
+2018-05-31 19:28:31,351 DEBUG o.h.v.i.x.ResourceLoaderHelper [background-preinit] Trying to load META-INF/validation.xml via Hibernate Validator's class loader
+2018-05-31 19:28:31,351 DEBUG o.h.v.i.x.ValidationXmlParser [background-preinit] No META-INF/validation.xml found. Using annotation based configuration only.
+2018-05-31 19:30:02,461 DEBUG o.h.v.i.e.r.TraversableResolvers [background-preinit] Found javax.persistence.Persistence on classpath containing 'getPersistenceUtil'. Assuming JPA 2 environment. Trying to instantiate JPA aware TraversableResolver
+2018-05-31 19:30:02,462 DEBUG o.h.v.i.e.r.TraversableResolvers [background-preinit] Instantiated JPA aware TraversableResolver of type org.hibernate.validator.internal.engine.resolver.JPATraversableResolver.
+2018-05-31 19:30:02,463 DEBUG o.h.v.i.e.r.TraversableResolvers [background-preinit] Unable to load or instantiate JPA aware resolver org.hibernate.validator.internal.engine.resolver.JPATraversableResolver. All properties will per default be traversable.
+2018-05-31 19:30:02,470 DEBUG o.h.v.i.x.ValidationXmlParser [background-preinit] Trying to load META-INF/validation.xml for XML based Validator configuration.
+2018-05-31 19:30:02,473 DEBUG o.h.v.i.x.ResourceLoaderHelper [background-preinit] Trying to load META-INF/validation.xml via TCCL
+2018-05-31 19:30:02,473 DEBUG o.h.v.i.x.ResourceLoaderHelper [background-preinit] Trying to load META-INF/validation.xml via Hibernate Validator's class loader
+2018-05-31 19:30:02,473 DEBUG o.h.v.i.x.ValidationXmlParser [background-preinit] No META-INF/validation.xml found. Using annotation based configuration only.
+2018-05-31 19:34:43,276 DEBUG o.h.v.i.e.r.TraversableResolvers [background-preinit] Found javax.persistence.Persistence on classpath containing 'getPersistenceUtil'. Assuming JPA 2 environment. Trying to instantiate JPA aware TraversableResolver
+2018-05-31 19:34:43,278 DEBUG o.h.v.i.e.r.TraversableResolvers [background-preinit] Instantiated JPA aware TraversableResolver of type org.hibernate.validator.internal.engine.resolver.JPATraversableResolver.
+2018-05-31 19:34:43,279 DEBUG o.h.v.i.e.r.TraversableResolvers [background-preinit] Unable to load or instantiate JPA aware resolver org.hibernate.validator.internal.engine.resolver.JPATraversableResolver. All properties will per default be traversable.
+2018-05-31 19:34:43,288 DEBUG o.h.v.i.x.ValidationXmlParser [background-preinit] Trying to load META-INF/validation.xml for XML based Validator configuration.
+2018-05-31 19:34:43,291 DEBUG o.h.v.i.x.ResourceLoaderHelper [background-preinit] Trying to load META-INF/validation.xml via TCCL
+2018-05-31 19:34:43,292 DEBUG o.h.v.i.x.ResourceLoaderHelper [background-preinit] Trying to load META-INF/validation.xml via Hibernate Validator's class loader
+2018-05-31 19:34:43,292 DEBUG o.h.v.i.x.ValidationXmlParser [background-preinit] No META-INF/validation.xml found. Using annotation based configuration only.
+2018-06-01 08:14:47,213 DEBUG o.h.v.i.e.r.TraversableResolvers [background-preinit] Found javax.persistence.Persistence on classpath containing 'getPersistenceUtil'. Assuming JPA 2 environment. Trying to instantiate JPA aware TraversableResolver
+2018-06-01 08:14:47,215 DEBUG o.h.v.i.e.r.TraversableResolvers [background-preinit] Instantiated JPA aware TraversableResolver of type org.hibernate.validator.internal.engine.resolver.JPATraversableResolver.
+2018-06-01 08:14:47,216 DEBUG o.h.v.i.e.r.TraversableResolvers [background-preinit] Unable to load or instantiate JPA aware resolver org.hibernate.validator.internal.engine.resolver.JPATraversableResolver. All properties will per default be traversable.
+2018-06-01 08:14:47,224 DEBUG o.h.v.i.x.ValidationXmlParser [background-preinit] Trying to load META-INF/validation.xml for XML based Validator configuration.
+2018-06-01 11:33:28,952 DEBUG o.h.v.i.e.r.TraversableResolvers [background-preinit] Found javax.persistence.Persistence on classpath containing 'getPersistenceUtil'. Assuming JPA 2 environment. Trying to instantiate JPA aware TraversableResolver
+2018-06-01 11:33:28,954 DEBUG o.h.v.i.e.r.TraversableResolvers [background-preinit] Instantiated JPA aware TraversableResolver of type org.hibernate.validator.internal.engine.resolver.JPATraversableResolver.
+2018-06-01 11:33:28,955 DEBUG o.h.v.i.e.r.TraversableResolvers [background-preinit] Unable to load or instantiate JPA aware resolver org.hibernate.validator.internal.engine.resolver.JPATraversableResolver. All properties will per default be traversable.
+2018-06-01 11:33:28,963 DEBUG o.h.v.i.x.ValidationXmlParser [background-preinit] Trying to load META-INF/validation.xml for XML based Validator configuration.
+2018-06-01 11:33:28,965 DEBUG o.h.v.i.x.ResourceLoaderHelper [background-preinit] Trying to load META-INF/validation.xml via TCCL
+2018-06-01 11:33:28,966 DEBUG o.h.v.i.x.ResourceLoaderHelper [background-preinit] Trying to load META-INF/validation.xml via Hibernate Validator's class loader
+2018-06-01 11:33:28,966 DEBUG o.h.v.i.x.ValidationXmlParser [background-preinit] No META-INF/validation.xml found. Using annotation based configuration only.
+2018-06-01 11:58:00,026 DEBUG o.h.v.i.e.r.TraversableResolvers [background-preinit] Found javax.persistence.Persistence on classpath containing 'getPersistenceUtil'. Assuming JPA 2 environment. Trying to instantiate JPA aware TraversableResolver
+2018-06-01 11:58:00,028 DEBUG o.h.v.i.e.r.TraversableResolvers [background-preinit] Instantiated JPA aware TraversableResolver of type org.hibernate.validator.internal.engine.resolver.JPATraversableResolver.
+2018-06-01 11:58:00,029 DEBUG o.h.v.i.e.r.TraversableResolvers [background-preinit] Unable to load or instantiate JPA aware resolver org.hibernate.validator.internal.engine.resolver.JPATraversableResolver. All properties will per default be traversable.
+2018-06-01 11:58:00,037 DEBUG o.h.v.i.x.ValidationXmlParser [background-preinit] Trying to load META-INF/validation.xml for XML based Validator configuration.
+2018-06-01 11:58:00,039 DEBUG o.h.v.i.x.ResourceLoaderHelper [background-preinit] Trying to load META-INF/validation.xml via TCCL
+2018-06-01 11:58:00,040 DEBUG o.h.v.i.x.ResourceLoaderHelper [background-preinit] Trying to load META-INF/validation.xml via Hibernate Validator's class loader
+2018-06-01 11:58:00,040 DEBUG o.h.v.i.x.ValidationXmlParser [background-preinit] No META-INF/validation.xml found. Using annotation based configuration only.
+2018-06-01 14:07:36,772 DEBUG o.h.v.i.e.r.TraversableResolvers [background-preinit] Found javax.persistence.Persistence on classpath containing 'getPersistenceUtil'. Assuming JPA 2 environment. Trying to instantiate JPA aware TraversableResolver
+2018-06-01 14:07:36,774 DEBUG o.h.v.i.e.r.TraversableResolvers [background-preinit] Instantiated JPA aware TraversableResolver of type org.hibernate.validator.internal.engine.resolver.JPATraversableResolver.
+2018-06-01 14:07:36,775 DEBUG o.h.v.i.e.r.TraversableResolvers [background-preinit] Unable to load or instantiate JPA aware resolver org.hibernate.validator.internal.engine.resolver.JPATraversableResolver. All properties will per default be traversable.
+2018-06-01 14:07:36,784 DEBUG o.h.v.i.x.ValidationXmlParser [background-preinit] Trying to load META-INF/validation.xml for XML based Validator configuration.
+2018-06-01 14:07:36,787 DEBUG o.h.v.i.x.ResourceLoaderHelper [background-preinit] Trying to load META-INF/validation.xml via TCCL
+2018-06-01 14:07:36,788 DEBUG o.h.v.i.x.ResourceLoaderHelper [background-preinit] Trying to load META-INF/validation.xml via Hibernate Validator's class loader
+2018-06-01 14:07:36,788 DEBUG o.h.v.i.x.ValidationXmlParser [background-preinit] No META-INF/validation.xml found. Using annotation based configuration only.
+2018-06-01 14:29:39,679 DEBUG o.h.v.i.e.r.TraversableResolvers [background-preinit] Found javax.persistence.Persistence on classpath containing 'getPersistenceUtil'. Assuming JPA 2 environment. Trying to instantiate JPA aware TraversableResolver
+2018-06-01 14:29:39,681 DEBUG o.h.v.i.e.r.TraversableResolvers [background-preinit] Instantiated JPA aware TraversableResolver of type org.hibernate.validator.internal.engine.resolver.JPATraversableResolver.
+2018-06-01 14:29:39,682 DEBUG o.h.v.i.e.r.TraversableResolvers [background-preinit] Unable to load or instantiate JPA aware resolver org.hibernate.validator.internal.engine.resolver.JPATraversableResolver. All properties will per default be traversable.
+2018-06-01 14:29:39,691 DEBUG o.h.v.i.x.ValidationXmlParser [background-preinit] Trying to load META-INF/validation.xml for XML based Validator configuration.
+2018-06-01 14:33:01,409 DEBUG o.h.v.i.e.r.TraversableResolvers [background-preinit] Found javax.persistence.Persistence on classpath containing 'getPersistenceUtil'. Assuming JPA 2 environment. Trying to instantiate JPA aware TraversableResolver
+2018-06-01 14:33:01,411 DEBUG o.h.v.i.e.r.TraversableResolvers [background-preinit] Instantiated JPA aware TraversableResolver of type org.hibernate.validator.internal.engine.resolver.JPATraversableResolver.
+2018-06-01 14:33:01,412 DEBUG o.h.v.i.e.r.TraversableResolvers [background-preinit] Unable to load or instantiate JPA aware resolver org.hibernate.validator.internal.engine.resolver.JPATraversableResolver. All properties will per default be traversable.
+2018-06-01 14:33:01,419 DEBUG o.h.v.i.x.ValidationXmlParser [background-preinit] Trying to load META-INF/validation.xml for XML based Validator configuration.
+2018-06-01 14:33:01,421 DEBUG o.h.v.i.x.ResourceLoaderHelper [background-preinit] Trying to load META-INF/validation.xml via TCCL
+2018-06-01 14:33:01,422 DEBUG o.h.v.i.x.ResourceLoaderHelper [background-preinit] Trying to load META-INF/validation.xml via Hibernate Validator's class loader
+2018-06-01 14:33:01,422 DEBUG o.h.v.i.x.ValidationXmlParser [background-preinit] No META-INF/validation.xml found. Using annotation based configuration only.
+2018-06-01 14:51:49,141 DEBUG o.h.v.i.e.r.TraversableResolvers [background-preinit] Found javax.persistence.Persistence on classpath containing 'getPersistenceUtil'. Assuming JPA 2 environment. Trying to instantiate JPA aware TraversableResolver
+2018-06-01 14:51:49,144 DEBUG o.h.v.i.e.r.TraversableResolvers [background-preinit] Instantiated JPA aware TraversableResolver of type org.hibernate.validator.internal.engine.resolver.JPATraversableResolver.
+2018-06-01 14:51:49,145 DEBUG o.h.v.i.e.r.TraversableResolvers [background-preinit] Unable to load or instantiate JPA aware resolver org.hibernate.validator.internal.engine.resolver.JPATraversableResolver. All properties will per default be traversable.
+2018-06-01 14:51:49,153 DEBUG o.h.v.i.x.ValidationXmlParser [background-preinit] Trying to load META-INF/validation.xml for XML based Validator configuration.
+2018-06-01 15:11:15,324 DEBUG o.h.v.i.e.r.TraversableResolvers [background-preinit] Found javax.persistence.Persistence on classpath containing 'getPersistenceUtil'. Assuming JPA 2 environment. Trying to instantiate JPA aware TraversableResolver
+2018-06-01 15:11:15,327 DEBUG o.h.v.i.e.r.TraversableResolvers [background-preinit] Instantiated JPA aware TraversableResolver of type org.hibernate.validator.internal.engine.resolver.JPATraversableResolver.
+2018-06-01 15:11:15,328 DEBUG o.h.v.i.e.r.TraversableResolvers [background-preinit] Unable to load or instantiate JPA aware resolver org.hibernate.validator.internal.engine.resolver.JPATraversableResolver. All properties will per default be traversable.
+2018-06-01 15:11:15,336 DEBUG o.h.v.i.x.ValidationXmlParser [background-preinit] Trying to load META-INF/validation.xml for XML based Validator configuration.
+2018-06-01 15:11:15,338 DEBUG o.h.v.i.x.ResourceLoaderHelper [background-preinit] Trying to load META-INF/validation.xml via TCCL
+2018-06-01 15:11:15,339 DEBUG o.h.v.i.x.ResourceLoaderHelper [background-preinit] Trying to load META-INF/validation.xml via Hibernate Validator's class loader
+2018-06-01 15:11:15,339 DEBUG o.h.v.i.x.ValidationXmlParser [background-preinit] No META-INF/validation.xml found. Using annotation based configuration only.
+2018-06-01 15:25:34,027 DEBUG o.h.v.i.e.r.TraversableResolvers [background-preinit] Found javax.persistence.Persistence on classpath containing 'getPersistenceUtil'. Assuming JPA 2 environment. Trying to instantiate JPA aware TraversableResolver
+2018-06-01 15:25:34,030 DEBUG o.h.v.i.e.r.TraversableResolvers [background-preinit] Instantiated JPA aware TraversableResolver of type org.hibernate.validator.internal.engine.resolver.JPATraversableResolver.
+2018-06-01 15:25:34,031 DEBUG o.h.v.i.e.r.TraversableResolvers [background-preinit] Unable to load or instantiate JPA aware resolver org.hibernate.validator.internal.engine.resolver.JPATraversableResolver. All properties will per default be traversable.
+2018-06-01 15:25:34,039 DEBUG o.h.v.i.x.ValidationXmlParser [background-preinit] Trying to load META-INF/validation.xml for XML based Validator configuration.
+2018-06-01 16:24:27,692 DEBUG o.h.v.i.x.ValidationXmlParser [background-preinit] Trying to load META-INF/validation.xml for XML based Validator configuration.
+2018-06-01 16:24:27,695 DEBUG o.h.v.i.x.ResourceLoaderHelper [background-preinit] Trying to load META-INF/validation.xml via TCCL
+2018-06-01 16:24:27,696 DEBUG o.h.v.i.x.ResourceLoaderHelper [background-preinit] Trying to load META-INF/validation.xml via Hibernate Validator's class loader
+2018-06-01 16:24:27,696 DEBUG o.h.v.i.x.ValidationXmlParser [background-preinit] No META-INF/validation.xml found. Using annotation based configuration only.
+2018-06-01 16:38:43,629 DEBUG o.h.v.i.e.r.TraversableResolvers [background-preinit] Found javax.persistence.Persistence on classpath containing 'getPersistenceUtil'. Assuming JPA 2 environment. Trying to instantiate JPA aware TraversableResolver
+2018-06-01 16:38:43,631 DEBUG o.h.v.i.e.r.TraversableResolvers [background-preinit] Instantiated JPA aware TraversableResolver of type org.hibernate.validator.internal.engine.resolver.JPATraversableResolver.
+2018-06-01 16:38:43,632 DEBUG o.h.v.i.e.r.TraversableResolvers [background-preinit] Unable to load or instantiate JPA aware resolver org.hibernate.validator.internal.engine.resolver.JPATraversableResolver. All properties will per default be traversable.
+2018-06-01 16:38:43,640 DEBUG o.h.v.i.x.ValidationXmlParser [background-preinit] Trying to load META-INF/validation.xml for XML based Validator configuration.
+2018-06-01 16:38:43,642 DEBUG o.h.v.i.x.ResourceLoaderHelper [background-preinit] Trying to load META-INF/validation.xml via TCCL
+2018-06-01 16:38:43,642 DEBUG o.h.v.i.x.ResourceLoaderHelper [background-preinit] Trying to load META-INF/validation.xml via Hibernate Validator's class loader
+2018-06-01 16:38:43,643 DEBUG o.h.v.i.x.ValidationXmlParser [background-preinit] No META-INF/validation.xml found. Using annotation based configuration only.
+2018-06-01 16:55:45,515 DEBUG o.h.v.i.e.r.TraversableResolvers [background-preinit] Found javax.persistence.Persistence on classpath containing 'getPersistenceUtil'. Assuming JPA 2 environment. Trying to instantiate JPA aware TraversableResolver
+2018-06-01 16:55:45,517 DEBUG o.h.v.i.e.r.TraversableResolvers [background-preinit] Instantiated JPA aware TraversableResolver of type org.hibernate.validator.internal.engine.resolver.JPATraversableResolver.
+2018-06-01 16:55:45,518 DEBUG o.h.v.i.e.r.TraversableResolvers [background-preinit] Unable to load or instantiate JPA aware resolver org.hibernate.validator.internal.engine.resolver.JPATraversableResolver. All properties will per default be traversable.
+2018-06-01 16:55:45,526 DEBUG o.h.v.i.x.ValidationXmlParser [background-preinit] Trying to load META-INF/validation.xml for XML based Validator configuration.
+2018-06-01 16:55:45,528 DEBUG o.h.v.i.x.ResourceLoaderHelper [background-preinit] Trying to load META-INF/validation.xml via TCCL
+2018-06-01 16:55:45,529 DEBUG o.h.v.i.x.ResourceLoaderHelper [background-preinit] Trying to load META-INF/validation.xml via Hibernate Validator's class loader
+2018-06-01 16:55:45,529 DEBUG o.h.v.i.x.ValidationXmlParser [background-preinit] No META-INF/validation.xml found. Using annotation based configuration only.
+2018-06-01 17:06:57,037 DEBUG o.h.v.i.e.r.TraversableResolvers [background-preinit] Found javax.persistence.Persistence on classpath containing 'getPersistenceUtil'. Assuming JPA 2 environment. Trying to instantiate JPA aware TraversableResolver
+2018-06-01 17:06:57,039 DEBUG o.h.v.i.e.r.TraversableResolvers [background-preinit] Instantiated JPA aware TraversableResolver of type org.hibernate.validator.internal.engine.resolver.JPATraversableResolver.
+2018-06-01 17:06:57,040 DEBUG o.h.v.i.e.r.TraversableResolvers [background-preinit] Unable to load or instantiate JPA aware resolver org.hibernate.validator.internal.engine.resolver.JPATraversableResolver. All properties will per default be traversable.
+2018-06-01 17:06:57,048 DEBUG o.h.v.i.x.ValidationXmlParser [background-preinit] Trying to load META-INF/validation.xml for XML based Validator configuration.
+2018-06-01 17:06:57,050 DEBUG o.h.v.i.x.ResourceLoaderHelper [background-preinit] Trying to load META-INF/validation.xml via TCCL
+2018-06-01 17:06:57,051 DEBUG o.h.v.i.x.ResourceLoaderHelper [background-preinit] Trying to load META-INF/validation.xml via Hibernate Validator's class loader
+2018-06-01 17:06:57,051 DEBUG o.h.v.i.x.ValidationXmlParser [background-preinit] No META-INF/validation.xml found. Using annotation based configuration only.
+2018-06-01 17:42:59,175 DEBUG o.h.v.i.e.r.TraversableResolvers [background-preinit] Found javax.persistence.Persistence on classpath containing 'getPersistenceUtil'. Assuming JPA 2 environment. Trying to instantiate JPA aware TraversableResolver
+2018-06-01 17:42:59,177 DEBUG o.h.v.i.e.r.TraversableResolvers [background-preinit] Instantiated JPA aware TraversableResolver of type org.hibernate.validator.internal.engine.resolver.JPATraversableResolver.
+2018-06-01 17:42:59,178 DEBUG o.h.v.i.e.r.TraversableResolvers [background-preinit] Unable to load or instantiate JPA aware resolver org.hibernate.validator.internal.engine.resolver.JPATraversableResolver. All properties will per default be traversable.
+2018-06-01 17:42:59,186 DEBUG o.h.v.i.x.ValidationXmlParser [background-preinit] Trying to load META-INF/validation.xml for XML based Validator configuration.
+2018-06-01 17:42:59,188 DEBUG o.h.v.i.x.ResourceLoaderHelper [background-preinit] Trying to load META-INF/validation.xml via TCCL
+2018-06-01 17:55:16,781 DEBUG o.h.v.i.x.ValidationXmlParser [background-preinit] Trying to load META-INF/validation.xml for XML based Validator configuration.
+2018-06-01 17:55:16,788 DEBUG o.h.v.i.x.ResourceLoaderHelper [background-preinit] Trying to load META-INF/validation.xml via TCCL
+2018-06-01 17:55:16,789 DEBUG o.h.v.i.x.ResourceLoaderHelper [background-preinit] Trying to load META-INF/validation.xml via Hibernate Validator's class loader
+2018-06-01 17:55:16,789 DEBUG o.h.v.i.x.ValidationXmlParser [background-preinit] No META-INF/validation.xml found. Using annotation based configuration only.
+2018-06-01 18:02:23,822 DEBUG o.h.v.i.x.ValidationXmlParser [background-preinit] Trying to load META-INF/validation.xml for XML based Validator configuration.
+2018-06-01 18:02:23,825 DEBUG o.h.v.i.x.ResourceLoaderHelper [background-preinit] Trying to load META-INF/validation.xml via TCCL
+2018-06-01 18:02:23,825 DEBUG o.h.v.i.x.ResourceLoaderHelper [background-preinit] Trying to load META-INF/validation.xml via Hibernate Validator's class loader
+2018-06-01 18:02:23,825 DEBUG o.h.v.i.x.ValidationXmlParser [background-preinit] No META-INF/validation.xml found. Using annotation based configuration only.
+2018-06-01 18:06:34,865 DEBUG o.h.v.i.e.r.TraversableResolvers [background-preinit] Found javax.persistence.Persistence on classpath containing 'getPersistenceUtil'. Assuming JPA 2 environment. Trying to instantiate JPA aware TraversableResolver
+2018-06-01 18:06:34,867 DEBUG o.h.v.i.e.r.TraversableResolvers [background-preinit] Instantiated JPA aware TraversableResolver of type org.hibernate.validator.internal.engine.resolver.JPATraversableResolver.
+2018-06-01 18:06:34,868 DEBUG o.h.v.i.e.r.TraversableResolvers [background-preinit] Unable to load or instantiate JPA aware resolver org.hibernate.validator.internal.engine.resolver.JPATraversableResolver. All properties will per default be traversable.
+2018-06-01 18:06:34,875 DEBUG o.h.v.i.x.ValidationXmlParser [background-preinit] Trying to load META-INF/validation.xml for XML based Validator configuration.
+2018-06-01 18:06:34,877 DEBUG o.h.v.i.x.ResourceLoaderHelper [background-preinit] Trying to load META-INF/validation.xml via TCCL
+2018-06-01 18:06:34,877 DEBUG o.h.v.i.x.ResourceLoaderHelper [background-preinit] Trying to load META-INF/validation.xml via Hibernate Validator's class loader
+2018-06-01 18:06:34,878 DEBUG o.h.v.i.x.ValidationXmlParser [background-preinit] No META-INF/validation.xml found. Using annotation based configuration only.
+2018-06-01 18:50:54,505 DEBUG o.h.v.i.e.r.TraversableResolvers [background-preinit] Found javax.persistence.Persistence on classpath containing 'getPersistenceUtil'. Assuming JPA 2 environment. Trying to instantiate JPA aware TraversableResolver
+2018-06-01 18:50:54,507 DEBUG o.h.v.i.e.r.TraversableResolvers [background-preinit] Instantiated JPA aware TraversableResolver of type org.hibernate.validator.internal.engine.resolver.JPATraversableResolver.
+2018-06-01 18:50:54,508 DEBUG o.h.v.i.e.r.TraversableResolvers [background-preinit] Unable to load or instantiate JPA aware resolver org.hibernate.validator.internal.engine.resolver.JPATraversableResolver. All properties will per default be traversable.
+2018-06-01 18:50:54,516 DEBUG o.h.v.i.x.ValidationXmlParser [background-preinit] Trying to load META-INF/validation.xml for XML based Validator configuration.
+2018-06-01 18:50:54,519 DEBUG o.h.v.i.x.ResourceLoaderHelper [background-preinit] Trying to load META-INF/validation.xml via TCCL
+2018-06-01 18:50:54,519 DEBUG o.h.v.i.x.ResourceLoaderHelper [background-preinit] Trying to load META-INF/validation.xml via Hibernate Validator's class loader
+2018-06-01 18:50:54,520 DEBUG o.h.v.i.x.ValidationXmlParser [background-preinit] No META-INF/validation.xml found. Using annotation based configuration only.
+2018-06-02 14:08:34,115 DEBUG o.h.v.i.e.r.TraversableResolvers [background-preinit] Found javax.persistence.Persistence on classpath containing 'getPersistenceUtil'. Assuming JPA 2 environment. Trying to instantiate JPA aware TraversableResolver
+2018-06-02 14:08:34,116 DEBUG o.h.v.i.e.r.TraversableResolvers [background-preinit] Instantiated JPA aware TraversableResolver of type org.hibernate.validator.internal.engine.resolver.JPATraversableResolver.
+2018-06-02 14:08:34,117 DEBUG o.h.v.i.e.r.TraversableResolvers [background-preinit] Unable to load or instantiate JPA aware resolver org.hibernate.validator.internal.engine.resolver.JPATraversableResolver. All properties will per default be traversable.
+2018-06-02 14:08:34,125 DEBUG o.h.v.i.x.ValidationXmlParser [background-preinit] Trying to load META-INF/validation.xml for XML based Validator configuration.
+2018-06-02 14:12:05,051 DEBUG o.h.v.i.e.r.TraversableResolvers [background-preinit] Instantiated JPA aware TraversableResolver of type org.hibernate.validator.internal.engine.resolver.JPATraversableResolver.
+2018-06-02 14:12:05,052 DEBUG o.h.v.i.e.r.TraversableResolvers [background-preinit] Unable to load or instantiate JPA aware resolver org.hibernate.validator.internal.engine.resolver.JPATraversableResolver. All properties will per default be traversable.
+2018-06-02 14:12:05,059 DEBUG o.h.v.i.x.ValidationXmlParser [background-preinit] Trying to load META-INF/validation.xml for XML based Validator configuration.
+2018-06-02 14:12:05,061 DEBUG o.h.v.i.x.ResourceLoaderHelper [background-preinit] Trying to load META-INF/validation.xml via TCCL
+2018-06-02 14:12:05,062 DEBUG o.h.v.i.x.ResourceLoaderHelper [background-preinit] Trying to load META-INF/validation.xml via Hibernate Validator's class loader
+2018-06-02 14:12:05,062 DEBUG o.h.v.i.x.ValidationXmlParser [background-preinit] No META-INF/validation.xml found. Using annotation based configuration only.
+2018-06-02 14:22:36,118 DEBUG o.h.v.i.e.r.TraversableResolvers [background-preinit] Found javax.persistence.Persistence on classpath containing 'getPersistenceUtil'. Assuming JPA 2 environment. Trying to instantiate JPA aware TraversableResolver
+2018-06-02 14:22:36,120 DEBUG o.h.v.i.e.r.TraversableResolvers [background-preinit] Instantiated JPA aware TraversableResolver of type org.hibernate.validator.internal.engine.resolver.JPATraversableResolver.
+2018-06-02 14:22:36,121 DEBUG o.h.v.i.e.r.TraversableResolvers [background-preinit] Unable to load or instantiate JPA aware resolver org.hibernate.validator.internal.engine.resolver.JPATraversableResolver. All properties will per default be traversable.
+2018-06-02 14:22:36,128 DEBUG o.h.v.i.x.ValidationXmlParser [background-preinit] Trying to load META-INF/validation.xml for XML based Validator configuration.
+2018-06-02 14:22:36,130 DEBUG o.h.v.i.x.ResourceLoaderHelper [background-preinit] Trying to load META-INF/validation.xml via TCCL
+2018-06-02 14:22:36,131 DEBUG o.h.v.i.x.ResourceLoaderHelper [background-preinit] Trying to load META-INF/validation.xml via Hibernate Validator's class loader
+2018-06-02 14:22:36,131 DEBUG o.h.v.i.x.ValidationXmlParser [background-preinit] No META-INF/validation.xml found. Using annotation based configuration only.
+2018-06-02 14:25:23,710 DEBUG o.h.v.i.e.r.TraversableResolvers [background-preinit] Instantiated JPA aware TraversableResolver of type org.hibernate.validator.internal.engine.resolver.JPATraversableResolver.
+2018-06-02 14:25:23,711 DEBUG o.h.v.i.e.r.TraversableResolvers [background-preinit] Unable to load or instantiate JPA aware resolver org.hibernate.validator.internal.engine.resolver.JPATraversableResolver. All properties will per default be traversable.
+2018-06-02 14:25:23,719 DEBUG o.h.v.i.x.ValidationXmlParser [background-preinit] Trying to load META-INF/validation.xml for XML based Validator configuration.
+2018-06-02 14:25:23,722 DEBUG o.h.v.i.x.ResourceLoaderHelper [background-preinit] Trying to load META-INF/validation.xml via TCCL
+2018-06-02 14:25:23,722 DEBUG o.h.v.i.x.ResourceLoaderHelper [background-preinit] Trying to load META-INF/validation.xml via Hibernate Validator's class loader
+2018-06-02 14:25:23,723 DEBUG o.h.v.i.x.ValidationXmlParser [background-preinit] No META-INF/validation.xml found. Using annotation based configuration only.
+2018-06-02 14:27:03,773 DEBUG o.h.v.i.e.r.TraversableResolvers [background-preinit] Unable to load or instantiate JPA aware resolver org.hibernate.validator.internal.engine.resolver.JPATraversableResolver. All properties will per default be traversable.
+2018-06-02 14:27:03,782 DEBUG o.h.v.i.x.ValidationXmlParser [background-preinit] Trying to load META-INF/validation.xml for XML based Validator configuration.
+2018-06-02 14:27:03,786 DEBUG o.h.v.i.x.ResourceLoaderHelper [background-preinit] Trying to load META-INF/validation.xml via TCCL
+2018-06-02 14:27:03,787 DEBUG o.h.v.i.x.ResourceLoaderHelper [background-preinit] Trying to load META-INF/validation.xml via Hibernate Validator's class loader
+2018-06-02 14:27:03,787 DEBUG o.h.v.i.x.ValidationXmlParser [background-preinit] No META-INF/validation.xml found. Using annotation based configuration only.
+2018-06-02 14:33:54,995 DEBUG o.h.v.i.e.r.TraversableResolvers [background-preinit] Found javax.persistence.Persistence on classpath containing 'getPersistenceUtil'. Assuming JPA 2 environment. Trying to instantiate JPA aware TraversableResolver
+2018-06-02 14:33:54,996 DEBUG o.h.v.i.e.r.TraversableResolvers [background-preinit] Instantiated JPA aware TraversableResolver of type org.hibernate.validator.internal.engine.resolver.JPATraversableResolver.
+2018-06-02 14:33:54,997 DEBUG o.h.v.i.e.r.TraversableResolvers [background-preinit] Unable to load or instantiate JPA aware resolver org.hibernate.validator.internal.engine.resolver.JPATraversableResolver. All properties will per default be traversable.
+2018-06-02 14:33:55,005 DEBUG o.h.v.i.x.ValidationXmlParser [background-preinit] Trying to load META-INF/validation.xml for XML based Validator configuration.
+2018-06-02 14:33:55,007 DEBUG o.h.v.i.x.ResourceLoaderHelper [background-preinit] Trying to load META-INF/validation.xml via TCCL
+2018-06-02 14:33:55,007 DEBUG o.h.v.i.x.ResourceLoaderHelper [background-preinit] Trying to load META-INF/validation.xml via Hibernate Validator's class loader
+2018-06-02 14:33:55,008 DEBUG o.h.v.i.x.ValidationXmlParser [background-preinit] No META-INF/validation.xml found. Using annotation based configuration only.
+2018-06-02 15:05:36,004 DEBUG o.h.v.i.e.r.TraversableResolvers [background-preinit] Found javax.persistence.Persistence on classpath containing 'getPersistenceUtil'. Assuming JPA 2 environment. Trying to instantiate JPA aware TraversableResolver
+2018-06-02 15:05:36,005 DEBUG o.h.v.i.e.r.TraversableResolvers [background-preinit] Instantiated JPA aware TraversableResolver of type org.hibernate.validator.internal.engine.resolver.JPATraversableResolver.
+2018-06-02 15:05:36,006 DEBUG o.h.v.i.e.r.TraversableResolvers [background-preinit] Unable to load or instantiate JPA aware resolver org.hibernate.validator.internal.engine.resolver.JPATraversableResolver. All properties will per default be traversable.
+2018-06-02 15:05:36,016 DEBUG o.h.v.i.x.ValidationXmlParser [background-preinit] Trying to load META-INF/validation.xml for XML based Validator configuration.
+2018-06-02 15:05:36,018 DEBUG o.h.v.i.x.ResourceLoaderHelper [background-preinit] Trying to load META-INF/validation.xml via TCCL
+2018-06-02 15:05:36,019 DEBUG o.h.v.i.x.ResourceLoaderHelper [background-preinit] Trying to load META-INF/validation.xml via Hibernate Validator's class loader
+2018-06-02 15:05:36,019 DEBUG o.h.v.i.x.ValidationXmlParser [background-preinit] No META-INF/validation.xml found. Using annotation based configuration only.
+2018-06-02 15:10:07,477 DEBUG o.h.v.i.e.r.TraversableResolvers [background-preinit] Found javax.persistence.Persistence on classpath containing 'getPersistenceUtil'. Assuming JPA 2 environment. Trying to instantiate JPA aware TraversableResolver
+2018-06-02 15:10:07,479 DEBUG o.h.v.i.e.r.TraversableResolvers [background-preinit] Instantiated JPA aware TraversableResolver of type org.hibernate.validator.internal.engine.resolver.JPATraversableResolver.
+2018-06-02 15:10:07,480 DEBUG o.h.v.i.e.r.TraversableResolvers [background-preinit] Unable to load or instantiate JPA aware resolver org.hibernate.validator.internal.engine.resolver.JPATraversableResolver. All properties will per default be traversable.
+2018-06-02 15:10:07,488 DEBUG o.h.v.i.x.ValidationXmlParser [background-preinit] Trying to load META-INF/validation.xml for XML based Validator configuration.
+2018-06-02 15:20:18,139 DEBUG o.h.v.i.e.r.TraversableResolvers [background-preinit] Found javax.persistence.Persistence on classpath containing 'getPersistenceUtil'. Assuming JPA 2 environment. Trying to instantiate JPA aware TraversableResolver
+2018-06-02 15:20:18,141 DEBUG o.h.v.i.e.r.TraversableResolvers [background-preinit] Instantiated JPA aware TraversableResolver of type org.hibernate.validator.internal.engine.resolver.JPATraversableResolver.
+2018-06-02 15:20:18,142 DEBUG o.h.v.i.e.r.TraversableResolvers [background-preinit] Unable to load or instantiate JPA aware resolver org.hibernate.validator.internal.engine.resolver.JPATraversableResolver. All properties will per default be traversable.
+2018-06-02 15:20:18,149 DEBUG o.h.v.i.x.ValidationXmlParser [background-preinit] Trying to load META-INF/validation.xml for XML based Validator configuration.
+2018-06-02 15:20:18,151 DEBUG o.h.v.i.x.ResourceLoaderHelper [background-preinit] Trying to load META-INF/validation.xml via TCCL
+2018-06-02 15:20:18,151 DEBUG o.h.v.i.x.ResourceLoaderHelper [background-preinit] Trying to load META-INF/validation.xml via Hibernate Validator's class loader
+2018-06-02 15:20:18,152 DEBUG o.h.v.i.x.ValidationXmlParser [background-preinit] No META-INF/validation.xml found. Using annotation based configuration only.
+2018-06-02 15:22:34,350 DEBUG o.h.v.i.e.r.TraversableResolvers [background-preinit] Found javax.persistence.Persistence on classpath containing 'getPersistenceUtil'. Assuming JPA 2 environment. Trying to instantiate JPA aware TraversableResolver
+2018-06-02 15:22:34,352 DEBUG o.h.v.i.e.r.TraversableResolvers [background-preinit] Instantiated JPA aware TraversableResolver of type org.hibernate.validator.internal.engine.resolver.JPATraversableResolver.
+2018-06-02 15:22:34,352 DEBUG o.h.v.i.e.r.TraversableResolvers [background-preinit] Unable to load or instantiate JPA aware resolver org.hibernate.validator.internal.engine.resolver.JPATraversableResolver. All properties will per default be traversable.
+2018-06-02 15:22:34,361 DEBUG o.h.v.i.x.ValidationXmlParser [background-preinit] Trying to load META-INF/validation.xml for XML based Validator configuration.
+2018-06-02 15:31:24,954 DEBUG o.h.v.i.e.r.TraversableResolvers [background-preinit] Found javax.persistence.Persistence on classpath containing 'getPersistenceUtil'. Assuming JPA 2 environment. Trying to instantiate JPA aware TraversableResolver
+2018-06-02 15:31:24,956 DEBUG o.h.v.i.e.r.TraversableResolvers [background-preinit] Instantiated JPA aware TraversableResolver of type org.hibernate.validator.internal.engine.resolver.JPATraversableResolver.
+2018-06-02 15:31:24,957 DEBUG o.h.v.i.e.r.TraversableResolvers [background-preinit] Unable to load or instantiate JPA aware resolver org.hibernate.validator.internal.engine.resolver.JPATraversableResolver. All properties will per default be traversable.
+2018-06-02 15:31:24,964 DEBUG o.h.v.i.x.ValidationXmlParser [background-preinit] Trying to load META-INF/validation.xml for XML based Validator configuration.
+2018-06-02 15:31:24,966 DEBUG o.h.v.i.x.ResourceLoaderHelper [background-preinit] Trying to load META-INF/validation.xml via TCCL
+2018-06-02 15:31:24,967 DEBUG o.h.v.i.x.ResourceLoaderHelper [background-preinit] Trying to load META-INF/validation.xml via Hibernate Validator's class loader
+2018-06-02 15:31:24,967 DEBUG o.h.v.i.x.ValidationXmlParser [background-preinit] No META-INF/validation.xml found. Using annotation based configuration only.
+2018-06-02 15:36:06,549 DEBUG o.h.v.i.e.r.TraversableResolvers [background-preinit] Found javax.persistence.Persistence on classpath containing 'getPersistenceUtil'. Assuming JPA 2 environment. Trying to instantiate JPA aware TraversableResolver
+2018-06-02 15:36:06,551 DEBUG o.h.v.i.e.r.TraversableResolvers [background-preinit] Instantiated JPA aware TraversableResolver of type org.hibernate.validator.internal.engine.resolver.JPATraversableResolver.
+2018-06-02 15:36:06,552 DEBUG o.h.v.i.e.r.TraversableResolvers [background-preinit] Unable to load or instantiate JPA aware resolver org.hibernate.validator.internal.engine.resolver.JPATraversableResolver. All properties will per default be traversable.
+2018-06-02 15:36:06,560 DEBUG o.h.v.i.x.ValidationXmlParser [background-preinit] Trying to load META-INF/validation.xml for XML based Validator configuration.
+2018-06-02 15:36:06,562 DEBUG o.h.v.i.x.ResourceLoaderHelper [background-preinit] Trying to load META-INF/validation.xml via TCCL
+2018-06-02 15:36:06,563 DEBUG o.h.v.i.x.ResourceLoaderHelper [background-preinit] Trying to load META-INF/validation.xml via Hibernate Validator's class loader
+2018-06-02 15:36:06,563 DEBUG o.h.v.i.x.ValidationXmlParser [background-preinit] No META-INF/validation.xml found. Using annotation based configuration only.
+2018-06-02 15:56:11,641 DEBUG o.h.v.i.e.r.TraversableResolvers [background-preinit] Found javax.persistence.Persistence on classpath containing 'getPersistenceUtil'. Assuming JPA 2 environment. Trying to instantiate JPA aware TraversableResolver
+2018-06-02 15:56:11,642 DEBUG o.h.v.i.e.r.TraversableResolvers [background-preinit] Instantiated JPA aware TraversableResolver of type org.hibernate.validator.internal.engine.resolver.JPATraversableResolver.
+2018-06-02 15:56:11,643 DEBUG o.h.v.i.e.r.TraversableResolvers [background-preinit] Unable to load or instantiate JPA aware resolver org.hibernate.validator.internal.engine.resolver.JPATraversableResolver. All properties will per default be traversable.
+2018-06-02 15:56:11,651 DEBUG o.h.v.i.x.ValidationXmlParser [background-preinit] Trying to load META-INF/validation.xml for XML based Validator configuration.
+2018-06-02 15:56:11,654 DEBUG o.h.v.i.x.ResourceLoaderHelper [background-preinit] Trying to load META-INF/validation.xml via TCCL
+2018-06-02 15:59:53,381 DEBUG o.h.v.i.e.r.TraversableResolvers [background-preinit] Instantiated JPA aware TraversableResolver of type org.hibernate.validator.internal.engine.resolver.JPATraversableResolver.
+2018-06-02 15:59:53,383 DEBUG o.h.v.i.e.r.TraversableResolvers [background-preinit] Unable to load or instantiate JPA aware resolver org.hibernate.validator.internal.engine.resolver.JPATraversableResolver. All properties will per default be traversable.
+2018-06-02 15:59:53,391 DEBUG o.h.v.i.x.ValidationXmlParser [background-preinit] Trying to load META-INF/validation.xml for XML based Validator configuration.
+2018-06-02 15:59:53,394 DEBUG o.h.v.i.x.ResourceLoaderHelper [background-preinit] Trying to load META-INF/validation.xml via TCCL
+2018-06-02 15:59:53,395 DEBUG o.h.v.i.x.ResourceLoaderHelper [background-preinit] Trying to load META-INF/validation.xml via Hibernate Validator's class loader
+2018-06-02 15:59:53,395 DEBUG o.h.v.i.x.ValidationXmlParser [background-preinit] No META-INF/validation.xml found. Using annotation based configuration only.
+2018-06-02 16:19:54,484 DEBUG o.h.v.i.e.r.TraversableResolvers [background-preinit] Found javax.persistence.Persistence on classpath containing 'getPersistenceUtil'. Assuming JPA 2 environment. Trying to instantiate JPA aware TraversableResolver
+2018-06-02 16:19:54,486 DEBUG o.h.v.i.e.r.TraversableResolvers [background-preinit] Instantiated JPA aware TraversableResolver of type org.hibernate.validator.internal.engine.resolver.JPATraversableResolver.
+2018-06-02 16:19:54,487 DEBUG o.h.v.i.e.r.TraversableResolvers [background-preinit] Unable to load or instantiate JPA aware resolver org.hibernate.validator.internal.engine.resolver.JPATraversableResolver. All properties will per default be traversable.
+2018-06-02 16:19:54,496 DEBUG o.h.v.i.x.ValidationXmlParser [background-preinit] Trying to load META-INF/validation.xml for XML based Validator configuration.
+2018-06-02 16:19:54,498 DEBUG o.h.v.i.x.ResourceLoaderHelper [background-preinit] Trying to load META-INF/validation.xml via TCCL
+2018-06-02 16:25:13,101 DEBUG o.h.v.i.e.r.TraversableResolvers [background-preinit] Found javax.persistence.Persistence on classpath containing 'getPersistenceUtil'. Assuming JPA 2 environment. Trying to instantiate JPA aware TraversableResolver
+2018-06-02 16:25:13,103 DEBUG o.h.v.i.e.r.TraversableResolvers [background-preinit] Instantiated JPA aware TraversableResolver of type org.hibernate.validator.internal.engine.resolver.JPATraversableResolver.
+2018-06-02 16:25:13,104 DEBUG o.h.v.i.e.r.TraversableResolvers [background-preinit] Unable to load or instantiate JPA aware resolver org.hibernate.validator.internal.engine.resolver.JPATraversableResolver. All properties will per default be traversable.
+2018-06-02 16:25:13,112 DEBUG o.h.v.i.x.ValidationXmlParser [background-preinit] Trying to load META-INF/validation.xml for XML based Validator configuration.
+2018-06-02 16:25:13,115 DEBUG o.h.v.i.x.ResourceLoaderHelper [background-preinit] Trying to load META-INF/validation.xml via TCCL
+2018-06-02 16:25:13,115 DEBUG o.h.v.i.x.ResourceLoaderHelper [background-preinit] Trying to load META-INF/validation.xml via Hibernate Validator's class loader
+2018-06-02 16:25:13,116 DEBUG o.h.v.i.x.ValidationXmlParser [background-preinit] No META-INF/validation.xml found. Using annotation based configuration only.
+2018-06-02 16:48:35,301 DEBUG o.h.v.i.e.r.TraversableResolvers [background-preinit] Found javax.persistence.Persistence on classpath containing 'getPersistenceUtil'. Assuming JPA 2 environment. Trying to instantiate JPA aware TraversableResolver
+2018-06-02 16:48:35,303 DEBUG o.h.v.i.e.r.TraversableResolvers [background-preinit] Instantiated JPA aware TraversableResolver of type org.hibernate.validator.internal.engine.resolver.JPATraversableResolver.
+2018-06-02 16:48:35,304 DEBUG o.h.v.i.e.r.TraversableResolvers [background-preinit] Unable to load or instantiate JPA aware resolver org.hibernate.validator.internal.engine.resolver.JPATraversableResolver. All properties will per default be traversable.
+2018-06-02 16:48:35,312 DEBUG o.h.v.i.x.ValidationXmlParser [background-preinit] Trying to load META-INF/validation.xml for XML based Validator configuration.
+2018-06-02 16:48:35,314 DEBUG o.h.v.i.x.ResourceLoaderHelper [background-preinit] Trying to load META-INF/validation.xml via TCCL
+2018-06-02 16:48:35,315 DEBUG o.h.v.i.x.ResourceLoaderHelper [background-preinit] Trying to load META-INF/validation.xml via Hibernate Validator's class loader
+2018-06-02 16:48:35,315 DEBUG o.h.v.i.x.ValidationXmlParser [background-preinit] No META-INF/validation.xml found. Using annotation based configuration only.
+2018-06-02 16:59:37,135 DEBUG o.h.v.i.e.r.TraversableResolvers [background-preinit] Found javax.persistence.Persistence on classpath containing 'getPersistenceUtil'. Assuming JPA 2 environment. Trying to instantiate JPA aware TraversableResolver
+2018-06-02 16:59:37,137 DEBUG o.h.v.i.e.r.TraversableResolvers [background-preinit] Instantiated JPA aware TraversableResolver of type org.hibernate.validator.internal.engine.resolver.JPATraversableResolver.
+2018-06-02 16:59:37,138 DEBUG o.h.v.i.e.r.TraversableResolvers [background-preinit] Unable to load or instantiate JPA aware resolver org.hibernate.validator.internal.engine.resolver.JPATraversableResolver. All properties will per default be traversable.
+2018-06-02 16:59:37,146 DEBUG o.h.v.i.x.ValidationXmlParser [background-preinit] Trying to load META-INF/validation.xml for XML based Validator configuration.
+2018-06-02 16:59:37,149 DEBUG o.h.v.i.x.ResourceLoaderHelper [background-preinit] Trying to load META-INF/validation.xml via TCCL
+2018-06-02 16:59:37,149 DEBUG o.h.v.i.x.ResourceLoaderHelper [background-preinit] Trying to load META-INF/validation.xml via Hibernate Validator's class loader
+2018-06-02 16:59:37,150 DEBUG o.h.v.i.x.ValidationXmlParser [background-preinit] No META-INF/validation.xml found. Using annotation based configuration only.
+2018-06-02 17:14:48,123 DEBUG o.h.v.i.e.r.TraversableResolvers [background-preinit] Found javax.persistence.Persistence on classpath containing 'getPersistenceUtil'. Assuming JPA 2 environment. Trying to instantiate JPA aware TraversableResolver
+2018-06-02 17:14:48,125 DEBUG o.h.v.i.e.r.TraversableResolvers [background-preinit] Instantiated JPA aware TraversableResolver of type org.hibernate.validator.internal.engine.resolver.JPATraversableResolver.
+2018-06-02 17:14:48,126 DEBUG o.h.v.i.e.r.TraversableResolvers [background-preinit] Unable to load or instantiate JPA aware resolver org.hibernate.validator.internal.engine.resolver.JPATraversableResolver. All properties will per default be traversable.
+2018-06-02 17:14:48,134 DEBUG o.h.v.i.x.ValidationXmlParser [background-preinit] Trying to load META-INF/validation.xml for XML based Validator configuration.
+2018-06-02 17:14:48,136 DEBUG o.h.v.i.x.ResourceLoaderHelper [background-preinit] Trying to load META-INF/validation.xml via TCCL
+2018-06-02 17:14:48,137 DEBUG o.h.v.i.x.ResourceLoaderHelper [background-preinit] Trying to load META-INF/validation.xml via Hibernate Validator's class loader
+2018-06-02 17:14:48,137 DEBUG o.h.v.i.x.ValidationXmlParser [background-preinit] No META-INF/validation.xml found. Using annotation based configuration only.
+2018-06-02 17:25:59,132 DEBUG o.h.v.i.e.r.TraversableResolvers [background-preinit] Found javax.persistence.Persistence on classpath containing 'getPersistenceUtil'. Assuming JPA 2 environment. Trying to instantiate JPA aware TraversableResolver
+2018-06-02 17:25:59,133 DEBUG o.h.v.i.e.r.TraversableResolvers [background-preinit] Instantiated JPA aware TraversableResolver of type org.hibernate.validator.internal.engine.resolver.JPATraversableResolver.
+2018-06-02 17:25:59,134 DEBUG o.h.v.i.e.r.TraversableResolvers [background-preinit] Unable to load or instantiate JPA aware resolver org.hibernate.validator.internal.engine.resolver.JPATraversableResolver. All properties will per default be traversable.
+2018-06-02 17:25:59,142 DEBUG o.h.v.i.x.ValidationXmlParser [background-preinit] Trying to load META-INF/validation.xml for XML based Validator configuration.
+2018-06-02 17:25:59,145 DEBUG o.h.v.i.x.ResourceLoaderHelper [background-preinit] Trying to load META-INF/validation.xml via TCCL
+2018-06-02 17:25:59,146 DEBUG o.h.v.i.x.ResourceLoaderHelper [background-preinit] Trying to load META-INF/validation.xml via Hibernate Validator's class loader
+2018-06-02 17:25:59,146 DEBUG o.h.v.i.x.ValidationXmlParser [background-preinit] No META-INF/validation.xml found. Using annotation based configuration only.
+2018-06-02 17:33:07,486 DEBUG o.h.v.i.e.r.TraversableResolvers [background-preinit] Found javax.persistence.Persistence on classpath containing 'getPersistenceUtil'. Assuming JPA 2 environment. Trying to instantiate JPA aware TraversableResolver
+2018-06-02 17:33:07,487 DEBUG o.h.v.i.e.r.TraversableResolvers [background-preinit] Instantiated JPA aware TraversableResolver of type org.hibernate.validator.internal.engine.resolver.JPATraversableResolver.
+2018-06-02 17:33:07,488 DEBUG o.h.v.i.e.r.TraversableResolvers [background-preinit] Unable to load or instantiate JPA aware resolver org.hibernate.validator.internal.engine.resolver.JPATraversableResolver. All properties will per default be traversable.
+2018-06-02 17:33:07,497 DEBUG o.h.v.i.x.ValidationXmlParser [background-preinit] Trying to load META-INF/validation.xml for XML based Validator configuration.
+2018-06-02 17:33:07,500 DEBUG o.h.v.i.x.ResourceLoaderHelper [background-preinit] Trying to load META-INF/validation.xml via TCCL
+2018-06-02 17:33:07,500 DEBUG o.h.v.i.x.ResourceLoaderHelper [background-preinit] Trying to load META-INF/validation.xml via Hibernate Validator's class loader
+2018-06-02 17:33:07,500 DEBUG o.h.v.i.x.ValidationXmlParser [background-preinit] No META-INF/validation.xml found. Using annotation based configuration only.
+2018-06-02 17:40:53,870 DEBUG o.h.v.i.e.r.TraversableResolvers [background-preinit] Found javax.persistence.Persistence on classpath containing 'getPersistenceUtil'. Assuming JPA 2 environment. Trying to instantiate JPA aware TraversableResolver
+2018-06-02 17:40:53,872 DEBUG o.h.v.i.e.r.TraversableResolvers [background-preinit] Instantiated JPA aware TraversableResolver of type org.hibernate.validator.internal.engine.resolver.JPATraversableResolver.
+2018-06-02 17:40:53,873 DEBUG o.h.v.i.e.r.TraversableResolvers [background-preinit] Unable to load or instantiate JPA aware resolver org.hibernate.validator.internal.engine.resolver.JPATraversableResolver. All properties will per default be traversable.
+2018-06-02 17:40:53,882 DEBUG o.h.v.i.x.ValidationXmlParser [background-preinit] Trying to load META-INF/validation.xml for XML based Validator configuration.
+2018-06-02 17:40:53,884 DEBUG o.h.v.i.x.ResourceLoaderHelper [background-preinit] Trying to load META-INF/validation.xml via TCCL
+2018-06-02 17:40:53,885 DEBUG o.h.v.i.x.ResourceLoaderHelper [background-preinit] Trying to load META-INF/validation.xml via Hibernate Validator's class loader
+2018-06-02 17:40:53,885 DEBUG o.h.v.i.x.ValidationXmlParser [background-preinit] No META-INF/validation.xml found. Using annotation based configuration only.
+2018-06-03 11:02:18,141 DEBUG o.h.v.i.e.r.TraversableResolvers [background-preinit] Found javax.persistence.Persistence on classpath containing 'getPersistenceUtil'. Assuming JPA 2 environment. Trying to instantiate JPA aware TraversableResolver
+2018-06-03 11:02:18,143 DEBUG o.h.v.i.e.r.TraversableResolvers [background-preinit] Instantiated JPA aware TraversableResolver of type org.hibernate.validator.internal.engine.resolver.JPATraversableResolver.
+2018-06-03 11:02:18,144 DEBUG o.h.v.i.e.r.TraversableResolvers [background-preinit] Unable to load or instantiate JPA aware resolver org.hibernate.validator.internal.engine.resolver.JPATraversableResolver. All properties will per default be traversable.
+2018-06-03 11:02:18,153 DEBUG o.h.v.i.x.ValidationXmlParser [background-preinit] Trying to load META-INF/validation.xml for XML based Validator configuration.
+2018-06-03 11:02:18,155 DEBUG o.h.v.i.x.ResourceLoaderHelper [background-preinit] Trying to load META-INF/validation.xml via TCCL
+2018-06-03 11:02:18,156 DEBUG o.h.v.i.x.ResourceLoaderHelper [background-preinit] Trying to load META-INF/validation.xml via Hibernate Validator's class loader
+2018-06-03 11:02:18,156 DEBUG o.h.v.i.x.ValidationXmlParser [background-preinit] No META-INF/validation.xml found. Using annotation based configuration only.
+2018-06-03 11:06:02,395 DEBUG o.h.v.i.e.r.TraversableResolvers [background-preinit] Instantiated JPA aware TraversableResolver of type org.hibernate.validator.internal.engine.resolver.JPATraversableResolver.
+2018-06-03 11:06:02,396 DEBUG o.h.v.i.e.r.TraversableResolvers [background-preinit] Unable to load or instantiate JPA aware resolver org.hibernate.validator.internal.engine.resolver.JPATraversableResolver. All properties will per default be traversable.
+2018-06-03 11:06:02,404 DEBUG o.h.v.i.x.ValidationXmlParser [background-preinit] Trying to load META-INF/validation.xml for XML based Validator configuration.
+2018-06-03 11:06:02,406 DEBUG o.h.v.i.x.ResourceLoaderHelper [background-preinit] Trying to load META-INF/validation.xml via TCCL
+2018-06-03 11:06:02,406 DEBUG o.h.v.i.x.ResourceLoaderHelper [background-preinit] Trying to load META-INF/validation.xml via Hibernate Validator's class loader
+2018-06-03 11:06:02,407 DEBUG o.h.v.i.x.ValidationXmlParser [background-preinit] No META-INF/validation.xml found. Using annotation based configuration only.
+2018-06-03 11:08:44,335 DEBUG o.h.v.i.x.ValidationXmlParser [background-preinit] Trying to load META-INF/validation.xml for XML based Validator configuration.
+2018-06-03 11:08:44,339 DEBUG o.h.v.i.x.ResourceLoaderHelper [background-preinit] Trying to load META-INF/validation.xml via TCCL
+2018-06-03 11:08:44,340 DEBUG o.h.v.i.x.ResourceLoaderHelper [background-preinit] Trying to load META-INF/validation.xml via Hibernate Validator's class loader
+2018-06-03 11:08:44,340 DEBUG o.h.v.i.x.ValidationXmlParser [background-preinit] No META-INF/validation.xml found. Using annotation based configuration only.
+2018-06-03 11:26:04,818 DEBUG o.h.v.i.e.r.TraversableResolvers [background-preinit] Found javax.persistence.Persistence on classpath containing 'getPersistenceUtil'. Assuming JPA 2 environment. Trying to instantiate JPA aware TraversableResolver
+2018-06-03 11:26:04,819 DEBUG o.h.v.i.e.r.TraversableResolvers [background-preinit] Instantiated JPA aware TraversableResolver of type org.hibernate.validator.internal.engine.resolver.JPATraversableResolver.
+2018-06-03 11:26:04,820 DEBUG o.h.v.i.e.r.TraversableResolvers [background-preinit] Unable to load or instantiate JPA aware resolver org.hibernate.validator.internal.engine.resolver.JPATraversableResolver. All properties will per default be traversable.
+2018-06-03 11:26:04,828 DEBUG o.h.v.i.x.ValidationXmlParser [background-preinit] Trying to load META-INF/validation.xml for XML based Validator configuration.
+2018-06-03 11:26:04,830 DEBUG o.h.v.i.x.ResourceLoaderHelper [background-preinit] Trying to load META-INF/validation.xml via TCCL
+2018-06-03 11:26:04,831 DEBUG o.h.v.i.x.ResourceLoaderHelper [background-preinit] Trying to load META-INF/validation.xml via Hibernate Validator's class loader
+2018-06-03 11:26:04,831 DEBUG o.h.v.i.x.ValidationXmlParser [background-preinit] No META-INF/validation.xml found. Using annotation based configuration only.
+2018-06-03 11:35:32,842 DEBUG o.h.v.i.e.r.TraversableResolvers [background-preinit] Found javax.persistence.Persistence on classpath containing 'getPersistenceUtil'. Assuming JPA 2 environment. Trying to instantiate JPA aware TraversableResolver
+2018-06-03 11:35:32,844 DEBUG o.h.v.i.e.r.TraversableResolvers [background-preinit] Instantiated JPA aware TraversableResolver of type org.hibernate.validator.internal.engine.resolver.JPATraversableResolver.
+2018-06-03 11:35:32,845 DEBUG o.h.v.i.e.r.TraversableResolvers [background-preinit] Unable to load or instantiate JPA aware resolver org.hibernate.validator.internal.engine.resolver.JPATraversableResolver. All properties will per default be traversable.
+2018-06-03 11:35:32,854 DEBUG o.h.v.i.x.ValidationXmlParser [background-preinit] Trying to load META-INF/validation.xml for XML based Validator configuration.
+2018-06-03 11:35:32,857 DEBUG o.h.v.i.x.ResourceLoaderHelper [background-preinit] Trying to load META-INF/validation.xml via TCCL
+2018-06-03 11:35:32,857 DEBUG o.h.v.i.x.ResourceLoaderHelper [background-preinit] Trying to load META-INF/validation.xml via Hibernate Validator's class loader
+2018-06-03 11:35:32,858 DEBUG o.h.v.i.x.ValidationXmlParser [background-preinit] No META-INF/validation.xml found. Using annotation based configuration only.
+2018-06-03 11:44:22,959 DEBUG o.h.v.i.e.r.TraversableResolvers [background-preinit] Found javax.persistence.Persistence on classpath containing 'getPersistenceUtil'. Assuming JPA 2 environment. Trying to instantiate JPA aware TraversableResolver
+2018-06-03 11:44:22,961 DEBUG o.h.v.i.e.r.TraversableResolvers [background-preinit] Instantiated JPA aware TraversableResolver of type org.hibernate.validator.internal.engine.resolver.JPATraversableResolver.
+2018-06-03 11:44:22,962 DEBUG o.h.v.i.e.r.TraversableResolvers [background-preinit] Unable to load or instantiate JPA aware resolver org.hibernate.validator.internal.engine.resolver.JPATraversableResolver. All properties will per default be traversable.
+2018-06-03 11:44:22,970 DEBUG o.h.v.i.x.ValidationXmlParser [background-preinit] Trying to load META-INF/validation.xml for XML based Validator configuration.
+2018-06-03 11:44:22,972 DEBUG o.h.v.i.x.ResourceLoaderHelper [background-preinit] Trying to load META-INF/validation.xml via TCCL
+2018-06-03 11:44:22,973 DEBUG o.h.v.i.x.ResourceLoaderHelper [background-preinit] Trying to load META-INF/validation.xml via Hibernate Validator's class loader
+2018-06-03 11:44:22,973 DEBUG o.h.v.i.x.ValidationXmlParser [background-preinit] No META-INF/validation.xml found. Using annotation based configuration only.
+2018-06-03 11:59:03,770 DEBUG o.h.v.i.e.r.TraversableResolvers [background-preinit] Found javax.persistence.Persistence on classpath containing 'getPersistenceUtil'. Assuming JPA 2 environment. Trying to instantiate JPA aware TraversableResolver
+2018-06-03 11:59:03,771 DEBUG o.h.v.i.e.r.TraversableResolvers [background-preinit] Instantiated JPA aware TraversableResolver of type org.hibernate.validator.internal.engine.resolver.JPATraversableResolver.
+2018-06-03 11:59:03,772 DEBUG o.h.v.i.e.r.TraversableResolvers [background-preinit] Unable to load or instantiate JPA aware resolver org.hibernate.validator.internal.engine.resolver.JPATraversableResolver. All properties will per default be traversable.
+2018-06-03 11:59:03,780 DEBUG o.h.v.i.x.ValidationXmlParser [background-preinit] Trying to load META-INF/validation.xml for XML based Validator configuration.
+2018-06-03 11:59:03,782 DEBUG o.h.v.i.x.ResourceLoaderHelper [background-preinit] Trying to load META-INF/validation.xml via TCCL
+2018-06-03 11:59:03,783 DEBUG o.h.v.i.x.ResourceLoaderHelper [background-preinit] Trying to load META-INF/validation.xml via Hibernate Validator's class loader
+2018-06-03 11:59:03,783 DEBUG o.h.v.i.x.ValidationXmlParser [background-preinit] No META-INF/validation.xml found. Using annotation based configuration only.
+2018-06-03 12:01:24,424 DEBUG o.h.v.i.e.r.TraversableResolvers [background-preinit] Found javax.persistence.Persistence on classpath containing 'getPersistenceUtil'. Assuming JPA 2 environment. Trying to instantiate JPA aware TraversableResolver
+2018-06-03 12:01:24,426 DEBUG o.h.v.i.e.r.TraversableResolvers [background-preinit] Instantiated JPA aware TraversableResolver of type org.hibernate.validator.internal.engine.resolver.JPATraversableResolver.
+2018-06-03 12:01:24,426 DEBUG o.h.v.i.e.r.TraversableResolvers [background-preinit] Unable to load or instantiate JPA aware resolver org.hibernate.validator.internal.engine.resolver.JPATraversableResolver. All properties will per default be traversable.
+2018-06-03 12:01:24,434 DEBUG o.h.v.i.x.ValidationXmlParser [background-preinit] Trying to load META-INF/validation.xml for XML based Validator configuration.
+2018-06-03 12:01:24,436 DEBUG o.h.v.i.x.ResourceLoaderHelper [background-preinit] Trying to load META-INF/validation.xml via TCCL
+2018-06-03 12:01:24,437 DEBUG o.h.v.i.x.ResourceLoaderHelper [background-preinit] Trying to load META-INF/validation.xml via Hibernate Validator's class loader
+2018-06-03 12:01:24,437 DEBUG o.h.v.i.x.ValidationXmlParser [background-preinit] No META-INF/validation.xml found. Using annotation based configuration only.
+2018-06-03 12:38:16,594 DEBUG o.h.v.i.e.r.TraversableResolvers [background-preinit] Found javax.persistence.Persistence on classpath containing 'getPersistenceUtil'. Assuming JPA 2 environment. Trying to instantiate JPA aware TraversableResolver
+2018-06-03 12:38:16,595 DEBUG o.h.v.i.e.r.TraversableResolvers [background-preinit] Instantiated JPA aware TraversableResolver of type org.hibernate.validator.internal.engine.resolver.JPATraversableResolver.
+2018-06-03 12:38:16,596 DEBUG o.h.v.i.e.r.TraversableResolvers [background-preinit] Unable to load or instantiate JPA aware resolver org.hibernate.validator.internal.engine.resolver.JPATraversableResolver. All properties will per default be traversable.
+2018-06-03 12:38:16,604 DEBUG o.h.v.i.x.ValidationXmlParser [background-preinit] Trying to load META-INF/validation.xml for XML based Validator configuration.
+2018-06-03 12:38:16,606 DEBUG o.h.v.i.x.ResourceLoaderHelper [background-preinit] Trying to load META-INF/validation.xml via TCCL
+2018-06-03 12:38:16,606 DEBUG o.h.v.i.x.ResourceLoaderHelper [background-preinit] Trying to load META-INF/validation.xml via Hibernate Validator's class loader
+2018-06-03 12:38:16,607 DEBUG o.h.v.i.x.ValidationXmlParser [background-preinit] No META-INF/validation.xml found. Using annotation based configuration only.

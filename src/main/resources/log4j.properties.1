@@ -1,0 +1,84 @@
+log4j.rootLogger=INFO, stdout
+
+log4j.appender.stdout=org.apache.log4j.ConsoleAppender
+log4j.appender.stdout.Target=System.out
+log4j.appender.stdout.layout=org.apache.log4j.PatternLayout
+log4j.appender.stdout.layout.ConversionPattern=%d{yyyy-MM-dd HH:mm:ss} %-5p %c{1}:%L - %m%n
+
+
+#name=PropertiesConfig
+#property.filename = eni-network-simulator
+# 
+#filter.threshold.type = ThresholdFilter
+#filter.threshold.level = all
+#
+#appender.console.type = Console
+#appender.console.name = STDOUT
+#appender.console.layout.type = PatternLayout
+#appender.console.layout.pattern = %d{yyyy-MM-dd HH:mm:ss} %-5p %c{1}:%L - %m%n
+#appender.console.filter.threshold.type = ThresholdFilter
+#appender.console.filter.threshold.level = all
+#
+#appender.rolling1.type = RollingFile
+#appender.rolling1.name = APPROLLINGFILE
+#appender.rolling1.fileName = C:\\Users\\mboparai\\eclipse-workspace\\ENINetworkSimulator\\logs\\${filename}-application.log
+#appender.rolling1.filePattern = C:\\Users\\mboparai\\eclipse-workspace\\ENINetworkSimulator\\logs\\archives\\${filename}-application-%d{dd-MMM-yyyy}-%i.log.gz
+#appender.rolling1.layout.type = PatternLayout
+#appender.rolling1.layout.pattern = %d %p %C{1.} [%t] %m%n
+#appender.rolling1.policies.type = Policies
+#appender.rolling1.policies.size.type = SizeBasedTriggeringPolicy
+#appender.rolling1.policies.size.size = 10MB
+#appender.rolling1.strategy.type = DefaultRolloverStrategy
+#appender.rolling1.strategy.max = 5
+#
+#appender.rolling2.type = RollingFile
+#appender.rolling2.name = SPRINGROLLINGFILE
+#appender.rolling2.fileName = C:\\Users\\mboparai\\eclipse-workspace\\ENINetworkSimulator\\logs\\${filename}-spring.log
+#appender.rolling2.filePattern = C:\\Users\\mboparai\\eclipse-workspace\\ENINetworkSimulator\\logs\\archives\\${filename}-spring-%d{dd-MMM-yyyy}-%i.log.gz
+#appender.rolling2.layout.type = PatternLayout
+#appender.rolling2.layout.pattern = %d %p %C{1.} [%t] %m%n
+#appender.rolling2.policies.type = Policies
+#appender.rolling2.policies.size.type = SizeBasedTriggeringPolicy
+#appender.rolling2.policies.size.size = 10MB
+#appender.rolling2.strategy.type = DefaultRolloverStrategy
+#appender.rolling2.strategy.max = 5
+#
+#logger.rolling1.name = ca.empowered.nms.simulator
+#logger.rolling1.level = TRACE
+### also send logs to console = true
+#logger.rolling1.additivity = true
+#logger.rolling1.appenderRef.rolling.ref = APPROLLINGFILE
+#
+#logger.rolling2.name = org.hibernate
+#logger.rolling2.level = TRACE
+## also send logs to console = true
+#logger.rolling2.additivity = true
+#logger.rolling2.appenderRef.rolling.ref = SPRINGROLLINGFILE
+#
+##logger.rolling3.name = org.hibernate.SQL
+##logger.rolling3.level = INFO
+#### also send logs to console = true
+##logger.rolling3.additivity = true
+##logger.rolling3.appenderRef.rolling.ref = ROLLINGFILE
+##
+##logger.rolling4.name = org.hibernate.cache
+##logger.rolling4.level = INFO
+#### also send logs to console = true
+##logger.rolling4.additivity = true
+##logger.rolling4.appenderRef.rolling.ref = ROLLINGFILE
+##
+#logger.rolling5.name = org.hibernate.stat
+#logger.rolling5.level = DEBUG
+## also send logs to console = true
+#logger.rolling5.additivity = true
+#logger.rolling5.appenderRef.rolling.ref = SPRINGROLLINGFILE
+##
+#logger.rolling6.name = org.sringframework
+#logger.rolling6.level = TRACE
+## also send logs to console = true
+#logger.rolling6.additivity = true
+#logger.rolling6.appenderRef.rolling.ref = SPRINGROLLINGFILE
+# 
+#rootLogger.level = ALL
+#rootLogger.appenderRefs = stdout
+#rootLogger.appenderRef.stdout.ref = STDOUT

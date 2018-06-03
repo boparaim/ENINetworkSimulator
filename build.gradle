@@ -1,0 +1,115 @@
+buildscript {
+	ext {
+		springBootVersion = '2.0.2.RELEASE'
+	}
+	repositories {
+		mavenCentral()
+	}
+	dependencies {
+		classpath("org.springframework.boot:spring-boot-gradle-plugin:${springBootVersion}")
+	}
+}
+
+//apply plugin: 'java'
+apply plugin: 'war'
+apply plugin: 'application'
+apply plugin: 'eclipse'
+apply plugin: 'org.springframework.boot'
+apply plugin: 'io.spring.dependency-management'
+
+//group = 'ca.empowered.nms.simulator'
+//version = '0.0.1-SNAPSHOT'
+//sourceCompatibility = 1.8
+mainClassName = 'ca.empowered.nms.simulator.app.WebApplication'
+
+war {
+	webAppDirName = 'src/main/webapp'
+	manifest {
+        attributes 'Manifest-Version': '1.0'
+		attributes 'Built-By': 'mboparai'
+		attributes 'Build-Jdk': '1.8.0_161'
+		attributes 'Created-By': 'Maven Integration for Eclipse'
+    }
+}
+
+repositories {
+	mavenCentral()
+}
+
+
+dependencies {
+	compile('org.springframework.boot:spring-boot-starter-web')
+	compile('org.springframework.boot:spring-boot-starter-log4j2')
+	compile('org.springframework.boot:spring-boot-starter-amqp')
+	compile('org.springframework.boot:spring-boot-starter-websocket')
+	//compile('org.springframework.boot:spring-boot-starter-jdbc')
+	compile('org.springframework.boot:spring-boot-starter-data-jpa')
+	compile('mysql:mysql-connector-java')
+	
+	testCompile('org.springframework.boot:spring-boot-starter-test')
+	providedRuntime 'org.springframework.boot:spring-boot-starter-tomcat'
+	
+	/*compile('org.springframework.boot:spring-boot-starter')/* {
+		exclude group: 'org.springframework.boot', module: 'spring-boot-starter-logging'
+	}*/
+	//compile('org.springframework.amqp:spring-rabbit:2.0.3.RELEASE')
+	/*compile group: 'org.apache.logging.log4j', name: 'log4j-api', version: '2.11.0'
+    compile group: 'org.apache.logging.log4j', name: 'log4j-core', version: '2.11.0'
+    compile group: 'org.apache.logging.log4j', name: 'log4j-slf4j-impl', version: '2.11.0'*/
+	
+	//compile('org.apache.logging.log4j:log4j-slf4j-impl:2.10')	
+}
+
+configurations {
+	compile.exclude module: 'spring-boot-starter-logging'
+}
+
+task deployToTomcat(type: Copy) {
+	println("${buildDir}")
+	from("${buildDir}\\libs")
+	into('C:\\Users\\mboparai\\Downloads\\apache-tomcat-9.0.8\\webapps')
+	include('*.war')
+	//rename '(.+)-0.0.1-SNAPSHOT(.*)', '$1$2'
+}
+
+build.finalizedBy(deployToTomcat)
+
+/*buildscript {
+    repositories {
+        mavenCentral()
+    }
+    dependencies {
+        classpath("org.springframework.boot:spring-boot-gradle-plugin:2.0.2.RELEASE")
+    }
+}
+
+apply plugin: 'java'
+apply plugin: 'eclipse'
+apply plugin: 'idea'
+apply plugin: 'org.springframework.boot'
+apply plugin: 'io.spring.dependency-management'
+
+bootJar {
+    baseName = 'gs-spring-boot'
+    version =  '0.1.0'
+}
+
+/*plugins {
+    id 'war'  
+}*/
+
+/*repositories {
+	mavenCentral()
+    //jcenter()
+}
+
+sourceCompatibility = 1.10
+targetCompatibility = 1.10
+
+dependencies {
+	compile("org.springframework.boot:spring-boot-starter-web")
+    //providedCompile 'javax.servlet:javax.servlet-api:3.1.0' 
+    testCompile 'junit:junit:4.12'
+    testCompile("org.springframework.boot:spring-boot-starter-test")
+}
+*/
