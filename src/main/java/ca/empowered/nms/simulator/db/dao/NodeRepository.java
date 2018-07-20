@@ -16,7 +16,7 @@ import ca.empowered.nms.simulator.db.model.Node;
  *
  */
 @Transactional
-public interface NodeRepository extends CrudRepository<Node, Long> {
+public interface NodeRepository extends CrudRepository<Node, BigInteger> {
 
 	//@Query("select n.id from Node n where n.ip = :ip limit 1")
 	@Query(value="select n.id from Node n where n.ip = :ip limit 1", nativeQuery=true)

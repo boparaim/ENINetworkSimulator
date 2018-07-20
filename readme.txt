@@ -1,4 +1,6 @@
 npm install -g @angular/cli
+# not required anymore; user npm install/search @types/package
+npm install -g typings
 ng new ENINetworkSimulatorFE
 cd ENINetworkSimulatorFE/
 ng serve --open
@@ -7,6 +9,7 @@ npm install --save stompjs
 npm install --save vis
 npm install --save jquery
 npm install -D @types/jquery
+npm install --save pekeuplaod
 
 https://angular.io/guide/quickstart
 
@@ -39,3 +42,9 @@ gradle build to build Java Spring (if tomcat is running, this will automatically
 cd to ENINetworkSimulatorFE
 ng serve --open to start angular http server
 and another shell tab for angular cli commands
+
+
+
+
+OR FOR Backend simply start the docker vm, which has mariadb, rabbitmq and tomcat containers running
+and then access tomcat from PC @ http://192.168.78.128:8095/		(192.168.78.128 is docker vm IP)

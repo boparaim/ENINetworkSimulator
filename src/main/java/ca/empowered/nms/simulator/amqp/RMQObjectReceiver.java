@@ -25,7 +25,8 @@ public class RMQObjectReceiver {
 			log.debug(">> "+event.toString());
 			if (event.getType().equals(TYPE.NODE_CREATED.toString())
 					|| event.getType().equals(TYPE.EDGE_CREATED.toString())
-					|| event.getType().equals(TYPE.TOPOLOGY_DELETED.toString())) {
+					|| event.getType().equals(TYPE.TOPOLOGY_DELETED.toString())
+					|| event.getType().equals(TYPE.NODE_COORDINATES_UPDATED.toString())) {
 				messagingTemplate.convertAndSend("/topic/test-websocket-reply", event);
 			}
 		}

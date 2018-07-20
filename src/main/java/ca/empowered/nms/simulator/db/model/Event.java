@@ -24,7 +24,7 @@ public class Event implements Serializable, MessageObject {
 	private static final long serialVersionUID = 1326602283689327353L;
 	
 	public enum TYPE { NODE_CREATED, NODE_DELETED, NODE_UPDATED, EDGE_CREATED, EDGE_DELETED, EDGE_UPDATED,
-		TOPOLOGY_DELETED };
+		TOPOLOGY_DELETED, NODE_COORDINATES_UPDATED };
 	
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)

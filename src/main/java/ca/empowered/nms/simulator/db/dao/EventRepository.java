@@ -1,5 +1,7 @@
 package ca.empowered.nms.simulator.db.dao;
 
+import java.math.BigInteger;
+
 import javax.transaction.Transactional;
 
 import org.springframework.data.jpa.repository.Query;
@@ -13,7 +15,7 @@ import ca.empowered.nms.simulator.db.model.Event;
  *
  */
 @Transactional
-public interface EventRepository extends CrudRepository<Event, Long> {
+public interface EventRepository extends CrudRepository<Event, BigInteger> {
 
 	@Query("select count(e.id) from Event e")
 	Integer getTotalEventCount();

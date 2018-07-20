@@ -1,11 +1,18 @@
 package ca.empowered.nms.simulator.controller;
 
+import java.io.BufferedReader;
+import java.io.DataOutputStream;
 import java.io.IOException;
+import java.io.InputStream;
+import java.io.InputStreamReader;
 import java.math.BigInteger;
+import java.net.HttpURLConnection;
+import java.net.URL;
 import java.util.ArrayList;
 
 import javax.annotation.PostConstruct;
 import javax.persistence.EntityManager;
+import javax.servlet.http.HttpServletResponse;
 
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
@@ -14,11 +21,14 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.PropertySource;
 import org.springframework.transaction.annotation.Transactional;
+import org.springframework.util.FileCopyUtils;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.multipart.MultipartFile;
 
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.JsonNode;
@@ -35,6 +45,12 @@ import ca.empowered.nms.simulator.db.model.Node;
 import ca.empowered.nms.simulator.json.JsonResponse;
 import ca.empowered.nms.simulator.json.JsonResponse.STATUS;
 import ca.empowered.nms.simulator.json.JsonTopologyStats;
+import io.pkts.PacketHandler;
+import io.pkts.Pcap;
+import io.pkts.packet.IPv4Packet;
+import io.pkts.packet.Packet;
+import io.pkts.packet.TCPPacket;
+import io.pkts.protocol.Protocol;
 
 @RestController
 @PropertySource({
@@ -47,6 +63,9 @@ public class FrontendController {
 	
 	/*@Autowired
 	private Environment environment;*/
+    
+    @Autowired
+    private EntityManager entityManager;
 
     @Autowired
 	private RabbitTemplate rabbitTemplate;
@@ -74,6 +93,9 @@ public class FrontendController {
 		log.debug("FrontendController post constructor");
 	}
 	
+	/**
+	 * returns unique nodes based on node-name and node-ip
+	 */
     @RequestMapping(value="/nodes", method=RequestMethod.GET)
     public @ResponseBody Iterable<Node> getNodes() {
     	log.debug("getting nodes");
@@ -92,6 +114,10 @@ public class FrontendController {
     	return uniqueNodes;
     }
 	
+    /**
+     * returns unique edges based on edge-node-ids and edge-if-indices
+     * @return
+     */
     @RequestMapping(value="/edges", method=RequestMethod.GET)
     public @ResponseBody Iterable<Edge> getEdges() {
     	log.debug("getting edges");
@@ -111,6 +137,11 @@ public class FrontendController {
     	return uniqueEdges;
     }
     
+    /**
+     * 
+     * @param nodeJson
+     * @return
+     */
     @RequestMapping(path="/node", method=RequestMethod.PUT)
     public @ResponseBody JsonResponse addNode(
     		@RequestBody Node nodeJson) {
@@ -125,6 +156,14 @@ public class FrontendController {
     		jsonResponse.setStatus(STATUS.FAIL);
     		jsonResponse.setMessage("request is missing required data");
     		jsonResponse.setMetadata("{'required-fields':'name,ip'}");
+    		return jsonResponse;
+    	}
+    	
+    	BigInteger nodeId = nodeRepository.findNodeIdForIp(nodeJson.getIp());
+    	if (nodeId != null) {
+    		jsonResponse.setStatus(STATUS.FAIL);
+    		jsonResponse.setMessage("a node with given ip already exists");
+    		jsonResponse.setMetadata("{'id':'"+nodeId+"'}");
     		return jsonResponse;
     	}
     	
@@ -183,6 +222,14 @@ public class FrontendController {
     		jsonResponse.setStatus(STATUS.FAIL);
     		jsonResponse.setMessage("defined nodes are not present in DB");
     		jsonResponse.setMetadata("{'nodeIpA':'"+edgeJson.getNodeIpA()+"','nodeIpB':'"+edgeJson.getNodeIpB()+"'}");
+    		return jsonResponse;
+    	}
+    	
+    	BigInteger edgeId = edgeRepository.findEdgeId(nodeIdA, edgeJson.getIfIndexA(), nodeIdB, edgeJson.getIfIndexB());
+    	if (edgeId != null) {
+    		jsonResponse.setStatus(STATUS.FAIL);
+    		jsonResponse.setMessage("an edge with given details already exists");
+    		jsonResponse.setMetadata("{'id':'"+edgeId+"'}");
     		return jsonResponse;
     	}
     	
@@ -356,9 +403,6 @@ public class FrontendController {
 		
     	return jsonResponse;
     }
-    
-    @Autowired
-    private EntityManager entityManager;
 	
     @Transactional
     @RequestMapping(value="/topology-data", method=RequestMethod.DELETE)
@@ -395,6 +439,209 @@ public class FrontendController {
     			event);
 		
     	return jsonResponse;
+    }
+    
+    @RequestMapping(value="/topology-data", method=RequestMethod.GET)
+    public void getTopologyData(HttpServletResponse response) {
+    	log.debug("exporting topology data");
+
+    	try {
+    		StringBuilder stringBuilder = new StringBuilder();
+    		stringBuilder.append("{\n");
+    		
+    		stringBuilder.append("\t'nodes':[\n");
+    		
+    		Iterable<Node> nodes = getNodes();
+    		nodes.forEach(node -> {
+    			stringBuilder.append("\t\t{\n");
+        		stringBuilder.append("\t\t\t'name':'"+node.getName()+"',\n");
+        		stringBuilder.append("\t\t\t'ip':'"+node.getIp()+"'\n");
+        		stringBuilder.append("\t\t},\n");
+    		});
+    		
+    		stringBuilder.append("\t],\n");
+    		
+    		stringBuilder.append("\t'edges':[\n");
+    		
+    		Iterable<Edge> edges = getEdges();
+    		edges.forEach(edge -> {
+    			try {
+		    		stringBuilder.append("\t\t{\n");
+		    		stringBuilder.append("\t\t\t'nodeIpA':'"+nodeRepository.findById(
+		    				edge.getNodeIdA()).get().getIp()+"',\n");
+		    		stringBuilder.append("\t\t\t'nodeIpB':'"+nodeRepository.findById(
+		    				edge.getNodeIdB()).get().getIp()+"',\n");
+		    		stringBuilder.append("\t\t\t'ifIndexA':'"+edge.getIfIndexA()+"',\n");
+		    		stringBuilder.append("\t\t\t'ifIndexB':'"+edge.getIfIndexB()+"'\n");
+		    		stringBuilder.append("\t\t},\n");
+    			} catch (Exception e) {
+    				log.error(e.getMessage(), e);
+    			}
+	    	});
+    	
+    		stringBuilder.append("\t]\n");
+    		
+    		stringBuilder.append("}");
+    		response.setContentType("text/plain");
+    		FileCopyUtils.copy(stringBuilder.toString().replaceAll("'", "\"").replaceAll(",\\s+]", "]").getBytes(), 
+    				response.getOutputStream());
+			response.flushBuffer();
+		} catch (IOException e) {
+			log.error(e.getMessage(), e);
+		}
+    }
+    
+    @RequestMapping(value="/pcap-file", method=RequestMethod.POST)
+    public @ResponseBody JsonResponse postTopologyData(@RequestParam("file") MultipartFile file) {
+    	log.debug("posting topology data");
+    	
+    	JsonResponse jsonResponse = new JsonResponse();
+		jsonResponse.setStatus(STATUS.PASS);
+		jsonResponse.setMessage("file uploaded successfully");
+		jsonResponse.setMetadata("{'file':'"+file.getName()+"'}");
+		
+		try {
+			final ArrayList<String> knownConnections = new ArrayList<>();
+			final ArrayList<String> knownNodes = new ArrayList<>();
+			
+			final Pcap pcap = Pcap.openStream(file.getInputStream());
+			
+	        pcap.loop(new PacketHandler() {
+	            @Override
+	            public boolean nextPacket(final Packet packet) throws IOException {
+	
+	                if (packet.hasProtocol(Protocol.IPv4)) {
+	                    IPv4Packet ipv4Packet = (IPv4Packet)packet.getPacket(Protocol.IPv4);
+	                    String name = ipv4Packet.getName();
+	                    String sourceIP = ipv4Packet.getSourceIP();
+	                    String destinationIP = ipv4Packet.getDestinationIP();
+	                    
+	                    if (packet.hasProtocol(Protocol.TCP)) {
+	                        TCPPacket tcpPacket = (TCPPacket)ipv4Packet.getPacket(Protocol.TCP);
+	                        String sourcePort = String.valueOf(tcpPacket.getSourcePort());
+	                        String destinationPort = String.valueOf(tcpPacket.getDestinationPort());
+		                    
+	                        if (destinationPort.equals("80")
+	                                || destinationPort.equals("443")) {
+	                        	/*log.debug(name+" "+sourceIP+":"+sourcePort+"\t\t->\t\t"
+	                                +destinationIP+":"+destinationPort);*/
+
+			                    String connectionId = sourceIP+"|"+sourcePort+"|"
+			                    						+destinationIP+"|"+destinationPort;
+			                    
+	                        	if (!knownNodes.contains(sourceIP))
+	                        		knownNodes.add(sourceIP);
+	                        	if (!knownNodes.contains(destinationIP))
+	                        		knownNodes.add(destinationIP);
+	                        	if (!knownConnections.contains(connectionId))
+	                        		knownConnections.add(connectionId);
+	                        }
+	                    }
+	                }
+	
+	                return true;
+	            }
+	        });
+	        
+	        knownNodes.forEach(nodeIp -> {
+	        	Node node = new Node();
+	        	node.setName("IPv4-"+nodeIp);
+	        	node.setIp(nodeIp);
+	        	addNode(node);
+	        });
+	        
+	        knownConnections.forEach(connectionString -> {
+	        	String[] parts = connectionString.split("\\|");
+	        	String nodeIpA = parts[0];
+	        	String ifIndexA = parts[1];
+	        	String nodeIpB = parts[2];
+	        	String ifIndexB = parts[3];
+	        	
+	        	//log.debug(connectionString+"\n"+nodeIpA+"\n"+nodeIpB);
+	        		        	
+	        	Edge edge = new Edge();
+	        	edge.setNodeIpA(nodeIpA);
+	        	edge.setIfIndexA(ifIndexA);
+	        	edge.setNodeIpB(nodeIpB);
+	        	edge.setIfIndexB(ifIndexB);
+	        	addEdge(edge);
+	        });
+	        
+			jsonResponse.setMessage("file processed successfully");
+		} catch (Exception ex) {
+			log.error(ex.getMessage(), ex);
+			jsonResponse.setStatus(STATUS.FAIL);
+			jsonResponse.setMessage("file uploaded successfully but not processed properly.");
+		}
+    	
+		return jsonResponse;
+    }
+
+    @RequestMapping(value="/update-node-coordinates", method=RequestMethod.POST)
+    public @ResponseBody JsonResponse recomputeNodeCoordinates() {
+    	log.debug("starting layout computation");
+    	
+    	JsonResponse jsonResponse = new JsonResponse();
+		jsonResponse.setStatus(STATUS.PASS);
+		jsonResponse.setMessage("started the layout compution");
+		jsonResponse.setMetadata("{'target':'node server'}");
+		
+    	HttpURLConnection connection = null;
+		try {
+			URL url = new URL("http://127.0.0.1:4001/update-coordinates");
+			connection = (HttpURLConnection) url.openConnection();
+			connection.setRequestMethod("GET");
+			
+		    BufferedReader reader = new BufferedReader(new InputStreamReader(connection.getInputStream()));
+		    StringBuilder response = new StringBuilder();
+		    String line;
+		    while ((line = reader.readLine()) != null) {
+		      response.append(line).append('\n');
+		    }
+		    reader.close();
+			    
+			//log.debug(response.toString());
+			log.debug("started layout rcomputation");
+    	} catch (Exception ex) {
+    		log.error(ex.getMessage(), ex);
+    		if (connection != null)
+    			connection.disconnect();
+
+    		jsonResponse.setStatus(STATUS.FAIL);
+    		jsonResponse.setMessage("failed to start the layout compution");
+    	}
+		return jsonResponse;
+    }
+    
+    @RequestMapping(value="/node-coordinates-updated", method=RequestMethod.POST)
+    public @ResponseBody JsonResponse pushNodeCoordinates() {
+    	log.debug("finished layout recomputation");
+
+		JsonResponse jsonResponse = new JsonResponse();
+		jsonResponse.setStatus(STATUS.PASS);
+		jsonResponse.setMessage("your notification has been received");
+		jsonResponse.setMetadata("{'origin':'node server'}");
+    	
+    	/*Iterable<Node> nodes = getNodes();
+    	StringBuilder nodesString = new StringBuilder();
+    	nodesString.append("[");
+    	nodes.forEach(node -> {
+        	nodesString.append(node.toString()+",");
+    	});
+    	nodesString.append("]");
+    	log.debug(nodes.toString());
+    	log.debug(nodesString.toString());*/
+		
+		Event event = new Event();
+    	event.setType(TYPE.NODE_COORDINATES_UPDATED.toString());
+		event.setMetadata("{\"origin\":\"node server\"}");
+    	eventRepository.save(event);
+    	
+    	rabbitTemplate.convertAndSend(WebApplication.objectTopicExchangeName, 
+    			"ca.empowered.nms.simulator.object.new-edge", 
+    			event);
+		
+		return jsonResponse;
     }
     
 }

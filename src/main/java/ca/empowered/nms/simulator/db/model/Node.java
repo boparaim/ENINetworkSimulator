@@ -31,7 +31,10 @@ public class Node implements Serializable, MessageObject {
 	private String mac;
 	private String vendor;
 	private String model;
+	private String type;
 	private String metadata;
+	private Integer x;
+	private Integer y;
 	
 	@Override
 	public String toString() {
@@ -43,7 +46,10 @@ public class Node implements Serializable, MessageObject {
 		stringBuffer.append("\tmac: "+mac+",\n");
 		stringBuffer.append("\tvendor: "+vendor+",\n");
 		stringBuffer.append("\tmodel: "+model+",\n");
+		stringBuffer.append("\ttype: "+type+",\n");
 		stringBuffer.append("\tmetadata: "+metadata+",\n");
+		stringBuffer.append("\tx: "+x+",\n");
+		stringBuffer.append("\ty: "+y+",\n");
 		stringBuffer.append("}");
 		return stringBuffer.toString();
 	}
@@ -81,11 +87,29 @@ public class Node implements Serializable, MessageObject {
 	public void setModel(String model) {
 		this.model = model;
 	}
+	public String getType() {
+		return type;
+	}
+	public void setType(String type) {
+		this.type = type;
+	}
 	public String getMetadata() {
 		return metadata;
 	}
 	public void setMetadata(String metadata) {
 		this.metadata = metadata;
+	}
+	public Integer getX() {
+		return x;
+	}
+	public void setX(Integer x) {
+		this.x = x;
+	}
+	public Integer getY() {
+		return y;
+	}
+	public void setY(Integer y) {
+		this.y = y;
 	}
 	
 }
